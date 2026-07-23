@@ -119,13 +119,13 @@ a { color: inherit; text-decoration: none; }
 
 /* Logo — top */
 .sb-logo {
-  padding: 32px 20px 28px;
+  padding: 30px 20px;
   flex-shrink: 0;
   display: flex; justify-content: center;
 }
 .sb-logo a { cursor: none; display: block; transition: opacity .25s ease; }
 .sb-logo a:hover { opacity: .8; }
-.sb-logo img { height: 80px; width: auto; display: block; }
+.sb-logo img { height: 120px; width: auto; display: block; }
 
 /* Separator */
 .sb-sep {
@@ -144,9 +144,25 @@ a { color: inherit; text-decoration: none; }
   list-style: none;
   display: flex; flex-direction: column;
   align-items: center;
-  gap: 26px;
+  gap: 6px;
 }
 .sb-list li { position: relative; }
+
+/* Active dot — kleiner grüner Punkt links vom aktiven Item */
+.sb-list li::after {
+  content: '';
+  position: absolute;
+  left: 6px; top: 50%;
+  width: 4px; height: 4px;
+  background: var(--ox-lt);
+  border-radius: 50%;
+  transform: translateY(-50%) scale(0);
+  transition: transform .3s var(--pop-ease);
+  pointer-events: none;
+}
+.sb-list li.is-active::after {
+  transform: translateY(-50%) scale(1);
+}
 
 .sb-list a {
   font-family: 'Montserrat', system-ui, sans-serif;
@@ -192,7 +208,7 @@ a { color: inherit; text-decoration: none; }
 
 /* Kontakt CTA — bottom sweep */
 .sb-cta-wrap {
-  padding: 28px 20px 36px;
+  padding: 30px 20px;
   flex-shrink: 0;
   display: flex; justify-content: center;
   width: 100%;
@@ -227,17 +243,17 @@ a { color: inherit; text-decoration: none; }
   left: var(--sidebar-w); right: 0;
   height: 52px; z-index: 450;
   display: flex; align-items: center;
-  background: rgba(248,247,243,.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(0,0,0,.07);
+  background: rgba(60,60,60,.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,.06);
 }
 .topbar-label {
   position: absolute; left: 50%; transform: translateX(-50%);
   font-family: 'Montserrat', system-ui, sans-serif;
   font-size: 9px; font-weight: 400;
   letter-spacing: .28em; text-transform: uppercase;
-  color: rgba(0,0,0,.32);
+  color: rgba(255,255,255,.45);
   pointer-events: none;
   transition: opacity .4s ease;
 }
@@ -270,7 +286,8 @@ a { color: inherit; text-decoration: none; }
 .hero {
   height: 100vh; position: relative;
   display: flex; flex-direction: column;
-  justify-content: center; align-items: center;
+  justify-content: flex-start; align-items: center;
+  padding-top: 36vh;
   overflow: hidden;
 }
 .hero-video {
@@ -291,6 +308,7 @@ a { color: inherit; text-decoration: none; }
 .hero-content {
   position: relative; z-index: 2;
   padding: 0 80px; max-width: 860px; width: 100%;
+  text-align: center;
 }
 .hero-eyebrow {
   font-family: var(--font-sans);
@@ -757,6 +775,8 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
     </ul>
   </nav>
 
+  <div class="sb-sep"></div>
+
   <div class="sb-cta-wrap">
     <a href="#kontakt" class="sb-cta">Kontakt</a>
   </div>
@@ -1204,9 +1224,10 @@ var sbSections = Array.from(sbLinks).map(function(a) {
 var secObs = new IntersectionObserver(function(entries) {
   entries.forEach(function(entry) {
     if (entry.isIntersecting) {
+      document.querySelectorAll('.sb-list li').forEach(function(li) { li.classList.remove('is-active'); });
       sbLinks.forEach(function(a) { a.style.color = ''; });
       var active = document.querySelector('.sb-list a[href="#'+entry.target.id+'"]');
-      if (active) active.style.color = '#fff';
+      if (active) { active.style.color = '#fff'; active.closest('li').classList.add('is-active'); }
     }
   });
 }, { threshold: 0.4 });
