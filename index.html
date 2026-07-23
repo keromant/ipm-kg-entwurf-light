@@ -232,28 +232,15 @@ a { color: inherit; text-decoration: none; }
   -webkit-backdrop-filter: blur(12px);
   border-bottom: 1px solid rgba(0,0,0,.07);
 }
-.topbar-nav {
-  flex: 1; display: flex; justify-content: center;
-  gap: 40px; list-style: none; margin: 0; padding: 0;
-}
-.topbar-nav a {
+.topbar-label {
+  position: absolute; left: 50%; transform: translateX(-50%);
   font-family: 'Montserrat', system-ui, sans-serif;
-  font-size: 10px; font-weight: 400;
-  letter-spacing: .22em; text-transform: uppercase;
-  color: rgba(0,0,0,.4);
-  cursor: none;
-  transition: color .3s ease;
-  position: relative; display: block; padding: 6px 0;
+  font-size: 9px; font-weight: 400;
+  letter-spacing: .28em; text-transform: uppercase;
+  color: rgba(0,0,0,.32);
+  pointer-events: none;
+  transition: opacity .4s ease;
 }
-.topbar-nav a::after {
-  content: ''; position: absolute; bottom: 0; left: 50%;
-  width: 0; height: 1px; background: var(--ox);
-  transform: translateX(-50%); transition: width .3s ease;
-}
-.topbar-nav a:hover,
-.topbar-nav a.is-active { color: var(--ox); }
-.topbar-nav a:hover::after,
-.topbar-nav a.is-active::after { width: 100%; }
 .topbar-cta {
   position: absolute; right: 28px;
   font-family: 'Montserrat', system-ui, sans-serif;
@@ -262,8 +249,8 @@ a { color: inherit; text-decoration: none; }
   padding: 9px 20px;
   background: var(--ox); color: #fff;
   cursor: none;
-  position: absolute; right: 28px;
   display: inline-flex; align-items: center; gap: 8px;
+  position: absolute; right: 28px;
   overflow: hidden; isolation: isolate;
   transition: color .45s ease;
   --sweep: #3C3C3C;
@@ -282,7 +269,8 @@ a { color: inherit; text-decoration: none; }
 ================================================================ */
 .hero {
   height: 100vh; position: relative;
-  display: flex; flex-direction: column; justify-content: flex-end;
+  display: flex; flex-direction: column;
+  justify-content: center; align-items: center;
   overflow: hidden;
 }
 .hero-video {
@@ -302,7 +290,7 @@ a { color: inherit; text-decoration: none; }
 }
 .hero-content {
   position: relative; z-index: 2;
-  padding: 0 80px 72px; max-width: 860px;
+  padding: 0 80px; max-width: 860px; width: 100%;
 }
 .hero-eyebrow {
   font-family: var(--font-sans);
@@ -742,26 +730,35 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
 <div id="cursor-dot"></div>
 
 <!-- ================================================================
-     TOPBAR — Horizontale Navigation
+     TOPBAR — Sektionsname zentriert + CTA
 ================================================================ -->
 <div class="topbar" id="topbar">
-  <ul class="topbar-nav" id="topbarNav">
-    <li><a href="#werte-haltung">Werte &amp; Haltung</a></li>
-    <li><a href="#leistungen">Leistungen</a></li>
-    <li><a href="#projekte">Projekte</a></li>
-    <li><a href="#kontakt">Kontakt</a></li>
-  </ul>
+  <span class="topbar-label" id="topbarLabel">Willkommen</span>
   <a href="#kontakt" class="topbar-cta">Beratung anfragen +</a>
 </div>
 
 <!-- ================================================================
-     SIDEBAR — nur Logo
+     SIDEBAR
 ================================================================ -->
 <aside class="sidebar" id="sidebar">
   <div class="sb-logo">
     <a href="#">
       <img src="assets/ipm-logo.png" alt="ipm — Immobilien-Projekt-Management">
     </a>
+  </div>
+
+  <div class="sb-sep"></div>
+
+  <nav class="sb-nav">
+    <ul class="sb-list">
+      <li><a href="#werte-haltung">Werte &amp; Haltung</a></li>
+      <li><a href="#leistungen">Leistungen</a></li>
+      <li><a href="#projekte">Projekte</a></li>
+    </ul>
+  </nav>
+
+  <div class="sb-cta-wrap">
+    <a href="#kontakt" class="sb-cta">Kontakt</a>
   </div>
 </aside>
 
@@ -1174,23 +1171,46 @@ document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
   startAuto();
 })();
 
-/* ---- Topbar: aktiven Menüpunkt hervorheben beim Scrollen ---- */
-var tbLinks = document.querySelectorAll('.topbar-nav a');
-var tbSections = Array.from(tbLinks).map(function(a) {
+/* ---- Topbar: Sektionsname zentriert aktualisieren ---- */
+var topbarLabel = document.getElementById('topbarLabel');
+var sectionLabels = {
+  'hero': 'Willkommen',
+  'kennzahlen': 'Erfahrung',
+  'werte-haltung': 'Werte & Haltung',
+  'leistungen': 'Leistungen',
+  'projekte': 'Projekte',
+  'kontakt': 'Kontakt'
+};
+var allSections = Object.keys(sectionLabels).map(function(id) {
+  return document.getElementById(id);
+}).filter(Boolean);
+
+var labelObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(entry) {
+    if (entry.isIntersecting && topbarLabel) {
+      topbarLabel.textContent = sectionLabels[entry.target.id] || '';
+    }
+  });
+}, { threshold: 0.3 });
+allSections.forEach(function(s) { labelObs.observe(s); });
+
+/* ---- Sidebar: highlight active section ---- */
+var sbLinks = document.querySelectorAll('.sb-list a');
+var sbSections = Array.from(sbLinks).map(function(a) {
   var id = a.getAttribute('href').replace('#','');
   return document.getElementById(id);
 }).filter(Boolean);
 
-var tbObs = new IntersectionObserver(function(entries) {
+var secObs = new IntersectionObserver(function(entries) {
   entries.forEach(function(entry) {
     if (entry.isIntersecting) {
-      tbLinks.forEach(function(a) { a.classList.remove('is-active'); });
-      var active = document.querySelector('.topbar-nav a[href="#'+entry.target.id+'"]');
-      if (active) active.classList.add('is-active');
+      sbLinks.forEach(function(a) { a.style.color = ''; });
+      var active = document.querySelector('.sb-list a[href="#'+entry.target.id+'"]');
+      if (active) active.style.color = '#fff';
     }
   });
-}, { threshold: 0.35 });
-tbSections.forEach(function(s) { tbObs.observe(s); });
+}, { threshold: 0.4 });
+sbSections.forEach(function(s) { secObs.observe(s); });
 </script>
 </body>
 </html>
