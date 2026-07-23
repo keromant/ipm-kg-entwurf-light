@@ -35,7 +35,7 @@
 
 :root {
   /* ---- SIDEBAR ---- */
-  --sidebar-w: 176px;
+  --sidebar-w: 144px;
 
   /* ---- LICHT-PALETTE ---- */
   --bg:        #F8F7F3;
@@ -77,6 +77,7 @@ body {
   cursor: none;
   -webkit-font-smoothing: antialiased;
   padding-left: var(--sidebar-w);    /* offset for sidebar */
+  padding-top: 52px;                 /* offset for topbar */
 }
 img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
@@ -124,7 +125,7 @@ a { color: inherit; text-decoration: none; }
 }
 .sb-logo a { cursor: none; display: block; transition: opacity .25s ease; }
 .sb-logo a:hover { opacity: .8; }
-.sb-logo img { height: 100px; width: auto; display: block; }
+.sb-logo img { height: 80px; width: auto; display: block; }
 
 /* Separator */
 .sb-sep {
@@ -219,6 +220,64 @@ a { color: inherit; text-decoration: none; }
 .sb-cta.is-activating::after { animation: btn-sweep .5s ease forwards; }
 
 /* ================================================================
+   TOPBAR — Horizontale Menüleiste (fixiert, über Content)
+================================================================ */
+.topbar {
+  position: fixed; top: 0;
+  left: var(--sidebar-w); right: 0;
+  height: 52px; z-index: 450;
+  display: flex; align-items: center;
+  background: rgba(248,247,243,.92);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,0,0,.07);
+}
+.topbar-nav {
+  flex: 1; display: flex; justify-content: center;
+  gap: 40px; list-style: none; margin: 0; padding: 0;
+}
+.topbar-nav a {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 10px; font-weight: 400;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(0,0,0,.4);
+  cursor: none;
+  transition: color .3s ease;
+  position: relative; display: block; padding: 6px 0;
+}
+.topbar-nav a::after {
+  content: ''; position: absolute; bottom: 0; left: 50%;
+  width: 0; height: 1px; background: var(--ox);
+  transform: translateX(-50%); transition: width .3s ease;
+}
+.topbar-nav a:hover,
+.topbar-nav a.is-active { color: var(--ox); }
+.topbar-nav a:hover::after,
+.topbar-nav a.is-active::after { width: 100%; }
+.topbar-cta {
+  position: absolute; right: 28px;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 9px; font-weight: 400;
+  letter-spacing: .2em; text-transform: uppercase;
+  padding: 9px 20px;
+  background: var(--ox); color: #fff;
+  cursor: none;
+  position: absolute; right: 28px;
+  display: inline-flex; align-items: center; gap: 8px;
+  overflow: hidden; isolation: isolate;
+  transition: color .45s ease;
+  --sweep: #3C3C3C;
+}
+.topbar-cta::after {
+  content: ""; position: absolute; inset: 0 -20%; z-index: -1;
+  background: var(--sweep);
+  transform: skewX(-45deg) scale(0,1); transform-origin: center;
+  transition: transform .5s ease;
+}
+.topbar-cta:hover::after { transform: skewX(-45deg) scale(1,1); }
+.topbar-cta.is-activating::after { animation: btn-sweep .5s ease forwards; }
+
+/* ================================================================
    HERO — Full-Bleed Video
 ================================================================ */
 .hero {
@@ -294,16 +353,17 @@ a { color: inherit; text-decoration: none; }
 .btn-hero:hover::after { transform: skewX(-45deg) scale(1, 1); }
 .btn-hero.is-activating::after { animation: btn-sweep .5s ease forwards; }
 
-.hero-scroll-ind {
-  position: absolute; right: 52px; bottom: 52px; z-index: 2;
-  display: flex; align-items: center; gap: 14px;
-  opacity: 0; animation: fadeIn .8s ease 2s forwards;
+.hero-scroll-arrow {
+  position: absolute; bottom: 36px; left: 50%;
+  transform: translateX(-50%);
+  font-size: 26px; line-height: 1;
+  color: rgba(255,255,255,.5);
+  z-index: 2; cursor: none;
+  animation: arrowBounce 1.8s ease-in-out 2.2s infinite;
 }
-.hero-scroll-line { width: 32px; height: 1px; background: rgba(255,255,255,.3); }
-.hero-scroll-label {
-  font-family: var(--font-sans);
-  font-size: 9px; letter-spacing: .28em; text-transform: uppercase;
-  color: rgba(255,255,255,.35);
+@keyframes arrowBounce {
+  0%,100% { transform: translateX(-50%) translateY(0);   opacity: .5; }
+  50%      { transform: translateX(-50%) translateY(9px); opacity: .95; }
 }
 
 /* ================================================================
@@ -682,27 +742,26 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
 <div id="cursor-dot"></div>
 
 <!-- ================================================================
-     SIDEBAR
+     TOPBAR — Horizontale Navigation
+================================================================ -->
+<div class="topbar" id="topbar">
+  <ul class="topbar-nav" id="topbarNav">
+    <li><a href="#werte-haltung">Werte &amp; Haltung</a></li>
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#projekte">Projekte</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+  <a href="#kontakt" class="topbar-cta">Beratung anfragen +</a>
+</div>
+
+<!-- ================================================================
+     SIDEBAR — nur Logo
 ================================================================ -->
 <aside class="sidebar" id="sidebar">
   <div class="sb-logo">
     <a href="#">
       <img src="assets/ipm-logo.png" alt="ipm — Immobilien-Projekt-Management">
     </a>
-  </div>
-
-  <div class="sb-sep"></div>
-
-  <nav class="sb-nav">
-    <ul class="sb-list">
-      <li><a href="#beratung">Beratung</a></li>
-      <li><a href="#projekte">Projekte</a></li>
-      <li><a href="#insights">Aktuelles</a></li>
-    </ul>
-  </nav>
-
-  <div class="sb-cta-wrap">
-    <a href="#kontakt" class="sb-cta">Kontakt</a>
   </div>
 </aside>
 
@@ -728,10 +787,7 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
     <a href="#kontakt" class="btn-hero">Beratung anfragen +</a>
   </div>
 
-  <div class="hero-scroll-ind">
-    <div class="hero-scroll-line"></div>
-    <span class="hero-scroll-label">Scrollen</span>
-  </div>
+  <div class="hero-scroll-arrow">&#8964;</div>
 </section>
 
 <!-- ================================================================
@@ -758,9 +814,28 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
 </section>
 
 <!-- ================================================================
-     STATEMENT 2-SPALTEN
+     WERTE & HALTUNG — 2-spaltig (Platzhalter)
 ================================================================ -->
-<section id="beratung">
+<section id="werte-haltung">
+  <div class="statement-section reveal">
+    <div class="statement-left">
+      <h2>Was uns <em>antreibt</em>.</h2>
+    </div>
+    <div class="statement-right">
+      <p>
+        [Platzhalter — Text folgt nach Abstimmung.] Wir stehen für eine Bauberatung, die auf echten Werten basiert: Verlässlichkeit, Transparenz und das aufrichtige Interesse am Erfolg unserer Kunden.
+      </p>
+      <p>
+        [Platzhalter — Text folgt.] Unsere Haltung ist klar: Beratung auf Augenhöhe, ohne Interessenkonflikte — ausschließlich im Auftrag des Bauherrn.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     LEISTUNGEN — 2-spaltig
+================================================================ -->
+<section id="leistungen">
   <div class="statement-section reveal">
     <div class="statement-left">
       <h2>Bau-Beratung,<br>die <em>zählt</em>.</h2>
@@ -878,8 +953,8 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
 </section>
 
 <!-- ================================================================
-     INSIGHTS / AKTUELLES
-================================================================ -->
+     INSIGHTS / AKTUELLES — AUSGEBLENDET (für spätere Aktivierung)
+================================================================
 <section class="insights-section" id="insights">
   <div class="insights-header reveal">
     <h2 class="insights-title">Aktuelles + Einblicke</h2>
@@ -906,6 +981,7 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
     </a>
   </div>
 </section>
+================================================================ -->
 
 <!-- ================================================================
      FOOTER — hell
@@ -926,10 +1002,10 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
     <div class="footer-col">
       <h4>Leistungen</h4>
       <ul>
-        <li><a href="#beratung">BAU-BERATUNG</a></li>
-        <li><a href="#beratung">Projektsteuerung</a></li>
-        <li><a href="#beratung">Vergabe + Ausführung</a></li>
-        <li><a href="#beratung">Kostenkontrolle</a></li>
+        <li><a href="#werte-haltung">Werte &amp; Haltung</a></li>
+        <li><a href="#leistungen">Bau-Beratung</a></li>
+        <li><a href="#leistungen">Projektsteuerung</a></li>
+        <li><a href="#leistungen">Vergabe + Ausführung</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -997,7 +1073,7 @@ if (vid) {
 }
 
 /* ---- Button Sweep — action fires after animation ---- */
-document.querySelectorAll('a.btn-hero, a.sb-cta, a.btn-case, button.btn-hero').forEach(function(btn) {
+document.querySelectorAll('a.btn-hero, a.sb-cta, a.btn-case, a.topbar-cta, button.btn-hero').forEach(function(btn) {
   btn.addEventListener('click', function(e) {
     var isLink = btn.tagName === 'A';
     if (isLink && (e.metaKey||e.ctrlKey||e.shiftKey||e.button===1||btn.target==='_blank')) return;
@@ -1098,23 +1174,23 @@ document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
   startAuto();
 })();
 
-/* ---- Sidebar: highlight active section ---- */
-var sbLinks = document.querySelectorAll('.sb-list a');
-var sections = Array.from(sbLinks).map(function(a) {
+/* ---- Topbar: aktiven Menüpunkt hervorheben beim Scrollen ---- */
+var tbLinks = document.querySelectorAll('.topbar-nav a');
+var tbSections = Array.from(tbLinks).map(function(a) {
   var id = a.getAttribute('href').replace('#','');
   return document.getElementById(id);
 }).filter(Boolean);
 
-var secObs = new IntersectionObserver(function(entries) {
+var tbObs = new IntersectionObserver(function(entries) {
   entries.forEach(function(entry) {
     if (entry.isIntersecting) {
-      sbLinks.forEach(function(a) { a.style.color = ''; });
-      var active = document.querySelector('.sb-list a[href="#'+entry.target.id+'"]');
-      if (active) active.style.color = '#fff';
+      tbLinks.forEach(function(a) { a.classList.remove('is-active'); });
+      var active = document.querySelector('.topbar-nav a[href="#'+entry.target.id+'"]');
+      if (active) active.classList.add('is-active');
     }
   });
-}, { threshold: 0.4 });
-sections.forEach(function(s) { secObs.observe(s); });
+}, { threshold: 0.35 });
+tbSections.forEach(function(s) { tbObs.observe(s); });
 </script>
 </body>
 </html>
