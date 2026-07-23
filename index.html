@@ -416,11 +416,25 @@ a { color: inherit; text-decoration: none; }
 /* ================================================================
    STATEMENT 2-SPALTEN
 ================================================================ */
-/* Visuelle Trennung: Leistungen leicht abgesetzt vom Werte-Block darüber */
-#leistungen {
-  background: var(--bg-2);
-  border-top: 1px solid rgba(0,0,0,.07);
-  border-bottom: 1px solid rgba(0,0,0,.07);
+/* Sektions-Trennstreifen — Charcoal wie Topbar, Sektionsname zentriert */
+.section-divider {
+  height: 52px;
+  background: rgba(60,60,60,.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-top: 1px solid rgba(255,255,255,.06);
+  border-bottom: 1px solid rgba(255,255,255,.06);
+  display: flex; align-items: center; justify-content: center;
+}
+.section-divider span {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 13px; font-weight: 400;
+  letter-spacing: .28em; text-transform: uppercase;
+  color: rgba(255,255,255,.85);
+  text-shadow:
+    0 0 6px  rgba(56,160,56,.85),
+    0 0 16px rgba(56,160,56,.45),
+    0 0 34px rgba(56,160,56,.2);
 }
 .statement-section {
   padding: 120px 80px;
@@ -844,6 +858,7 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
 <!-- ================================================================
      WERTE & HALTUNG — 2-spaltig (Platzhalter)
 ================================================================ -->
+<div class="section-divider"><span>Werte &amp; Haltung</span></div>
 <section id="werte-haltung">
   <div class="statement-section reveal">
     <div class="statement-left">
@@ -863,6 +878,7 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
 <!-- ================================================================
      LEISTUNGEN — 2-spaltig
 ================================================================ -->
+<div class="section-divider"><span>Leistungen</span></div>
 <section id="leistungen">
   <div class="statement-section reveal">
     <div class="statement-left">
@@ -892,6 +908,7 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
 <!-- ================================================================
      CASE STUDY CAROUSEL
 ================================================================ -->
+<div class="section-divider"><span>Projekte</span></div>
 <section class="case-study" id="projekte">
   <div class="case-track" id="caseTrack">
 
@@ -1014,6 +1031,7 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
 <!-- ================================================================
      FOOTER — hell
 ================================================================ -->
+<div class="section-divider"><span>Kontakt</span></div>
 <footer id="kontakt">
   <div class="footer-main">
     <div>
