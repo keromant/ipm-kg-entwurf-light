@@ -1222,28 +1222,24 @@ document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
   startAuto();
 })();
 
-/* ---- Topbar: Sektionsname zentriert aktualisieren ---- */
+/* ---- Topbar: Sektionsname wechselt, sobald der nächste Trennstreifen
+        oben am Bildschirm (unter der Topbar) ankommt ---- */
 var topbarLabel = document.getElementById('topbarLabel');
-var sectionLabels = {
-  'hero': 'Willkommen',
-  'kennzahlen': 'Erfahrung',
-  'werte-haltung': 'Werte & Haltung',
-  'leistungen': 'Leistungen',
-  'projekte': 'Projekte',
-  'kontakt': 'Kontakt'
-};
-var allSections = Object.keys(sectionLabels).map(function(id) {
-  return document.getElementById(id);
-}).filter(Boolean);
+var sectionDividers = Array.prototype.slice.call(document.querySelectorAll('.section-divider'));
 
-var labelObs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
-    if (entry.isIntersecting && topbarLabel) {
-      topbarLabel.textContent = sectionLabels[entry.target.id] || '';
+function updateTopbarLabel() {
+  var label = 'Willkommen';
+  for (var i = 0; i < sectionDividers.length; i++) {
+    if (sectionDividers[i].getBoundingClientRect().top <= 52) {
+      label = sectionDividers[i].textContent.trim();
     }
-  });
-}, { threshold: 0.3 });
-allSections.forEach(function(s) { labelObs.observe(s); });
+  }
+  if (topbarLabel && topbarLabel.textContent !== label) {
+    topbarLabel.textContent = label;
+  }
+}
+window.addEventListener('scroll', updateTopbarLabel, { passive: true });
+updateTopbarLabel();
 
 /* ---- Sidebar: highlight active section ---- */
 var sbLinks = document.querySelectorAll('.sb-list a');
