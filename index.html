@@ -292,7 +292,7 @@ a { color: inherit; text-decoration: none; }
   min-height: 100vh; position: relative;
   display: flex; flex-direction: column;
   justify-content: flex-start; align-items: center;
-  padding-top: 44vh; padding-bottom: 48px;
+  padding-top: 50vh; padding-bottom: 40px;
   overflow: hidden;
 }
 .hero-video {
@@ -319,20 +319,20 @@ a { color: inherit; text-decoration: none; }
   font-family: var(--font-sans);
   font-size: 10px; font-weight: 300;
   letter-spacing: .34em; text-transform: uppercase;
-  color: var(--ox-lt); margin-bottom: 22px; display: block;
+  color: var(--ox-lt); margin-bottom: 12px; display: block;
   opacity: 0; animation: fadeUp .8s var(--ease-out) .4s forwards;
 }
 .hero-statement {
   font-family: var(--font-serif);
   font-size: clamp(42px, 6.5vw, 96px);
-  font-weight: 400; line-height: 1.06;
+  font-weight: 400; line-height: .98;
   color: #fff; letter-spacing: -.01em;
-  margin-bottom: 40px; opacity: 0;
+  margin-bottom: 22px; opacity: 0;
   animation: fadeUp 1s var(--ease-out) .6s forwards;
 }
 .hero-rule {
   width: 56px; height: 1px; background: var(--ox-lt);
-  margin: 0 auto 32px; opacity: 0;
+  margin: 0 auto 18px; opacity: 0;
   animation: ruleGrow .8s var(--ease-out) 1s forwards;
 }
 .hero-sub {
@@ -365,7 +365,7 @@ a { color: inherit; text-decoration: none; }
 .btn-hero.is-activating::after { animation: btn-sweep .5s ease forwards; }
 
 .hero-scroll-arrow {
-  margin-top: 34px;
+  margin-top: 22px;
   font-size: 30px; line-height: 1;
   color: var(--ox-lt);
   text-shadow:
