@@ -287,24 +287,25 @@ a { color: inherit; text-decoration: none; }
    HERO — Full-Bleed Video
 ================================================================ */
 .hero {
-  /* Zwei Bedingungen zugleich:
-     1. 100vh - 196px  -> Topbar + Claim-Polster + Headline-Zeile bleiben frei,
-        die Headline reisst beim Laden gerade noch an.
-     2. (Breite - Sidebar) x .588 -> genau so hoch, wie vom Bild uebrig ist,
-        wenn oben 12% abgeschnitten sind. Verhindert eine Luecke unter dem Bild.
-     Der kleinere Wert gewinnt; unten wird also nur beschnitten, wenn der
-     Bildschirm flach ist — die Koepfe bleiben in jedem Fall vollstaendig. */
-  height: min(calc(100vh - 196px), calc((100vw - 192px) * .588));
+  /* (Breite - Sidebar) x .561 = genau die Resthoehe des Bildes, wenn oben 16%
+     abgeschnitten sind. Das Bild laeuft dadurch unten in voller Laenge aus —
+     kein Beschnitt, keine Luecke.
+     Die 100vh-Bedingung ist nur die Notbremse fuer sehr flache Fenster
+     (unter rund 870px Hoehe); darueber gewinnt immer die volle Bildlaenge. */
+  height: min(calc(100vh - 150px), calc((100vw - 192px) * .561));
   min-height: 300px;
   position: relative; overflow: hidden;
 }
 .hero-video {
   /* Volle Breite, natuerliche Hoehe, oben konstant angeschnitten:
-     margin-top in % bezieht sich auf die BREITE -> -8% = 12% der Bildhoehe.
-     Dadurch sitzen die Koepfe bei jeder Fenstergroesse gleich unter der Leiste. */
+     margin-top in % bezieht sich auf die BREITE -> -10.7% = 16% der Bildhoehe.
+     16% ist der Rand ueber den Koepfen: im hoechsten Frame des Videos (etwa bei
+     der Haelfte) beginnt der Kopf bei 18.5% — es bleibt also immer Luft.
+     Fest verdrahtet statt object-position, damit der Schnitt nicht mit der
+     Fensterhoehe wandert. */
   position: absolute; top: 0; left: 0;
   width: 100%; height: auto;
-  margin-top: -8%;
+  margin-top: -10.7%;
   transform: translate3d(0,0,0); will-change: transform;
 }
 .hero-overlay {
@@ -787,9 +788,9 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
   .sidebar { display: none; }
   .claim { padding: 44px 32px 40px; }
   /* Handy/Tablet: 30% in das Bild hineingezoomt, damit die Gesichter gross genug
-     bleiben. Der obere Schnitt bleibt bei 12% der Bildhoehe (-10.4% von 130%). */
-  .hero { height: min(calc(100vh - 210px), calc(100vw * .764)); min-height: 220px; }
-  .hero-video { width: 130%; margin-left: -15%; margin-top: -10.4%; }
+     bleiben. Oberer Schnitt ebenfalls 16% der Bildhoehe (-13.9% von 130%). */
+  .hero { height: min(calc(100vh - 170px), calc(100vw * .729)); min-height: 220px; }
+  .hero-video { width: 130%; margin-left: -15%; margin-top: -13.9%; }
   .topbar { left: 0; }          /* Sidebar ist ausgeblendet — keine Luecke mehr */
   .statement-section { grid-template-columns: 1fr; padding: 64px 32px; gap: 48px; }
   .statement-right { border-left: none; padding-left: 0; border-top: 1px solid rgba(0,0,0,.1); padding-top: 32px; }
