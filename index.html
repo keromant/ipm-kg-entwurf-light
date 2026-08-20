@@ -244,10 +244,8 @@ a { color: inherit; text-decoration: none; }
   left: var(--sidebar-w); right: 0;
   height: 52px; z-index: 450;
   display: flex; align-items: center;
-  background: rgba(60,60,60,.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(255,255,255,.06);
+  background: #3C3C3C;               /* identisch zur Sidebar — deckend, kein Blur */
+  border-bottom: 1px solid rgba(0,0,0,.22);
 }
 .topbar-label {
   position: absolute; left: 50%; transform: translateX(-50%);
