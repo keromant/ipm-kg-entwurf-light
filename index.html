@@ -124,21 +124,11 @@ a { color: inherit; text-decoration: none; }
   position: relative;
   z-index: 1001;
   align-self: flex-start;
-  width: 258px;
-  margin-left: 34px;   /* nach rechts, aus dem Rahmen heraus */
-  margin-top: 6px;
+  width: 212px;
+  margin-left: 30px;   /* nach rechts, aus dem Rahmen heraus */
+  margin-top: 8px;
   padding: 0;
   flex-shrink: 0;
-  transition:
-    width      .6s var(--ease-out),
-    margin     .6s var(--ease-out);
-}
-/* Sobald der Hero weggescrollt ist, zieht sich das Logo in die Sidebar zurueck —
-   sonst klebte der helle Logo-Kasten dauerhaft ueber dem hellen Inhalt. */
-body.past-hero .sb-logo {
-  width: 104px;
-  margin-left: 20px;
-  margin-top: 26px;
 }
 .sb-logo a { cursor: none; display: block; transition: opacity .25s ease; }
 .sb-logo a:hover { opacity: .8; }
@@ -146,9 +136,7 @@ body.past-hero .sb-logo {
   width: 100%; max-width: none; height: auto;
   display: block; object-fit: contain;
   filter: drop-shadow(0 10px 34px rgba(0,0,0,.4));
-  transition: filter .6s var(--ease-out);
 }
-body.past-hero .sb-logo img { filter: none; }
 
 /* Separator */
 .sb-sep {
@@ -355,15 +343,29 @@ body.past-hero .sb-logo img { filter: none; }
   font-weight: 400; line-height: 1.04;
   letter-spacing: -.015em;
   color: #fff;
-  text-shadow: 0 2px 30px rgba(0,0,0,.55), 0 1px 5px rgba(0,0,0,.45);
-  opacity: 0;
-  transform: translateY(26px) scale(.93);
-  transition:
-    opacity   .85s var(--ease-out),
-    transform .85s var(--pop-ease);
 }
 .hero-claim h1 em { font-style: italic; }
-.hero.is-claim .hero-claim h1 { opacity: 1; transform: translateY(0) scale(1); }
+
+/* Wortweises Reveal: jedes Wort gleitet hinter einer unsichtbaren Kante hervor.
+   Die Maske (overflow) braucht Padding, damit Unterlaengen, der Kursiv-Ueberhang
+   von "anders!" und der Textschatten nicht angeschnitten werden — das Padding
+   wird per negativem margin wieder herausgerechnet, damit die Wortabstaende
+   exakt die der normalen Typografie bleiben. */
+.hc-word {
+  display: inline-block;
+  overflow: hidden;
+  vertical-align: bottom;
+  padding:  .18em  .14em  .20em  .05em;
+  margin:  -.18em -.14em -.20em -.05em;
+}
+.hc-word > span {
+  display: inline-block;
+  transform: translateY(130%);
+  transition: transform 1.15s var(--ease-out);
+  transition-delay: var(--wd, 0s);
+  text-shadow: 0 1px 14px rgba(0,0,0,.55);
+}
+.hero.is-claim .hc-word > span { transform: translateY(0); }
 
 .hero-scroll {
   position: absolute; left: 50%; bottom: 26px;
@@ -860,6 +862,7 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
   .reveal.in { transform: none; }
   .btn-hero, .sb-cta { transition: none; }
   .btn-hero::after, .sb-cta::after { transition: none; animation: none; }
+  .hc-word > span { transform: none; transition: none; }
   * { animation-duration: .01ms !important; }
 }
 </style>
@@ -918,7 +921,9 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
   <div class="hero-overlay"></div>
 
   <div class="hero-claim">
-    <h1>Wir sind <em>anders!</em></h1>
+    <h1><span class="hc-word"><span style="--wd:0s">Wir</span></span>
+        <span class="hc-word"><span style="--wd:.11s">sind</span></span>
+        <span class="hc-word"><span style="--wd:.22s"><em>anders!</em></span></span></h1>
   </div>
 
   <a class="hero-scroll" href="#claim" aria-label="Weiter zum Inhalt">
@@ -1369,18 +1374,6 @@ function updateTopbarLabel() {
 }
 window.addEventListener('scroll', updateTopbarLabel, { passive: true });
 updateTopbarLabel();
-
-/* ---- Logo: gross und aus dem Rahmen ragend, solange der Hero im Bild ist;
-        danach zieht es sich in die Sidebar zurueck ---- */
-function updateLogoSize() {
-  var hero = document.querySelector('.hero');
-  if (!hero) return;
-  var past = hero.getBoundingClientRect().bottom <= 160;
-  document.body.classList.toggle('past-hero', past);
-}
-window.addEventListener('scroll', updateLogoSize, { passive: true });
-window.addEventListener('resize', updateLogoSize, { passive: true });
-updateLogoSize();
 
 /* ---- Sidebar: highlight active section ---- */
 var sbLinks = document.querySelectorAll('.sb-list a');
