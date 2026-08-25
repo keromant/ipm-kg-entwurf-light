@@ -114,18 +114,41 @@ a { color: inherit; text-decoration: none; }
   z-index: 500;
   display: flex; flex-direction: column;
   align-items: center;
-  overflow: hidden;
+  overflow: visible;   /* das Logo ragt bewusst nach rechts heraus */
 }
 
-/* Logo — top */
+/* Logo — sitzt oben im Sidebar und ragt nach rechts in den Bildbereich hinein.
+   Deshalb .sidebar { overflow: visible } und ein z-index ueber Topbar (450)
+   und Hero. Vorbild: mein-qtl. */
 .sb-logo {
-  padding: 30px 20px;
+  position: relative;
+  z-index: 1001;
+  align-self: flex-start;
+  width: 258px;
+  margin-left: 34px;   /* nach rechts, aus dem Rahmen heraus */
+  margin-top: 6px;
+  padding: 0;
   flex-shrink: 0;
-  display: flex; justify-content: center;
+  transition:
+    width      .6s var(--ease-out),
+    margin     .6s var(--ease-out);
+}
+/* Sobald der Hero weggescrollt ist, zieht sich das Logo in die Sidebar zurueck —
+   sonst klebte der helle Logo-Kasten dauerhaft ueber dem hellen Inhalt. */
+body.past-hero .sb-logo {
+  width: 104px;
+  margin-left: 20px;
+  margin-top: 26px;
 }
 .sb-logo a { cursor: none; display: block; transition: opacity .25s ease; }
 .sb-logo a:hover { opacity: .8; }
-.sb-logo img { max-width: calc(var(--sidebar-w) - 24px); height: auto; display: block; object-fit: contain; }
+.sb-logo img {
+  width: 100%; max-width: none; height: auto;
+  display: block; object-fit: contain;
+  filter: drop-shadow(0 10px 34px rgba(0,0,0,.4));
+  transition: filter .6s var(--ease-out);
+}
+body.past-hero .sb-logo img { filter: none; }
 
 /* Separator */
 .sb-sep {
@@ -287,44 +310,70 @@ a { color: inherit; text-decoration: none; }
    HERO — Full-Bleed Video
 ================================================================ */
 .hero {
-  /* (Breite - Sidebar) x .561 = genau die Resthoehe des Bildes, wenn oben 16%
-     abgeschnitten sind. Das Bild laeuft dadurch unten in voller Laenge aus —
-     kein Beschnitt, keine Luecke.
-     Die 100vh-Bedingung ist nur die Notbremse fuer sehr flache Fenster
-     (unter rund 870px Hoehe); darueber gewinnt immer die volle Bildlaenge. */
-  height: min(calc(100vh - 150px), calc((100vw - 192px) * .561));
-  min-height: 300px;
+  /* Vollbild — aber INNERHALB der Rahmen: die Topbar (52px) bleibt oben stehen,
+     die Sidebar links; body hat dafuer schon padding-top/padding-left. */
+  height: calc(100vh - 52px);
+  min-height: 460px;
   position: relative; overflow: hidden;
 }
 .hero-video {
-  /* Volle Breite, natuerliche Hoehe, oben konstant angeschnitten:
-     margin-top in % bezieht sich auf die BREITE -> -10.7% = 16% der Bildhoehe.
-     16% ist der Rand ueber den Koepfen: im hoechsten Frame des Videos (etwa bei
-     der Haelfte) beginnt der Kopf bei 18.5% — es bleibt also immer Luft.
-     Fest verdrahtet statt object-position, damit der Schnitt nicht mit der
-     Fensterhoehe wandert. */
-  position: absolute; top: 0; left: 0;
-  width: 100%; height: auto;
-  margin-top: -10.7%;
+  /* Fuellt die gesamte Hero-Flaeche formatfuellend. Der Bildausschnitt sitzt
+     leicht oberhalb der Mitte (42%), damit bei breiten Fenstern immer Luft
+     ueber den Koepfen bleibt und unten Platz fuer den Slogan ist. */
+  position: absolute; inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  object-position: 50% 42%;
   transform: translate3d(0,0,0); will-change: transform;
 }
 .hero-overlay {
   position: absolute; inset: 0;
   background: linear-gradient(
     to top,
-    rgba(0,0,0,.42) 0%,
-    rgba(0,0,0,.10) 38%,
+    rgba(0,0,0,.58) 0%,
+    rgba(0,0,0,.30) 24%,
+    rgba(0,0,0,.08) 48%,
     rgba(0,0,0,0)   100%
   );
   pointer-events: none;
 }
+
+/* Slogan im Bild — ploppt genau dann auf, wenn die beiden im Video
+   die Arme verschraenken (siehe JS: CLAIM_AT). */
+.hero-claim {
+  position: absolute;
+  left: 0; right: 0; bottom: clamp(96px, 13vh, 150px);
+  z-index: 3;
+  text-align: center;
+  pointer-events: none;
+  padding: 0 32px;
+}
+.hero-claim h1 {
+  margin: 0;
+  font-family: var(--font-serif);
+  font-size: clamp(38px, 6vw, 88px);
+  font-weight: 400; line-height: 1.04;
+  letter-spacing: -.015em;
+  color: #fff;
+  text-shadow: 0 2px 30px rgba(0,0,0,.55), 0 1px 5px rgba(0,0,0,.45);
+  opacity: 0;
+  transform: translateY(26px) scale(.93);
+  transition:
+    opacity   .85s var(--ease-out),
+    transform .85s var(--pop-ease);
+}
+.hero-claim h1 em { font-style: italic; }
+.hero.is-claim .hero-claim h1 { opacity: 1; transform: translateY(0) scale(1); }
+
 .hero-scroll {
   position: absolute; left: 50%; bottom: 26px;
   transform: translateX(-50%);
   z-index: 2; display: block;
   text-decoration: none; cursor: none;
-  opacity: 0; animation: fadeIn .9s var(--ease-out) .7s forwards;
+  opacity: 0;
+  transition: opacity .8s var(--ease-out) .35s;
 }
+.hero.is-claim .hero-scroll { opacity: 1; }
 
 /* ================================================================
    CLAIM — kompakter Textblock zwischen Bild und Kennzahlen
@@ -336,23 +385,18 @@ a { color: inherit; text-decoration: none; }
   text-align: center;
 }
 .claim-inner { max-width: 880px; margin: 0 auto; }
-.claim-headline {
-  font-family: var(--font-serif);
-  font-size: clamp(30px, 4.4vw, 58px);
-  font-weight: 400; line-height: 1.06;
-  color: var(--text); letter-spacing: -.01em;
-  margin: 0;
-}
-.claim-headline em { font-style: italic; color: var(--ox); }
 .claim-rule {
   width: 56px; height: 1px; background: var(--ox-lt);
-  margin: 20px auto 18px;
+  margin: 0 auto 30px;
 }
+/* Steht seit dem Vollbild-Hero allein — deshalb groesser gesetzt als ein
+   blosser Unterzeile-Text. */
 .claim-sub {
   font-family: var(--font-sans);
-  font-size: 16px; font-weight: 300;
-  color: var(--text-2); line-height: 1.75;
-  max-width: 620px; margin: 0 auto;
+  font-size: clamp(17px, 1.65vw, 21px);
+  font-weight: 300;
+  color: var(--text-2); line-height: 1.72;
+  max-width: 760px; margin: 0 auto;
 }
 
 .btn-hero {
@@ -787,10 +831,14 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
   body { padding-left: 0; }
   .sidebar { display: none; }
   .claim { padding: 44px 32px 40px; }
-  /* Handy/Tablet: 30% in das Bild hineingezoomt, damit die Gesichter gross genug
-     bleiben. Oberer Schnitt ebenfalls 16% der Bildhoehe (-13.9% von 130%). */
-  .hero { height: min(calc(100vh - 170px), calc(100vw * .729)); min-height: 220px; }
-  .hero-video { width: 130%; margin-left: -15%; margin-top: -13.9%; }
+  /* Handy/Tablet: der Hero bleibt bildschirmfuellend, wird aber bei sehr hohen
+     Hochkant-Displays gedeckelt — sonst wuerde "cover" links und rechts so viel
+     wegschneiden, dass die beiden aus dem Bild laufen. */
+  .hero { height: min(calc(100vh - 52px), calc(100vw * 1.32)); min-height: 320px; }
+  /* etwas nach rechts, sonst schneidet der schmale Ausschnitt Sebastian an */
+  .hero-video { object-position: 53% 38%; }
+  .hero-claim { bottom: 74px; padding: 0 24px; }
+  .hero-claim h1 { font-size: clamp(30px, 8.5vw, 52px); }
   .topbar { left: 0; }          /* Sidebar ist ausgeblendet — keine Luecke mehr */
   .statement-section { grid-template-columns: 1fr; padding: 64px 32px; gap: 48px; }
   .statement-right { border-left: none; padding-left: 0; border-top: 1px solid rgba(0,0,0,.1); padding-top: 32px; }
@@ -869,6 +917,10 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
   </video>
   <div class="hero-overlay"></div>
 
+  <div class="hero-claim">
+    <h1>Wir sind <em>anders!</em></h1>
+  </div>
+
   <a class="hero-scroll" href="#claim" aria-label="Weiter zum Inhalt">
     <div class="hero-scroll-arrow">&#8964;</div>
   </a>
@@ -879,9 +931,8 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
 ================================================================ -->
 <section class="claim" id="claim">
   <div class="claim-inner">
-    <h1 class="claim-headline reveal" style="--d:.30s">Erfahrung. Vertrauen. <em>Werte.</em></h1>
-    <div class="claim-rule reveal" style="--d:.44s"></div>
-    <p class="claim-sub reveal" style="--d:.58s">Fachlich qualifiziert. Professionell. Unkompliziert. — Beratung für Bauherren, Investoren und Projektentwickler auf Empfehlung.</p>
+    <div class="claim-rule reveal" style="--d:.10s"></div>
+    <p class="claim-sub reveal" style="--d:.24s">Fachlich qualifiziert. Professionell. Unkompliziert. — Beratung für Bauherren, Investoren und Projektentwickler auf Empfehlung.</p>
   </div>
 </section>
 
@@ -1156,19 +1207,43 @@ document.querySelectorAll('a,button').forEach(el=>{
   el.addEventListener('mouseleave',()=>cur.classList.remove('is-hover'));
 });
 
-/* ---- Video: hold last frame; replay on scroll-back ---- */
+/* ---- Video: hold last frame; replay on scroll-back ----
+   Der Slogan "Wir sind anders!" ploppt genau in dem Moment auf, in dem die
+   beiden im Video die Arme verschraenken. Das Video ist 4,04s lang (24 fps);
+   die Endpose sitzt ab Frame ~52, also bei rund 2,15s. */
 const vid = document.querySelector('.hero-video');
-if (vid) {
+const heroSection = document.querySelector('.hero');
+if (vid && heroSection) {
+  const CLAIM_AT = 2.15;
+  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  const showClaim = () => heroSection.classList.add('is-claim');
+  const hideClaim = () => heroSection.classList.remove('is-claim');
+
+  /* Notnagel: spielt das Video nicht (Autoplay blockiert, Datei fehlt,
+     Reduced Motion), erscheint der Slogan trotzdem — sonst waere der Hero
+     komplett textlos. */
+  const fallback = setTimeout(showClaim, reduced ? 300 : 2600);
+
+  if (reduced) {
+    showClaim();
+  } else {
+    vid.addEventListener('timeupdate', () => {
+      if (vid.currentTime >= CLAIM_AT) { clearTimeout(fallback); showClaim(); }
+    });
+  }
+
   vid.addEventListener('ended', () => vid.pause());
-  const heroSection = document.querySelector('.hero');
+
   const vidObs = new IntersectionObserver((entries) => {
     entries.forEach(e => {
-      if (e.isIntersecting && vid.paused && vid.ended) {
+      if (e.isIntersecting && vid.paused && vid.ended && !reduced) {
+        hideClaim();                       /* Slogan ploppt beim Replay erneut auf */
         vid.currentTime = 0; vid.play();
       }
     });
   }, { threshold: 0.3 });
-  if (heroSection) vidObs.observe(heroSection);
+  vidObs.observe(heroSection);
 }
 
 /* ---- Button Sweep — action fires after animation ---- */
@@ -1294,6 +1369,18 @@ function updateTopbarLabel() {
 }
 window.addEventListener('scroll', updateTopbarLabel, { passive: true });
 updateTopbarLabel();
+
+/* ---- Logo: gross und aus dem Rahmen ragend, solange der Hero im Bild ist;
+        danach zieht es sich in die Sidebar zurueck ---- */
+function updateLogoSize() {
+  var hero = document.querySelector('.hero');
+  if (!hero) return;
+  var past = hero.getBoundingClientRect().bottom <= 160;
+  document.body.classList.toggle('past-hero', past);
+}
+window.addEventListener('scroll', updateLogoSize, { passive: true });
+window.addEventListener('resize', updateLogoSize, { passive: true });
+updateLogoSize();
 
 /* ---- Sidebar: highlight active section ---- */
 var sbLinks = document.querySelectorAll('.sb-list a');
