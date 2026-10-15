@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Das Manifest des Wohnens — ipm-KG</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+@font-face { font-family: 'Playfair Display'; src: url('../assets/fonts/PlayfairDisplay.ttf') format('truetype'); font-weight: 400 800; font-display: swap; }
+@font-face { font-family: 'Avenir Web'; src: url('../assets/fonts/avenir-light.ttf') format('truetype'); font-weight: 300; font-display: swap; }
+@font-face { font-family: 'Montserrat'; src: url('../assets/fonts/Montserrat.ttf') format('truetype'); font-weight: 300 700; font-display: swap; }
+:root {
+  --bg: #F8F7F3; --text: #1A1A1A; --text-2: #454545; --ox: #2a7a2a;
+  --font-serif: 'Playfair Display', Georgia, serif;
+  --font-sans: 'Avenir Web','Montserrat',system-ui,sans-serif;
+}
+body { font-family: var(--font-sans); background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
+a { color: var(--ox); }
+.legal-bar { background: #3C3C3C; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.legal-bar img { height: 64px; width: auto; display: block; }
+.legal-bar .back { font-family: 'Montserrat', system-ui, sans-serif; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.85); text-decoration: none; }
+.legal-bar .back:hover { color: #fff; }
+main { padding: 0; }
+h1 { font-family: var(--font-serif); font-weight: 400; font-size: clamp(34px, 5vw, 56px); line-height: 1.1; margin-bottom: 40px; overflow-wrap: anywhere; }
+p, li { font-size: 16px; font-weight: 300; line-height: 1.8; color: var(--text-2); overflow-wrap: anywhere; }
+ul { margin: 8px 0 12px 20px; }
+strong { font-weight: 400; color: var(--text); }
+.legal-source { margin-top: 48px; font-size: 13px; color: #888; }
+footer { border-top: 1px solid rgba(0,0,0,.08); padding: 24px; text-align: center; font-size: 12px; color: rgba(0,0,0,.5); }
+footer a { color: inherit; margin: 0 10px; }
+@media print { .legal-bar { display: none; } }
+.manifest { background: #fff; }
+/* ================================================================
+   MANIFEST DES WOHNENS — einspaltig, ruhiger Lesesatz
+================================================================ */
+.manifest { background: var(--bg-light); padding: 120px 80px 128px; }
+.manifest-inner { max-width: 720px; margin: 0 auto; }
+.manifest-head { text-align: center; margin-bottom: 56px; }
+.manifest-eyebrow {
+  display: block;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 12px; font-weight: 400;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: var(--ox); margin-bottom: 18px;
+}
+.manifest-head h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(34px, 4.6vw, 62px);
+  font-weight: 400; line-height: 1.1; letter-spacing: -.01em;
+  color: var(--text);
+}
+.manifest-head h2 em { font-style: italic; color: var(--ox-lt); }
+.manifest-quote {
+  margin: 0 0 72px; padding: 36px 0;
+  border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);
+  text-align: center;
+}
+.manifest-quote p {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: clamp(21px, 2.3vw, 30px);
+  font-weight: 400; line-height: 1.5; color: var(--text);
+}
+.manifest-block { margin-bottom: 48px; }
+.manifest-block h3 {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2.2vw, 28px);
+  font-weight: 400; line-height: 1.25;
+  color: var(--text); margin-bottom: 14px;
+}
+.manifest-block h3::before {
+  content: ""; display: block;
+  width: 40px; height: 1px; background: var(--ox-lt);
+  margin-bottom: 18px;
+}
+.manifest-block p {
+  font-family: var(--font-sans);
+  font-size: 17px; font-weight: 300;
+  line-height: 1.9; color: var(--text-2);
+}
+.manifest-block p + p { margin-top: 18px; }
+.manifest-close { margin-bottom: 0; }
+.manifest .manifest-lines {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: clamp(20px, 2vw, 25px); line-height: 1.55; color: var(--text);
+}
+.manifest .manifest-sig {
+  margin-top: 36px;
+  font-family: var(--font-serif);
+  font-size: clamp(20px, 2vw, 25px); line-height: 1.5;
+  color: var(--ox);
+}
+
+
+:root { --text-2: #454545; --ox-lt: #38a038; --bg-light: #fff; --hairline: rgba(0,0,0,.09); }
+.reveal { opacity: 1; }
+@media (max-width: 960px) {
+  .manifest { padding: 64px 24px 80px; }
+  .manifest-quote { margin-bottom: 52px; }
+  .manifest-block p { font-size: 16px; }
+}
+.manifest-back { text-align: center; padding: 0 24px 72px; background: #fff; font-family: 'Montserrat', system-ui, sans-serif; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; }
+.manifest-back a { text-decoration: none; }
+</style>
+</head>
+<body>
+<header class="legal-bar">
+  <a href="../"><img src="../assets/ipm-logo.png" alt="ipm-KG — zur Startseite"></a>
+  <a class="back" href="../">&larr; Zur Startseite</a>
+</header>
+<main>
+<section class="manifest">
+  <div class="manifest-inner">
+    <header class="manifest-head">
+      <span class="manifest-eyebrow">Die Philosophie der ipm-KG · Quality Time Living</span>
+      <h2>Das Manifest des <em>Wohnens</em></h2>
+    </header>
+
+    <blockquote class="manifest-quote">
+      <p>„Wir entwickeln keine Immobilien.<br>Wir entwickeln Lebensräume.<br>Denn ein Zuhause beginnt nicht mit Mauern – sondern mit Menschen.“</p>
+    </blockquote>
+
+    <div class="manifest-block">
+      <h3>Warum wir tun, was wir tun</h3>
+      <p>Jeder Mensch sucht im Leben nach einem Ort, an dem er ankommen kann. Nicht nach möglichst vielen Quadratmetern, sondern nach einem Zuhause, das Sicherheit schenkt, Geborgenheit vermittelt und Lebensqualität entstehen lässt. Ein Zuhause ist kein Bauwerk. Es ist ein Gefühl. Es ist der Ort, an dem Erinnerungen entstehen, Zukunft gestaltet wird und das Leben seinen Raum findet.</p>
+    </div>
+
+    <div class="manifest-block">
+      <h3>Unsere Überzeugung</h3>
+      <p>Die Welt verändert sich. Menschen leben länger, bleiben aktiver und möchten ihre Zeit bewusster genießen. Deshalb genügt es heute nicht mehr, Wohnraum zu schaffen. Es braucht Lebensräume, die sich den Menschen anpassen – nicht umgekehrt. Als Projektentwickler beginnen wir kein Projekt mit der Frage, was gebaut werden kann. Wir beginnen mit der Frage: Wie möchten Menschen leben? Der Mensch steht für uns immer vor der Immobilie.</p>
+    </div>
+
+    <div class="manifest-block">
+      <h3>Unsere Verantwortung</h3>
+      <p>Wir entwickeln Projekte für unterschiedliche Menschen mit unterschiedlichen Lebensentwürfen: für Investoren, die nachhaltig Werte schaffen möchten; für Kapitalanleger, die Beständigkeit und Qualität suchen; für Selbstnutzer, die ein Zuhause für ihre Zukunft finden möchten; und für Mieter, die sich in ihrem Wohnumfeld sicher, willkommen und zuhause fühlen wollen. So unterschiedlich diese Perspektiven auch sind – sie alle verbindet der Wunsch nach Qualität, Vertrauen und langfristiger Werthaltigkeit.</p>
+    </div>
+
+    <div class="manifest-block">
+      <h3>Quality Time Living</h3>
+      <p>Quality Time Living ist kein Produkt. Es ist unsere Haltung. Wir glauben, dass gutes Wohnen Zeit schenkt – Zeit für Familie, Freundschaften, Kultur, Reisen und die schönen Augenblicke des Lebens. Ein Zuhause soll den Alltag erleichtern, Sicherheit geben, Selbstbestimmung bewahren und Freiräume schaffen. Architektur hat ihre Aufgabe erst erfüllt, wenn sie das Leben ihrer Bewohner verbessert.</p>
+    </div>
+
+    <div class="manifest-block">
+      <h3>Unsere Philosophie</h3>
+      <p>Architektur trägt Verantwortung. Sie prägt Menschen, Nachbarschaften und Städte über Jahrzehnte. Deshalb verbinden wir Ästhetik mit Funktion, Wirtschaftlichkeit mit Menschlichkeit und Nachhaltigkeit mit Identität. Wo immer es sinnvoll ist, bewahren wir wertvolle Bestandsgebäude, entwickeln neue Perspektiven und schaffen Lebensräume mit Charakter und Zukunft.</p>
+    </div>
+
+    <div class="manifest-block">
+      <h3>Unser Versprechen</h3>
+      <p>Unser Erfolg misst sich nicht an Quadratmetern oder Bauvolumen. Er misst sich daran, ob Menschen gerne an den Orten leben, die wir entwickelt haben. Ob Investoren Vertrauen in die Werthaltigkeit ihrer Entscheidung gewinnen. Ob Eigentümer stolz auf ihr Zuhause sind. Ob Mieter sich willkommen fühlen. Und ob unsere Projekte auch nach vielen Jahren noch als wertvoll wahrgenommen werden.</p>
+    </div>
+
+    <div class="manifest-block manifest-close">
+      <h3>Unser Leitgedanke</h3>
+      <p class="manifest-lines">Wir entwickeln keine standardisierten Immobilien.<br>Wir entwickeln Werte.<br>Wir gestalten Zukunft.</p>
+      <p>Wir schaffen Lebensräume für Menschen – unabhängig davon, ob sie investieren, vorsorgen, selbst einziehen oder zur Miete wohnen. Denn am Ende erinnern sich Menschen nicht an Quadratmeter. Sie erinnern sich daran, wie sie sich an einem Ort gefühlt haben. Wenn unsere Projekte genau dieses Gefühl schaffen, haben wir unseren Auftrag erfüllt.</p>
+      <p class="manifest-sig">Das ist Quality Time Living.<br>Das ist die Philosophie der ipm-KG.</p>
+    </div>
+  </div>
+</section>
+<p class="manifest-back"><a href="../">&larr; Zur Startseite</a></p>
+</main>
+<footer><a href="../manifest/">Manifest</a> · © 2026 ipm-KG Immobilien-Projekt-Management · <a href="../impressum/">Impressum</a><a href="../datenschutz/">Datenschutz</a></footer>
+</body>
+</html>

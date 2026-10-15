@@ -902,6 +902,168 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
 }
 
 /* ================================================================
+   KAPITEL NACH DEM MANIFEST (Okt. 2026)
+================================================================ */
+/* Claim: Leitsatz als Zitat */
+.claim-quote p {
+  font-family: var(--font-serif); font-style: italic;
+  font-size: clamp(22px, 2.5vw, 32px);
+  font-weight: 400; line-height: 1.5; color: var(--text);
+}
+
+/* Zwischenüberschriften in der rechten Spalte */
+.statement-right h3 {
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 12px; font-weight: 500;
+  letter-spacing: .2em; text-transform: uppercase;
+  color: var(--ox); margin: 0 0 12px;
+}
+.statement-right p + h3 { margin-top: 36px; }
+
+/* Für wen — vier Karten (Spotlight + Pop-Hover, cards-and-buttons.md §4) */
+.audience { background: var(--bg-2); padding: 112px 80px 120px; }
+.audience-inner { max-width: 1240px; margin: 0 auto; }
+.audience-head { max-width: 760px; margin: 0 auto 56px; text-align: center; }
+.audience-head h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(30px, 4vw, 54px);
+  font-weight: 400; line-height: 1.12; color: var(--text);
+  margin-bottom: 20px;
+}
+.audience-head h2 em { font-style: italic; color: var(--ox-lt); }
+.audience-head p, .audience-close {
+  font-family: var(--font-sans);
+  font-size: 17px; font-weight: 300; line-height: 1.8; color: var(--text-2);
+}
+.audience-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
+.audience-card {
+  --glow-soft:   0 0 0 1px rgba(var(--accent-rgb),.35),
+                 0 16px 34px -16px rgba(var(--accent-rgb),.22),
+                 0 5px 14px rgba(var(--accent-rgb),.10);
+  --glow-strong: 0 0 0 2px rgba(var(--accent-rgb),.70),
+                 0 30px 55px -12px rgba(var(--accent-rgb),.40),
+                 0 12px 26px rgba(var(--accent-rgb),.22);
+  background: #fff;
+  border: 1.5px solid rgba(var(--accent-rgb),.45);
+  border-radius: 20px;
+  padding: 32px 28px 34px;
+  box-shadow: var(--glow-soft);
+}
+.audience-num {
+  display: block;
+  font-family: var(--font-serif); font-size: 15px;
+  color: var(--ox-lt); margin-bottom: 18px;
+}
+.audience-card h3 {
+  font-family: var(--font-serif);
+  font-size: clamp(22px, 2vw, 27px);
+  font-weight: 400; color: var(--text); margin-bottom: 12px;
+}
+.audience-card p {
+  font-family: var(--font-sans);
+  font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--text-2);
+}
+.audience-close { max-width: 760px; margin: 56px auto 0; text-align: center; }
+/* nach der .reveal-Regel: hoehere Spezifitaet, sonst setzt .reveal.in transform:none (§6) */
+.audience-card.reveal {
+  transition: transform .4s var(--pop-ease), box-shadow .4s ease,
+              border-color .35s ease, opacity 1.1s cubic-bezier(.22,1,.36,1);
+  transition-delay: 0s, 0s, 0s, var(--d, 0s);
+}
+@media (hover: hover) and (pointer: fine) {
+  .audience-card.reveal:hover {
+    transform: translateY(-4px) scale(1.04);
+    border-color: var(--accent-strong);
+    box-shadow: var(--glow-strong);
+  }
+}
+
+/* Quality Time Living */
+.qtl { background: var(--bg-light); padding: 120px 80px; text-align: center; }
+.qtl-inner { max-width: 760px; margin: 0 auto; }
+.qtl h2 {
+  font-family: var(--font-serif);
+  font-size: clamp(34px, 4.6vw, 62px);
+  font-weight: 400; line-height: 1.1; color: var(--text); margin-bottom: 28px;
+}
+.qtl h2 em { font-style: italic; color: var(--ox-lt); }
+.qtl p {
+  font-family: var(--font-sans);
+  font-size: 17px; font-weight: 300; line-height: 1.9; color: var(--text-2);
+}
+.qtl p + p { margin-top: 16px; }
+.qtl .qtl-lead {
+  font-family: var(--font-serif); font-size: clamp(20px, 2vw, 25px);
+  color: var(--text); line-height: 1.5;
+}
+.qtl .qtl-time {
+  margin: 22px auto 26px; padding: 26px 0;
+  border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);
+  font-family: var(--font-serif); font-style: italic;
+  font-size: clamp(21px, 2.3vw, 30px); line-height: 1.45; color: var(--ox);
+}
+.qtl .statement-sig { margin-top: 26px; }
+.qtl .text-link, .manifest-close .text-link { margin-top: 32px; }
+
+/* Topbar-Elemente nur fuers Handy */
+.topbar-burger, .topbar-logo { display: none; }
+.topbar-burger {
+  position: absolute; left: 12px; top: 4px;
+  width: 44px; height: 44px;
+  background: none; border: 0; padding: 0; cursor: pointer;
+  flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+}
+.topbar-burger span {
+  display: block; width: 22px; height: 1.5px; background: #fff;
+  transition: transform .3s ease, opacity .3s ease;
+}
+.topbar-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+.topbar-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+.topbar-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+.topbar-logo { position: absolute; left: 62px; top: 6px; }
+.topbar-logo img { height: 40px; width: auto; }
+
+/* Handy-Menü: Vollbild-Panel unter der Topbar */
+.mnav {
+  position: fixed; inset: 52px 0 0 0; z-index: 440;
+  background: #3C3C3C;
+  display: flex; align-items: center; justify-content: center;
+  overflow-y: auto;
+}
+.mnav[hidden] { display: none; }
+.mnav-list { list-style: none; text-align: center; padding: 32px 24px; }
+.mnav-list a {
+  display: block; min-height: 44px; padding: 12px 24px;
+  font-family: 'Montserrat', system-ui, sans-serif;
+  font-size: 13px; font-weight: 400;
+  letter-spacing: .22em; text-transform: uppercase;
+  color: rgba(255,255,255,.85);
+}
+.mnav-list a:active { color: #fff; }
+.mnav-sep { margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.12); }
+body.mnav-open { overflow: hidden; }
+
+@media (max-width: 1200px) {
+  .audience-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 960px) {
+  .topbar-burger { display: flex; }
+  .topbar-logo { display: block; }
+  .topbar-label { display: none; }
+  .audience { padding: 72px 24px 80px; }
+  .audience-head { margin-bottom: 40px; }
+  .qtl { padding: 72px 24px 80px; }
+}
+@media (max-width: 600px) {
+  .audience-grid { grid-template-columns: 1fr; gap: 20px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .audience-card.reveal { transition: none; }
+  .audience-card.reveal:hover { transform: none; }
+  .topbar-burger span { transition: none; }
+}
+
+/* ================================================================
    RESPONSIVE
 ================================================================ */
 @media (max-width: 960px) {
@@ -966,9 +1128,27 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
      TOPBAR — Sektionsname zentriert + CTA
 ================================================================ -->
 <div class="topbar" id="topbar">
+  <button class="topbar-burger" id="mnavToggle" type="button" aria-label="Menü öffnen" aria-controls="mnav" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <a href="#" class="topbar-logo"><img src="assets/ipm-logo.png" alt="ipm-KG — zum Seitenanfang"></a>
   <span class="topbar-label" id="topbarLabel">Willkommen</span>
-  <a href="#kontakt" class="topbar-cta">Beratung anfragen +</a>
+  <a href="#kontakt" class="topbar-cta">Kontakt aufnehmen +</a>
 </div>
+
+<!-- Handy-Menü (≤ 960 px, dort ist die Sidebar ausgeblendet) -->
+<nav class="mnav" id="mnav" aria-label="Hauptmenü" hidden>
+  <ul class="mnav-list">
+    <li><a href="#haltung">Haltung</a></li>
+    <li><a href="#fuer-wen">Für wen</a></li>
+    <li><a href="#qtl">Quality Time Living</a></li>
+    <li><a href="#philosophie">Philosophie</a></li>
+    <li><a href="#leistungen">Leistungen</a></li>
+    <li><a href="#versprechen">Versprechen</a></li>
+    <li class="mnav-sep"><a href="manifest/">Das Manifest</a></li>
+    <li><a href="#kontakt">Kontakt</a></li>
+  </ul>
+</nav>
 
 <!-- ================================================================
      SIDEBAR
@@ -984,9 +1164,12 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
 
   <nav class="sb-nav">
     <ul class="sb-list">
-      <li><a href="#werte-haltung">Werte &amp; Haltung</a></li>
-      <li><a href="#manifest">Manifest</a></li>
+      <li><a href="#haltung">Haltung</a></li>
+      <li><a href="#fuer-wen">Für wen</a></li>
+      <li><a href="#qtl">Quality Time Living</a></li>
+      <li><a href="#philosophie">Philosophie</a></li>
       <li><a href="#leistungen">Leistungen</a></li>
+      <li><a href="#versprechen">Versprechen</a></li>
     </ul>
   </nav>
 
@@ -1021,101 +1204,132 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
 </section>
 
 <!-- ================================================================
-     CLAIM — Text zwischen Bild und Kennzahlen
+     CLAIM — Leitsatz des Manifests
 ================================================================ -->
 <section class="claim" id="claim">
   <div class="claim-inner">
     <div class="claim-rule reveal" style="--d:.10s"></div>
-    <p class="claim-sub reveal" style="--d:.24s">Über 45 Jahre Erfahrung aus Theorie und Praxis – verbunden mit Kreativität und Begeisterung.</p>
+    <blockquote class="claim-quote reveal" style="--d:.24s">
+      <p>„Wir entwickeln keine Immobilien.<br>Wir entwickeln Lebensräume.<br>Denn ein Zuhause beginnt nicht mit Mauern – sondern mit Menschen.“</p>
+    </blockquote>
     <p class="claim-words reveal" style="--d:.36s">diskret · individuell · transparent · unbürokratisch · direkt</p>
   </div>
 </section>
 
 <!-- ================================================================
-     WERTE & HALTUNG — 2-spaltig (Texte ipm-KG, Okt. 2026)
+     1 HALTUNG — Warum wir tun, was wir tun + Unsere Überzeugung
 ================================================================ -->
-<div class="section-divider"><span>Werte &amp; Haltung</span></div>
-<section id="werte-haltung">
+<div class="section-divider"><span>Haltung</span></div>
+<section id="haltung">
   <div class="statement-section reveal">
     <div class="statement-left">
-      <h2>Dem Alten <em>verpflichtet</em> –<br>dem Neuen <em>aufgeschlossen</em>.</h2>
+      <h2>Der Mensch steht für uns immer <em>vor der Immobilie</em>.</h2>
     </div>
     <div class="statement-right">
+      <h3>Warum wir tun, was wir tun</h3>
+      <p>
+        Jeder Mensch sucht im Leben nach einem Ort, an dem er ankommen kann. Nicht nach möglichst vielen Quadratmetern, sondern nach einem Zuhause, das Sicherheit schenkt, Geborgenheit vermittelt und Lebensqualität entstehen lässt. Ein Zuhause ist kein Bauwerk. Es ist ein Gefühl. Es ist der Ort, an dem Erinnerungen entstehen, Zukunft gestaltet wird und das Leben seinen Raum findet.
+      </p>
+      <h3>Unsere Überzeugung</h3>
+      <p>
+        Die Welt verändert sich. Menschen leben länger, bleiben aktiver und möchten ihre Zeit bewusster genießen. Deshalb genügt es heute nicht mehr, Wohnraum zu schaffen. Es braucht Lebensräume, die sich den Menschen anpassen – nicht umgekehrt. Als Projektentwickler beginnen wir kein Projekt mit der Frage, was gebaut werden kann. Wir beginnen mit der Frage: Wie möchten Menschen leben?
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ================================================================
+     2 FÜR WEN — Unsere Verantwortung (4 Karten)
+================================================================ -->
+<div class="section-divider"><span>Für wen</span></div>
+<section id="fuer-wen" class="audience">
+  <div class="audience-inner">
+    <header class="audience-head reveal">
+      <span class="manifest-eyebrow">Unsere Verantwortung</span>
+      <h2>Lebensräume für <em>unterschiedliche Menschen</em>.</h2>
+      <p>Wir entwickeln Projekte für unterschiedliche Menschen mit unterschiedlichen Lebensentwürfen:</p>
+    </header>
+    <div class="audience-grid">
+      <article class="audience-card reveal" style="--d:.05s">
+        <span class="audience-num">01</span>
+        <h3>Investoren</h3>
+        <p>Für Investoren, die nachhaltig Werte schaffen möchten.</p>
+      </article>
+      <article class="audience-card reveal" style="--d:.15s">
+        <span class="audience-num">02</span>
+        <h3>Kapitalanleger</h3>
+        <p>Für Kapitalanleger, die Beständigkeit und Qualität suchen.</p>
+      </article>
+      <article class="audience-card reveal" style="--d:.25s">
+        <span class="audience-num">03</span>
+        <h3>Selbstnutzer</h3>
+        <p>Für Selbstnutzer, die ein Zuhause für ihre Zukunft finden möchten.</p>
+      </article>
+      <article class="audience-card reveal" style="--d:.35s">
+        <span class="audience-num">04</span>
+        <h3>Mieter</h3>
+        <p>Für Mieter, die sich in ihrem Wohnumfeld sicher, willkommen und zuhause fühlen wollen.</p>
+      </article>
+    </div>
+    <p class="audience-close reveal">So unterschiedlich diese Perspektiven auch sind – sie alle verbindet der Wunsch nach Qualität, Vertrauen und langfristiger Werthaltigkeit.</p>
+  </div>
+</section>
+
+<!-- ================================================================
+     3 QUALITY TIME LIVING
+================================================================ -->
+<div class="section-divider"><span>Quality Time Living</span></div>
+<section id="qtl" class="qtl">
+  <div class="qtl-inner reveal">
+    <span class="manifest-eyebrow">Unsere Haltung</span>
+    <h2>Quality Time <em>Living</em></h2>
+    <p class="qtl-lead">Quality Time Living ist kein Produkt. Es ist unsere Haltung.</p>
+    <p>Wir glauben, dass gutes Wohnen Zeit schenkt:</p>
+    <p class="qtl-time">Zeit für Familie, Freundschaften, Kultur, Reisen und die schönen Augenblicke des Lebens.</p>
+    <p>Ein Zuhause soll den Alltag erleichtern, Sicherheit geben, Selbstbestimmung bewahren und Freiräume schaffen. Architektur hat ihre Aufgabe erst erfüllt, wenn sie das Leben ihrer Bewohner verbessert.</p>
+    <p class="statement-sig">Wir machen es möglich, die kleinen Dinge im Leben genießen zu können.</p>
+    <a href="https://mein-qtl.de" class="text-link" target="_blank" rel="noopener">
+      <span class="text-link-arrow">+</span>
+      Mehr zu Quality Time Living
+    </a>
+  </div>
+</section>
+
+<!-- ================================================================
+     4 PHILOSOPHIE
+================================================================ -->
+<div class="section-divider"><span>Philosophie</span></div>
+<section id="philosophie">
+  <div class="statement-section reveal">
+    <div class="statement-left">
+      <h2>Dem Alten <em>verpflichtet</em>&nbsp;–<br>dem Neuen <em>aufgeschlossen</em>.</h2>
+    </div>
+    <div class="statement-right">
+      <h3>Unsere Philosophie</h3>
+      <p>
+        Architektur trägt Verantwortung. Sie prägt Menschen, Nachbarschaften und Städte über Jahrzehnte. Deshalb verbinden wir Ästhetik mit Funktion, Wirtschaftlichkeit mit Menschlichkeit und Nachhaltigkeit mit Identität. Wo immer es sinnvoll ist, bewahren wir wertvolle Bestandsgebäude, entwickeln neue Perspektiven und schaffen Lebensräume mit Charakter und Zukunft.
+      </p>
       <p>
         Nicht die Größe eines Projektes ist für uns entscheidend, sondern die Qualität der Idee, die Wertigkeit jeder einzelnen Einheit und die kompromisslose Umsetzung eines überzeugenden Gesamtkonzeptes. Unser Anspruch ist es, Projekte auf höchstem Niveau zu realisieren – im Einklang mit den Vorstellungen unseres Auftraggebers sowie sämtlichen abgestimmten Vorgaben und Vereinbarungen.
       </p>
-      <p>
-        Wir machen es möglich, die kleinen Dinge im Leben genießen zu können.
-      </p>
     </div>
   </div>
 </section>
 
 <!-- ================================================================
-     MANIFEST DES WOHNENS — einspaltig (Fassung „FINAL – V20“)
-================================================================ -->
-<div class="section-divider"><span>Manifest</span></div>
-<section id="manifest" class="manifest">
-  <div class="manifest-inner">
-    <header class="manifest-head reveal">
-      <span class="manifest-eyebrow">Die Philosophie der ipm-KG · Quality Time Living</span>
-      <h2>Das Manifest des <em>Wohnens</em></h2>
-    </header>
-
-    <blockquote class="manifest-quote reveal">
-      <p>„Wir entwickeln keine Immobilien.<br>Wir entwickeln Lebensräume.<br>Denn ein Zuhause beginnt nicht mit Mauern – sondern mit Menschen.“</p>
-    </blockquote>
-
-    <div class="manifest-block reveal">
-      <h3>Warum wir tun, was wir tun</h3>
-      <p>Jeder Mensch sucht im Leben nach einem Ort, an dem er ankommen kann. Nicht nach möglichst vielen Quadratmetern, sondern nach einem Zuhause, das Sicherheit schenkt, Geborgenheit vermittelt und Lebensqualität entstehen lässt. Ein Zuhause ist kein Bauwerk. Es ist ein Gefühl. Es ist der Ort, an dem Erinnerungen entstehen, Zukunft gestaltet wird und das Leben seinen Raum findet.</p>
-    </div>
-
-    <div class="manifest-block reveal">
-      <h3>Unsere Überzeugung</h3>
-      <p>Die Welt verändert sich. Menschen leben länger, bleiben aktiver und möchten ihre Zeit bewusster genießen. Deshalb genügt es heute nicht mehr, Wohnraum zu schaffen. Es braucht Lebensräume, die sich den Menschen anpassen – nicht umgekehrt. Als Projektentwickler beginnen wir kein Projekt mit der Frage, was gebaut werden kann. Wir beginnen mit der Frage: Wie möchten Menschen leben? Der Mensch steht für uns immer vor der Immobilie.</p>
-    </div>
-
-    <div class="manifest-block reveal">
-      <h3>Unsere Verantwortung</h3>
-      <p>Wir entwickeln Projekte für unterschiedliche Menschen mit unterschiedlichen Lebensentwürfen: für Investoren, die nachhaltig Werte schaffen möchten; für Kapitalanleger, die Beständigkeit und Qualität suchen; für Selbstnutzer, die ein Zuhause für ihre Zukunft finden möchten; und für Mieter, die sich in ihrem Wohnumfeld sicher, willkommen und zuhause fühlen wollen. So unterschiedlich diese Perspektiven auch sind – sie alle verbindet der Wunsch nach Qualität, Vertrauen und langfristiger Werthaltigkeit.</p>
-    </div>
-
-    <div class="manifest-block reveal">
-      <h3>Quality Time Living</h3>
-      <p>Quality Time Living ist kein Produkt. Es ist unsere Haltung. Wir glauben, dass gutes Wohnen Zeit schenkt – Zeit für Familie, Freundschaften, Kultur, Reisen und die schönen Augenblicke des Lebens. Ein Zuhause soll den Alltag erleichtern, Sicherheit geben, Selbstbestimmung bewahren und Freiräume schaffen. Architektur hat ihre Aufgabe erst erfüllt, wenn sie das Leben ihrer Bewohner verbessert.</p>
-    </div>
-
-    <div class="manifest-block reveal">
-      <h3>Unsere Philosophie</h3>
-      <p>Architektur trägt Verantwortung. Sie prägt Menschen, Nachbarschaften und Städte über Jahrzehnte. Deshalb verbinden wir Ästhetik mit Funktion, Wirtschaftlichkeit mit Menschlichkeit und Nachhaltigkeit mit Identität. Wo immer es sinnvoll ist, bewahren wir wertvolle Bestandsgebäude, entwickeln neue Perspektiven und schaffen Lebensräume mit Charakter und Zukunft.</p>
-    </div>
-
-    <div class="manifest-block reveal">
-      <h3>Unser Versprechen</h3>
-      <p>Unser Erfolg misst sich nicht an Quadratmetern oder Bauvolumen. Er misst sich daran, ob Menschen gerne an den Orten leben, die wir entwickelt haben. Ob Investoren Vertrauen in die Werthaltigkeit ihrer Entscheidung gewinnen. Ob Eigentümer stolz auf ihr Zuhause sind. Ob Mieter sich willkommen fühlen. Und ob unsere Projekte auch nach vielen Jahren noch als wertvoll wahrgenommen werden.</p>
-    </div>
-
-    <div class="manifest-block manifest-close reveal">
-      <h3>Unser Leitgedanke</h3>
-      <p class="manifest-lines">Wir entwickeln keine standardisierten Immobilien.<br>Wir entwickeln Werte.<br>Wir gestalten Zukunft.</p>
-      <p>Wir schaffen Lebensräume für Menschen – unabhängig davon, ob sie investieren, vorsorgen, selbst einziehen oder zur Miete wohnen. Denn am Ende erinnern sich Menschen nicht an Quadratmeter. Sie erinnern sich daran, wie sie sich an einem Ort gefühlt haben. Wenn unsere Projekte genau dieses Gefühl schaffen, haben wir unseren Auftrag erfüllt.</p>
-      <p class="manifest-sig">Das ist Quality Time Living.<br>Das ist die Philosophie der ipm-KG.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ================================================================
-     LEISTUNGEN — 2-spaltig (Texte ipm-KG, Okt. 2026)
+     5 LEISTUNGEN
 ================================================================ -->
 <div class="section-divider"><span>Leistungen</span></div>
 <section id="leistungen">
   <div class="statement-section reveal">
     <div class="statement-left">
-      <h2>Rund um die Immobilie –<br>alles aus <em>einer Hand</em>.</h2>
+      <h2>Rund um die Immobilie&nbsp;–<br>alles aus <em>einer Hand</em>.</h2>
       <p class="statement-kicker">Die richtigen Fachleute für das Projekt.</p>
     </div>
     <div class="statement-right">
+      <p>
+        <strong>Über 45 Jahre Erfahrung aus Theorie und Praxis – verbunden mit Kreativität und Begeisterung.</strong>
+      </p>
       <p>
         Natürlich entwickeln wir Immobilien. Wir planen, bauen, vermarkten, schaffen Werte und – machen das Ganze etwas anders als andere. Unsere Arbeitsprozesse rund um Immobilien sind bewährt und routiniert – schließlich sind wir kein Start-up, sondern seit über 25 Jahren in Deutschland aktiv.
       </p>
@@ -1129,9 +1343,32 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
 </section>
 
 <!-- ================================================================
-     PROJEKTE / REFERENZEN — entfernt am 16.10.2026 (waren Platzhalter).
-     Vorlage für einen späteren Referenz-Block: Git-Stand f3f681c.
+     6 VERSPRECHEN — Versprechen + Leitgedanke
 ================================================================ -->
+<div class="section-divider"><span>Versprechen</span></div>
+<section id="versprechen" class="manifest">
+  <div class="manifest-inner">
+    <header class="manifest-head reveal">
+      <span class="manifest-eyebrow">Das Manifest des Wohnens</span>
+      <h2>Unser <em>Versprechen</em></h2>
+    </header>
+
+    <div class="manifest-block reveal">
+      <p>Unser Erfolg misst sich nicht an Quadratmetern oder Bauvolumen. Er misst sich daran, ob Menschen gerne an den Orten leben, die wir entwickelt haben. Ob Investoren Vertrauen in die Werthaltigkeit ihrer Entscheidung gewinnen. Ob Eigentümer stolz auf ihr Zuhause sind. Ob Mieter sich willkommen fühlen. Und ob unsere Projekte auch nach vielen Jahren noch als wertvoll wahrgenommen werden.</p>
+    </div>
+
+    <div class="manifest-block manifest-close reveal">
+      <h3>Unser Leitgedanke</h3>
+      <p class="manifest-lines">Wir entwickeln keine standardisierten Immobilien.<br>Wir entwickeln Werte.<br>Wir gestalten Zukunft.</p>
+      <p>Wir schaffen Lebensräume für Menschen – unabhängig davon, ob sie investieren, vorsorgen, selbst einziehen oder zur Miete wohnen. Denn am Ende erinnern sich Menschen nicht an Quadratmeter. Sie erinnern sich daran, wie sie sich an einem Ort gefühlt haben. Wenn unsere Projekte genau dieses Gefühl schaffen, haben wir unseren Auftrag erfüllt.</p>
+      <p class="manifest-sig">Das ist Quality Time Living.<br>Das ist die Philosophie der ipm-KG.</p>
+      <a href="manifest/" class="text-link">
+        <span class="text-link-arrow">+</span>
+        Das Manifest am Stück lesen
+      </a>
+    </div>
+  </div>
+</section>
 
 <!-- ================================================================
      INSIGHTS / AKTUELLES — AUSGEBLENDET (für spätere Aktivierung)
@@ -1184,10 +1421,13 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
     <div class="footer-col">
       <h4>Übersicht</h4>
       <ul>
-        <li><a href="#werte-haltung">Werte &amp; Haltung</a></li>
-        <li><a href="#manifest">Manifest des Wohnens</a></li>
+        <li><a href="#haltung">Haltung</a></li>
+        <li><a href="#fuer-wen">Für wen</a></li>
+        <li><a href="#qtl">Quality Time Living</a></li>
+        <li><a href="#philosophie">Philosophie</a></li>
         <li><a href="#leistungen">Leistungen</a></li>
-        <li><a href="#kontakt">Kontakt</a></li>
+        <li><a href="#versprechen">Versprechen</a></li>
+        <li><a href="manifest/">Das Manifest</a></li>
       </ul>
     </div>
     <div class="footer-col">
@@ -1410,6 +1650,23 @@ var secObs = new IntersectionObserver(function(entries) {
   });
 }, { rootMargin: '-45% 0px -50% 0px' });   /* Mittellinie statt Anteil — sonst wird das lange Manifest nie aktiv */
 sbSections.forEach(function(s) { secObs.observe(s); });
+
+/* ---- Handy-Menü ---- */
+(function() {
+  var btn = document.getElementById('mnavToggle');
+  var nav = document.getElementById('mnav');
+  if (!btn || !nav) return;
+  function setOpen(open) {
+    nav.hidden = !open;
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    btn.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
+    document.body.classList.toggle('mnav-open', open);
+  }
+  btn.addEventListener('click', function() { setOpen(nav.hidden); });
+  nav.addEventListener('click', function(e) { if (e.target.closest('a')) setOpen(false); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && !nav.hidden) { setOpen(false); btn.focus(); } });
+  window.matchMedia('(min-width: 961px)').addEventListener('change', function(m) { if (m.matches) setOpen(false); });
+})();
 </script>
 </body>
 </html>
