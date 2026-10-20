@@ -117,7 +117,7 @@ Wir machen es möglich, die kleinen Dinge im Leben genießen zu können. {.state
 ### Unsere Philosophie
 Architektur trägt Verantwortung. Sie prägt Menschen, Nachbarschaften und Städte über Jahrzehnte. Deshalb verbinden wir Ästhetik mit Funktion, Wirtschaftlichkeit mit Menschlichkeit und Nachhaltigkeit mit Identität. Wo immer es sinnvoll ist, bewahren wir wertvolle Bestandsgebäude, entwickeln neue Perspektiven und schaffen Lebensräume mit Charakter und Zukunft.
 
-[Die Philosophie der ipm-KG lesen](/philosophie/)
+[Wie wir denken – die Philosophie der ipm-KG](/philosophie/)
 :::
 
 == Versprechen .weiss ==
