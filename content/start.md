@@ -141,7 +141,7 @@ Das ist die Philosophie der ipm-KG. {.signatur}
 == Mehr entdecken .grau ==
 
 ::: karten spalten=3
-^ Fließtext
+^ Neun Gedanken
 ### Die Philosophie der ipm-KG
 Warum wir jedes Projekt mit der Frage beginnen, wie Menschen leben möchten.
 
