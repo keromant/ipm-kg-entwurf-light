@@ -1,164 +1,303 @@
 <!DOCTYPE html>
-<html lang="de">
+<!-- Automatisch erzeugt aus content/manifest.md mit tools/build.mjs – Texte bitte dort ändern, nicht hier. -->
+<html lang="de" class="no-js">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Das Manifest des Wohnens — ipm-KG</title>
-<style>
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-@font-face { font-family: 'Playfair Display'; src: url('../assets/fonts/PlayfairDisplay.ttf') format('truetype'); font-weight: 400 800; font-display: swap; }
-@font-face { font-family: 'Avenir Web'; src: url('../assets/fonts/avenir-light.ttf') format('truetype'); font-weight: 300; font-display: swap; }
-@font-face { font-family: 'Montserrat'; src: url('../assets/fonts/Montserrat.ttf') format('truetype'); font-weight: 300 700; font-display: swap; }
-:root {
-  --bg: #F8F7F3; --text: #1A1A1A; --text-2: #454545; --ox: #2a7a2a;
-  --font-serif: 'Playfair Display', Georgia, serif;
-  --font-sans: 'Avenir Web','Montserrat',system-ui,sans-serif;
-}
-body { font-family: var(--font-sans); background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
-a { color: var(--ox); }
-.legal-bar { background: #3C3C3C; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
-.legal-bar img { height: 64px; width: auto; display: block; }
-.legal-bar .back { font-family: 'Montserrat', system-ui, sans-serif; font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.85); text-decoration: none; }
-.legal-bar .back:hover { color: #fff; }
-main { padding: 0; }
-h1 { font-family: var(--font-serif); font-weight: 400; font-size: clamp(34px, 5vw, 56px); line-height: 1.1; margin-bottom: 40px; overflow-wrap: anywhere; }
-p, li { font-size: 16px; font-weight: 300; line-height: 1.8; color: var(--text-2); overflow-wrap: anywhere; }
-ul { margin: 8px 0 12px 20px; }
-strong { font-weight: 400; color: var(--text); }
-.legal-source { margin-top: 48px; font-size: 13px; color: #888; }
-footer { border-top: 1px solid rgba(0,0,0,.08); padding: 24px; text-align: center; font-size: 12px; color: rgba(0,0,0,.5); }
-footer a { color: inherit; margin: 0 10px; }
-@media print { .legal-bar { display: none; } }
-.manifest { background: #fff; }
-/* ================================================================
-   MANIFEST DES WOHNENS — einspaltig, ruhiger Lesesatz
-================================================================ */
-.manifest { background: var(--bg-light); padding: 120px 80px 128px; }
-.manifest-inner { max-width: 720px; margin: 0 auto; }
-.manifest-head { text-align: center; margin-bottom: 56px; }
-.manifest-eyebrow {
-  display: block;
-  font-family: 'Montserrat', system-ui, sans-serif;
-  font-size: 12px; font-weight: 400;
-  letter-spacing: .22em; text-transform: uppercase;
-  color: var(--ox); margin-bottom: 18px;
-}
-.manifest-head h2 {
-  font-family: var(--font-serif);
-  font-size: clamp(34px, 4.6vw, 62px);
-  font-weight: 400; line-height: 1.1; letter-spacing: -.01em;
-  color: var(--text);
-}
-.manifest-head h2 em { font-style: italic; color: var(--ox-lt); }
-.manifest-quote {
-  margin: 0 0 72px; padding: 36px 0;
-  border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);
-  text-align: center;
-}
-.manifest-quote p {
-  font-family: var(--font-serif); font-style: italic;
-  font-size: clamp(21px, 2.3vw, 30px);
-  font-weight: 400; line-height: 1.5; color: var(--text);
-}
-.manifest-block { margin-bottom: 48px; }
-.manifest-block h3 {
-  font-family: var(--font-serif);
-  font-size: clamp(22px, 2.2vw, 28px);
-  font-weight: 400; line-height: 1.25;
-  color: var(--text); margin-bottom: 14px;
-}
-.manifest-block h3::before {
-  content: ""; display: block;
-  width: 40px; height: 1px; background: var(--ox-lt);
-  margin-bottom: 18px;
-}
-.manifest-block p {
-  font-family: var(--font-sans);
-  font-size: 17px; font-weight: 300;
-  line-height: 1.9; color: var(--text-2);
-}
-.manifest-block p + p { margin-top: 18px; }
-.manifest-close { margin-bottom: 0; }
-.manifest .manifest-lines {
-  font-family: var(--font-serif); font-style: italic;
-  font-size: clamp(20px, 2vw, 25px); line-height: 1.55; color: var(--text);
-}
-.manifest .manifest-sig {
-  margin-top: 36px;
-  font-family: var(--font-serif);
-  font-size: clamp(20px, 2vw, 25px); line-height: 1.5;
-  color: var(--ox);
-}
-
-
-:root { --text-2: #454545; --ox-lt: #38a038; --bg-light: #fff; --hairline: rgba(0,0,0,.09); }
-.reveal { opacity: 1; }
-@media (max-width: 960px) {
-  .manifest { padding: 64px 24px 80px; }
-  .manifest-quote { margin-bottom: 52px; }
-  .manifest-block p { font-size: 16px; }
-}
-.manifest-back { text-align: center; padding: 0 24px 72px; background: #fff; font-family: 'Montserrat', system-ui, sans-serif; font-size: 12px; letter-spacing: .18em; text-transform: uppercase; }
-.manifest-back a { text-decoration: none; }
-</style>
+<title>Das Manifest des Wohnens · ipm-KG · Quality Time Living</title>
+<meta name="description" content="Das Manifest des Wohnens der ipm-KG: Vorwort, zehn Grundsätze, Anspruch, Überzeugung, Absicht, Versprechen, Leitbild und Schlusswort.">
+<link rel="stylesheet" href="../assets/site.css">
 </head>
-<body>
-<header class="legal-bar">
-  <a href="../"><img src="../assets/ipm-logo.png" alt="ipm-KG — zur Startseite"></a>
-  <a class="back" href="../">&larr; Zur Startseite</a>
-</header>
+<body class="seite-manifest">
+
+<div id="cursor"></div>
+<div id="cursor-dot"></div>
+
+<div class="topbar" id="topbar">
+  <button class="topbar-burger" id="mnavToggle" type="button" aria-label="Menü öffnen" aria-controls="mnav" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
+  <a href="../" class="topbar-logo"><img src="../assets/ipm-logo.png" alt="ipm-KG – zur Startseite"></a>
+  <span class="topbar-label" id="topbarLabel" data-start="Manifest">Manifest</span>
+  <a href="../kontakt/" class="topbar-cta">Kontakt aufnehmen +</a>
+</div>
+
+<nav class="mnav" id="mnav" aria-label="Hauptmenü" hidden>
+  <ul class="mnav-list">
+    <li><a href="../">Wer wir sind</a></li>
+    <li><a href="../philosophie/">Philosophie</a></li>
+    <li class="is-active"><a href="../manifest/" aria-current="page">Manifest</a></li>
+    <li><a href="../leistungen/">Leistungen</a></li>
+    <li><a href="../quality-time-living/">Quality Time Living</a></li>
+    <li class="mnav-sep"><a href="../kontakt/">Kontakt</a></li>
+  </ul>
+</nav>
+
+<aside class="sidebar" id="sidebar">
+  <div class="sb-logo">
+    <a href="../"><img src="../assets/ipm-logo.png" alt="ipm – Immobilien-Projekt-Management"></a>
+  </div>
+  <div class="sb-sep"></div>
+  <nav class="sb-nav" aria-label="Hauptmenü">
+    <ul class="sb-list">
+      <li><a href="../">Wer wir sind</a></li>
+      <li><a href="../philosophie/">Philosophie</a></li>
+      <li class="is-active"><a href="../manifest/" aria-current="page">Manifest</a></li>
+      <li><a href="../leistungen/">Leistungen</a></li>
+      <li><a href="../quality-time-living/">Quality Time Living</a></li>
+    </ul>
+  </nav>
+  <div class="sb-sep"></div>
+  <div class="sb-cta-wrap">
+    <a href="../kontakt/" class="sb-cta">Kontakt</a>
+  </div>
+</aside>
+
 <main>
-<section class="manifest">
-  <div class="manifest-inner">
-    <header class="manifest-head">
-      <span class="manifest-eyebrow">Die Philosophie der ipm-KG · Quality Time Living</span>
-      <h2>Das Manifest des <em>Wohnens</em></h2>
-    </header>
+<header class="seitenkopf" id="inhalt">
+  <div class="seitenkopf-inner reveal"><span class="eyebrow">Unser Leitbild für die Zukunft des Wohnens · QTL – Quality Time Living</span>
+<h1>Das Manifest des <em>Wohnens</em></h1>
+<p class="lead">Ein Zuhause ist mehr als ein Ort.<br>Es ist ein Gefühl.</p>
+<p class="seitenkopf-zitat">„Wir bauen keine Wohnungen.<br>Wir schaffen Lebensräume.<br>Denn ein Gebäude wird erst dann zu einem Zuhause,<br>wenn es den Menschen dient.“</p>
+<p class="seitenkopf-marke">ipm-KG</p></div>
+</header>
+<div class="mit-inhalt">
+  <nav class="inhalt" aria-label="Inhalt">
+    <details>
+      <summary>Inhalt</summary>
+      <ol>
+        <li><a href="#vorwort">Vorwort</a></li>
+        <li><a href="#grundsatz-1">1. Wohnen ist mehr als Quadratmeter</a></li>
+        <li><a href="#grundsatz-2">2. Architektur trägt Verantwortung</a></li>
+        <li><a href="#grundsatz-3">3. Die wertvollste Währung heißt Zeit</a></li>
+        <li><a href="#grundsatz-4">4. Eigentum bedeutet Sicherheit</a></li>
+        <li><a href="#grundsatz-5">5. Nachhaltigkeit beginnt mit Bestand</a></li>
+        <li><a href="#grundsatz-6">6. Komfort ist kein Luxus</a></li>
+        <li><a href="#grundsatz-7">7. Gemeinschaft ist freiwillig</a></li>
+        <li><a href="#grundsatz-8">8. Lebensqualität ist planbar</a></li>
+        <li><a href="#grundsatz-9">9. Qualität bleibt</a></li>
+        <li><a href="#grundsatz-10">10. Wohnen ist Zukunft</a></li>
+        <li><a href="#unser-anspruch">Unser Anspruch</a></li>
+        <li><a href="#unsere-ueberzeugung">Unsere Überzeugung</a></li>
+        <li><a href="#unsere-absicht">Unsere Absicht</a></li>
+        <li><a href="#unser-versprechen">Unser Versprechen</a></li>
+        <li><a href="#unser-leitbild">Unser Leitbild</a></li>
+        <li><a href="#quality-time-living">Quality Time Living</a></li>
+        <li><a href="#schlusswort">Schlusswort</a></li>
+      </ol>
+    </details>
+  </nav>
+  <div class="inhalt-text">
+<div class="section-divider"><span>Vorwort</span></div>
+<section id="vorwort">
+<div class="zeilen" id="vorwort"><div class="zeilen-inner reveal"><h2>Vorwort</h2>
+<p>Jede Zeit hat ihre eigene Vorstellung vom Wohnen.<br>Es gab Zeiten, in denen Schutz das wichtigste Ziel war.<br>Später stand Größe im Mittelpunkt.<br>Dann wurde Eigentum zum Symbol für Sicherheit, Erfolg und Beständigkeit.</p>
+<p>Heute stehen wir erneut an einem Wendepunkt.<br>Nicht weil Gebäude schlechter geworden wären.<br>Sondern weil sich das Leben verändert hat.</p>
+<p>Menschen werden älter.<br>Sie bleiben länger gesund.<br>Sie bleiben länger aktiv.<br>Sie reisen.<br>Sie arbeiten flexibler.<br>Sie verbringen mehr Zeit mit Familie und Freunden.<br>Sie möchten ihre Freiheit genießen.</p>
+<p>Und genau deshalb muss sich auch das Wohnen verändern.</p>
+<p>Dieses Manifest beschreibt unsere Überzeugung.<br>Nicht als kurzfristigen Trend.<br>Sondern als Haltung.</p>
+<p>Denn wir glauben, dass Wohnen weit mehr ist als das Zusammenspiel von Architektur, Materialien und Quadratmetern.<br>Ein Zuhause schenkt Geborgenheit. Es vermittelt Sicherheit. Es schafft Freiheit. Es erzählt Geschichten. Und es begleitet Menschen oft über viele Jahre ihres Lebens.</p>
+<p>Deshalb entwickeln wir keine Gebäude – wir bauen keine Wohnungen.</p>
+<p class="hervor">Wir entwickeln Lebensräume – ein Lebens- und Wohnkonzept.</p>
+<p>Lebensräume, in denen Menschen ankommen. Lebensräume, die den Alltag erleichtern. Lebensräume, die inspirieren. Und Lebensräume, die auch morgen noch Bestand haben.</p>
+<p class="hervor">Denn ein Gebäude wird erst dann zu einem Zuhause, wenn es den Menschen dient.</p></div></div>
+</section>
+<div class="section-divider"><span>Zehn Grundsätze</span></div>
+<section id="zehn-grundsaetze">
+<article class="grundsatz" id="grundsatz-1">
+  <span class="grundsatz-nr" aria-hidden="true">01</span>
+  <div class="grundsatz-text reveal"><h2>Wohnen ist mehr als Quadratmeter</h2>
+<p>Eine Wohnung besteht aus Wänden.<br>Ein Zuhause besteht aus Gefühlen.<br>Zwischen diesen beiden Begriffen liegt der eigentliche Unterschied.</p>
+<p>Quadratmeter lassen sich messen.<br>Lebensqualität nicht.</p>
+<p>Menschen erinnern sich selten daran, wie groß ihre Wohnung war.<br>Sie erinnern sich daran,<br>wie sie sich dort gefühlt haben.<br>Ob sie angekommen sind.<br>Ob sie Ruhe gefunden haben.<br>Ob sie glücklich waren.</p>
+<p class="hervor">Deshalb beginnt gutes Wohnen nicht beim Grundriss.<br>Sondern beim Menschen.</p></div>
+</article>
+<article class="grundsatz" id="grundsatz-2">
+  <span class="grundsatz-nr" aria-hidden="true">02</span>
+  <div class="grundsatz-text reveal"><h2>Architektur trägt Verantwortung</h2>
+<p>Architektur beeinflusst unser tägliches Leben.<br>Sie entscheidet darüber,<br>ob wir uns willkommen fühlen.<br>Ob wir uns sicher fühlen.<br>Ob wir gerne nach Hause kommen.</p>
+<p>Gebäude sind deshalb niemals nur Bauwerke.<br>Sie prägen Städte.<br>Sie prägen Nachbarschaften.<br>Und sie prägen Erinnerungen.</p>
+<p>Wir als Projektentwickler tragen deshalb Verantwortung.<br>Nicht nur für die Statik.<br>Nicht nur für die Wirtschaftlichkeit.<br>Sondern für die Menschen,<br>die viele Jahre ihres Lebens dort verbringen werden.</p>
+<p class="hervor">Diese Verantwortung endet nicht mit der Schlüsselübergabe.<br>Sie beginnt dort.</p>
+<p>Wir glauben an die Kraft guter Architektur.<br>Architektur darf niemals Selbstzweck sein.<br>Sie soll Menschen dienen.<br>Sie soll Licht schenken.<br>Sie soll Begegnungen ermöglichen.<br>Sie soll Ruhe ausstrahlen.<br>Sie soll Identität schaffen.</p>
+<p class="hervor">Ein Gebäude kann beeindrucken.<br>Ein Zuhause berührt.<br>Genau darin liegt der Unterschied.</p></div>
+</article>
+<article class="grundsatz" id="grundsatz-3">
+  <span class="grundsatz-nr" aria-hidden="true">03</span>
+  <div class="grundsatz-text reveal"><h2>Die wertvollste Währung heißt Zeit</h2>
+<p>Zeit ist begrenzt.<br>Deshalb sollte Wohnen Zeit schenken.<br>Nicht Zeit kosten.</p>
+<p>Ein Zuhause soll den Alltag erleichtern.<br>Kurze Wege.<br>Gute Erreichbarkeit.<br>Durchdachte Grundrisse.<br>Barrierearme Zugänge.<br>Service, wenn er gebraucht wird.<br>Ruhe, wenn sie gewünscht wird.<br>Gemeinschaft, wenn sie gesucht wird.</p>
+<p>Ein gutes Wohnkonzept schenkt Freiheit.<br>Und Freiheit schenkt Zeit.</p>
+<p class="hervor">Zeit ist der wahre Luxus.</p>
+<p>In einer Welt, die immer schneller wird, gewinnt Zeit einen neuen Wert.<br>Zeit für Familie.<br>Zeit für Freunde.<br>Zeit für sich.<br>Zeit für Kultur.<br>Zeit für Reisen.<br>Zeit für die schönen Momente des Lebens:<br>Quality Time Living</p>
+<p>Ein Zuhause sollte diese Zeit nicht nehmen.<br>Es sollte sie schenken.</p>
+<p>Deshalb entwickeln wir Wohnkonzepte, die den Alltag einfacher machen.<br>Mit Komfort.<br>Mit Sicherheit.<br>Mit Service dort, wo er sinnvoll ist.<br>Mit Freiheit überall dort, wo sie gewünscht wird.</p></div>
+</article>
+<article class="grundsatz" id="grundsatz-4">
+  <span class="grundsatz-nr" aria-hidden="true">04</span>
+  <div class="grundsatz-text reveal"><h2>Eigentum bedeutet Sicherheit</h2>
+<p>Eigentum ist mehr als Vermögen.<br>Es bedeutet Unabhängigkeit.<br>Es bedeutet Selbstbestimmung.<br>Es bedeutet Verantwortung.</p>
+<p>Gerade in einer Zeit zunehmender Veränderungen wünschen sich viele Menschen einen Ort, der ihnen gehört.<br>Nicht als Statussymbol.<br>Sondern als verlässlicher Mittelpunkt ihres Lebens.</p>
+<p>Deshalb glauben wir an hochwertiges Wohnungseigentum.<br>Nicht als Produkt.<br>Sondern als langfristige Lebensentscheidung.</p>
+<p class="hervor">Eigentum bedeutet Unabhängigkeit.</p>
+<p>Für viele Menschen ist eine Immobilie weit mehr als eine Investition.<br>Sie ist ein Stück Sicherheit.<br>Ein Stück Freiheit.<br>Ein Stück Lebenswerk.</p></div>
+</article>
+<article class="grundsatz" id="grundsatz-5">
+  <span class="grundsatz-nr" aria-hidden="true">05</span>
+  <div class="grundsatz-text reveal"><h2>Nachhaltigkeit beginnt mit Bestand</h2>
+<p>Nicht jedes gute Gebäude muss neu gebaut werden.<br>Viele Gebäude besitzen Geschichte.<br>Charakter.<br>Identität.</p>
+<p>Sie erzählen von einer Stadt.<br>Von Menschen.<br>Von vergangenen Generationen.</p>
+<p>Wer solche Gebäude erhält,<br>bewahrt nicht nur Architektur.<br>Er bewahrt Erinnerung.</p>
+<p>Revitalisierung bedeutet deshalb weit mehr als Sanierung.<br>Sie verbindet Vergangenheit und Zukunft.<br>Sie schafft Neues,<br>ohne Altes zu zerstören.</p>
+<p class="hervor">Für uns ist das gelebte Nachhaltigkeit.</p>
+<p>Zukunft beginnt mit Verantwortung.<br>Nachhaltigkeit bedeutet für uns weit mehr als energieeffiziente Gebäude.<br>Sie beginnt mit Verantwortung.<br>Verantwortung gegenüber Menschen.<br>Verantwortung gegenüber unserer Umwelt.<br>Verantwortung gegenüber der Geschichte des Ortes.</p>
+<p>Deshalb glauben wir an die Revitalisierung wertvoller Bestandsgebäude.<br>Wir bewahren Identität.<br>Wir verbinden Vergangenheit mit Zukunft.<br>Wir schaffen Neues, ohne das Bestehende zu vergessen.</p>
+<p class="hervor">Wir sind dem Alten verpflichtet und dem Neuen aufgeschlossen.</p></div>
+</article>
+<article class="grundsatz" id="grundsatz-6">
+  <span class="grundsatz-nr" aria-hidden="true">06</span>
+  <div class="grundsatz-text reveal"><h2>Komfort ist kein Luxus</h2>
+<p>Komfort bedeutet nicht Überfluss.<br>Komfort bedeutet,<br>dass das Leben einfacher wird.</p>
+<p>Ein Aufzug.<br>Ein heller Eingangsbereich.<br>Kurze Wege.<br>Eine gute Beleuchtung.<br>Ein sicherer Zugang.</p>
+<p>Eine Wohnung,<br>die sich den Menschen anpasst.<br>Nicht umgekehrt.</p>
+<p class="hervor">Das verstehen wir unter Komfort.</p></div>
+</article>
+<article class="grundsatz" id="grundsatz-7">
+  <span class="grundsatz-nr" aria-hidden="true">07</span>
+  <div class="grundsatz-text reveal"><h2>Gemeinschaft ist freiwillig</h2>
+<p>Der Mensch ist ein soziales Wesen.<br>Und doch braucht jeder seinen eigenen Rückzugsort.</p>
+<p>Deshalb glauben wir an Wohnformen,<br>die Begegnung ermöglichen,<br>ohne sie zu erzwingen.</p>
+<p>Ein freundlicher Gruß.<br>Ein gemeinsamer Kaffee.<br>Ein Gespräch im Innenhof.<br>Ein Lächeln im Treppenhaus.</p>
+<p>Oft sind es die kleinen Begegnungen,<br>die Lebensqualität ausmachen.</p>
+<p class="hervor">Gemeinschaft entsteht freiwillig.</p>
+<p>Menschen wünschen sich Nähe.<br>Genauso wichtig ist ihnen die Privatsphäre.<br>Deshalb schaffen wir Orte, an denen Begegnungen möglich sind – niemals verpflichtend, immer selbstverständlich.</p></div>
+</article>
+<article class="grundsatz" id="grundsatz-8">
+  <span class="grundsatz-nr" aria-hidden="true">08</span>
+  <div class="grundsatz-text reveal"><h2>Lebensqualität ist planbar</h2>
+<p>Lebensqualität entsteht nicht zufällig.<br>Sie ist das Ergebnis guter Planung.</p>
+<p>Jede Entscheidung zählt.<br>Die Lage.<br>Die Architektur.<br>Die Materialien.<br>Das Licht.<br>Die Wege.<br>Die Aussicht.<br>Die Atmosphäre.</p>
+<p class="hervor">Deshalb bauen wir nicht nur Gebäude.<br>Wir planen Lebensqualität.</p></div>
+</article>
+<article class="grundsatz" id="grundsatz-9">
+  <span class="grundsatz-nr" aria-hidden="true">09</span>
+  <div class="grundsatz-text reveal"><h2>Qualität bleibt</h2>
+<p>Mode verändert sich.<br>Architektur entwickelt sich.<br>Technik wird erneuert.<br>Doch echte Qualität bleibt.</p>
+<p>Sie zeigt sich in Details.<br>In Materialien.<br>In Proportionen.<br>In Ehrlichkeit.<br>In handwerklicher Sorgfalt.</p>
+<p>Qualität altert nicht.<br>Sie gewinnt mit den Jahren.</p>
+<p>Qualität erkennt man nicht auf den ersten Blick.<br>Man spürt sie.<br>In der Atmosphäre.<br>In jedem Detail.<br>Sie ist echt.</p>
+<p class="hervor">Qualität ist kein Trend.<br>Qualität bleibt.</p></div>
+</article>
+<article class="grundsatz" id="grundsatz-10">
+  <span class="grundsatz-nr" aria-hidden="true">10</span>
+  <div class="grundsatz-text reveal"><h2>Wohnen ist Zukunft</h2>
+<p>Jede Immobilie ist eine Investition.<br>Aber nicht nur in Beton.<br>Sondern in das eigene Leben.</p>
+<p>Deshalb muss ein Wohnprojekt heute Antworten auf die Fragen von morgen geben.</p>
+<p>Wie möchten Menschen leben?<br>Wie möchten sie älter werden?<br>Wie möchten sie Gemeinschaft erleben?<br>Wie möchten sie ihre Freiheit bewahren?</p>
+<span class="eyebrow">Wir glauben,</span>
+<p class="hervor">dass Wohnen diese Fragen beantworten muss.</p></div>
+</article>
+</section>
+<div class="section-divider"><span>Unsere Haltung</span></div>
+<section id="unsere-haltung" class="weiss">
+<div class="zeilen stil-mitte" id="unser-anspruch"><div class="zeilen-inner reveal"><h2>Unser Anspruch</h2>
+<p>Wir entwickeln keine Wohnungen.<br>Wir entwickeln Werte.</p>
+<p>Wir gestalten keine Gebäude.<br>Wir gestalten Zukunft.</p>
+<p>Wir schaffen keine Projekte.<br>Wir schaffen Orte, an denen Menschen gerne leben.</p>
+<p>Mit Leidenschaft und Begeisterung.<br>Mit Verantwortung.<br>Mit höchstem Qualitätsanspruch.</p>
+<p class="hervor">Für heute.<br>Für morgen.<br>Für Generationen.</p></div></div>
+<div class="zeilen stil-glauben" id="unsere-ueberzeugung"><div class="zeilen-inner reveal"><h2>Unsere Überzeugung</h2>
+<span class="eyebrow">Wir glauben,</span>
+<p>dass Architektur Menschen dienen muss.</p>
+<span class="eyebrow">Wir glauben,</span>
+<p>dass Qualität wichtiger ist als Größe.</p>
+<span class="eyebrow">Wir glauben,</span>
+<p>dass Eigentum Sicherheit schafft.</p>
+<span class="eyebrow">Wir glauben,</span>
+<p>dass Komfort Lebensqualität bedeutet.</p>
+<span class="eyebrow">Wir glauben,</span>
+<p>dass Nachhaltigkeit Verantwortung ist.</p>
+<span class="eyebrow">Wir glauben,</span>
+<p>dass Gemeinschaft freiwillig sein muss.</p>
+<span class="eyebrow">Wir glauben,</span>
+<p>dass gutes Wohnen Zeit schenkt.</p>
+<span class="eyebrow">Und wir glauben,</span>
+<p>dass jede Immobilie das Leben ihrer Bewohner verbessern sollte.</p></div></div>
+<div class="gegenueber" id="unsere-absicht"><div class="gegenueber-inner reveal"><h2>Unsere Absicht</h2>
+<p>Mit jedem Projekt verfolgen wir ein Ziel:</p><ul><li><span class="nicht">Nicht möglichst viele Wohnungen zu bauen.</span><span class="sondern">Sondern die richtigen.</span></li><li><span class="nicht">Nicht möglichst groß.</span><span class="sondern">Sondern möglichst wertvoll.</span></li><li><span class="nicht">Nicht kurzfristig erfolgreich.</span><span class="sondern">Sondern langfristig werthaltig.</span></li><li><span class="nicht">Nicht laut.</span><span class="sondern">Sondern überzeugend.</span></li><li><span class="nicht">Nicht beliebig.</span><span class="sondern">Sondern einzigartig.</span></li></ul></div></div>
+<div class="zeilen stil-versprechen" id="unser-versprechen"><div class="zeilen-inner reveal"><h2>Unser Versprechen</h2>
+<p>Jedes Projekt, das unseren Namen trägt, folgt denselben Grundsätzen:</p>
+<ul><li>Architektur mit Charakter.</li><li>Qualität ohne Kompromisse.</li><li>Nachhaltigkeit mit Verantwortung.</li><li>Komfort mit Anspruch.</li><li>Eigentum mit Wertbeständigkeit.</li><li>Gemeinschaft mit Respekt.</li><li>Lebensqualität mit Zukunft.</li></ul></div></div>
+<div class="zeilen stil-mitte" id="unser-leitbild"><div class="zeilen-inner reveal"><h2>Unser Leitbild</h2>
+<p>Wir entwickeln Orte,<br>an denen Menschen gerne leben.</p>
+<p>Wir schaffen Gebäude,<br>die auch morgen noch Bestand haben.</p>
+<p>Wir verbinden Architektur,<br>Lebensqualität,<br>Nachhaltigkeit<br>und Verantwortung.</p>
+<p class="hervor">Wir entwickeln Werte.<br>Wir gestalten Zukunft.</p></div></div>
+</section>
+<div class="section-divider"><span>Schlusswort</span></div>
+<section id="schlusswort">
+<div class="zeilen stil-mitte" id="quality-time-living"><div class="zeilen-inner reveal"><h2>Quality Time Living</h2>
+<p>Quality Time Living ist mehr als ein Name.<br>Es ist unsere Überzeugung.</p>
+<p class="hervor">Menschen sollen selbstbestimmt leben.<br>Komfortabel wohnen.<br>Sicher ankommen.<br>Gemeinschaft erleben.<br>Und ihre wertvollste Ressource genießen: Zeit.</p></div></div>
+<div class="zeilen stil-mitte" id="schlusswort"><div class="zeilen-inner reveal"><h2>Schlusswort</h2>
+<p>Vielleicht wird man sich in einigen Jahren nicht mehr daran erinnern,<br>wie viele Quadratmeter eine Wohnung hatte.<br>Vielleicht erinnert man sich vielmehr daran,<br>wie sich das Leben dort angefühlt hat.</p>
+<p class="hervor">Wenn Menschen sagen:<br>„Hier habe ich mich zuhause gefühlt.“<br>Dann haben wir unser Ziel erreicht.</p>
+<p>Denn ein Gebäude kann man errichten.<br>Ein Zuhause entsteht erst,<br>wenn Architektur,<br>Menschlichkeit<br>und Lebensqualität<br>zusammenfinden.</p>
+<p class="signatur">Das ist unser Verständnis von Quality Time Living.<br>Das ist unser Manifest des Wohnens.</p>
+<p class="hervor">Wir entwickeln Werte.<br>Wir gestalten Zukunft.</p></div></div>
+<p class="drucken-zeile"><button type="button" class="btn btn-rahmen" data-drucken>Manifest drucken oder als PDF sichern</button></p>
+<div class="abschluss"><div class="abschluss-inner reveal"><p class="abschluss-zitat">Wir öffnen Türen, auch da, wo man nur eine Mauer sieht.</p>
+<p class="abschluss-unter">Bauherrn vergeben keine Projekte, sie vergeben Vertrauen.<br>ipm-KG</p>
+<p class="knopf-zeile"><a class="btn btn-hell" href="../kontakt/">Kontakt aufnehmen</a></p></div></div>
+</section>
+  </div>
+</div>
+</main>
 
-    <blockquote class="manifest-quote">
-      <p>„Wir entwickeln keine Immobilien.<br>Wir entwickeln Lebensräume.<br>Denn ein Zuhause beginnt nicht mit Mauern – sondern mit Menschen.“</p>
-    </blockquote>
-
-    <div class="manifest-block">
-      <h3>Warum wir tun, was wir tun</h3>
-      <p>Jeder Mensch sucht im Leben nach einem Ort, an dem er ankommen kann. Nicht nach möglichst vielen Quadratmetern, sondern nach einem Zuhause, das Sicherheit schenkt, Geborgenheit vermittelt und Lebensqualität entstehen lässt. Ein Zuhause ist kein Bauwerk. Es ist ein Gefühl. Es ist der Ort, an dem Erinnerungen entstehen, Zukunft gestaltet wird und das Leben seinen Raum findet.</p>
+<footer id="footer">
+  <div class="footer-main">
+    <div>
+      <img src="../assets/ipm-logo.png" alt="ipm" class="footer-logo">
+      <p class="footer-tagline">Immobilien-Projekt-Management. Diskret. Individuell. Transparent.</p>
+      <div class="footer-address">
+        ipm-KG · Immobilien-Projekt-Management<br>
+        Bachstraße 23<br>
+        47918 Tönisvorst<br><br>
+        Tel. <a href="tel:+4921564889890">+49 (0) 2156 4 88 98 90</a><br>
+        <a href="mailto:info@ipm-kg.de">info@ipm-kg.de</a>
+      </div>
     </div>
-
-    <div class="manifest-block">
-      <h3>Unsere Überzeugung</h3>
-      <p>Die Welt verändert sich. Menschen leben länger, bleiben aktiver und möchten ihre Zeit bewusster genießen. Deshalb genügt es heute nicht mehr, Wohnraum zu schaffen. Es braucht Lebensräume, die sich den Menschen anpassen – nicht umgekehrt. Als Projektentwickler beginnen wir kein Projekt mit der Frage, was gebaut werden kann. Wir beginnen mit der Frage: Wie möchten Menschen leben? Der Mensch steht für uns immer vor der Immobilie.</p>
+    <div class="footer-col">
+      <h2>Übersicht</h2>
+      <ul>
+        <li><a href="../">Wer wir sind</a></li>
+        <li><a href="../philosophie/">Philosophie</a></li>
+        <li><a href="../manifest/">Manifest</a></li>
+        <li><a href="../leistungen/">Leistungen</a></li>
+        <li><a href="../quality-time-living/">Quality Time Living</a></li>
+        <li><a href="../kontakt/">Kontakt</a></li>
+      </ul>
     </div>
-
-    <div class="manifest-block">
-      <h3>Unsere Verantwortung</h3>
-      <p>Wir entwickeln Projekte für unterschiedliche Menschen mit unterschiedlichen Lebensentwürfen: für Investoren, die nachhaltig Werte schaffen möchten; für Kapitalanleger, die Beständigkeit und Qualität suchen; für Selbstnutzer, die ein Zuhause für ihre Zukunft finden möchten; und für Mieter, die sich in ihrem Wohnumfeld sicher, willkommen und zuhause fühlen wollen. So unterschiedlich diese Perspektiven auch sind – sie alle verbindet der Wunsch nach Qualität, Vertrauen und langfristiger Werthaltigkeit.</p>
-    </div>
-
-    <div class="manifest-block">
-      <h3>Quality Time Living</h3>
-      <p>Quality Time Living ist kein Produkt. Es ist unsere Haltung. Wir glauben, dass gutes Wohnen Zeit schenkt – Zeit für Familie, Freundschaften, Kultur, Reisen und die schönen Augenblicke des Lebens. Ein Zuhause soll den Alltag erleichtern, Sicherheit geben, Selbstbestimmung bewahren und Freiräume schaffen. Architektur hat ihre Aufgabe erst erfüllt, wenn sie das Leben ihrer Bewohner verbessert.</p>
-    </div>
-
-    <div class="manifest-block">
-      <h3>Unsere Philosophie</h3>
-      <p>Architektur trägt Verantwortung. Sie prägt Menschen, Nachbarschaften und Städte über Jahrzehnte. Deshalb verbinden wir Ästhetik mit Funktion, Wirtschaftlichkeit mit Menschlichkeit und Nachhaltigkeit mit Identität. Wo immer es sinnvoll ist, bewahren wir wertvolle Bestandsgebäude, entwickeln neue Perspektiven und schaffen Lebensräume mit Charakter und Zukunft.</p>
-    </div>
-
-    <div class="manifest-block">
-      <h3>Unser Versprechen</h3>
-      <p>Unser Erfolg misst sich nicht an Quadratmetern oder Bauvolumen. Er misst sich daran, ob Menschen gerne an den Orten leben, die wir entwickelt haben. Ob Investoren Vertrauen in die Werthaltigkeit ihrer Entscheidung gewinnen. Ob Eigentümer stolz auf ihr Zuhause sind. Ob Mieter sich willkommen fühlen. Und ob unsere Projekte auch nach vielen Jahren noch als wertvoll wahrgenommen werden.</p>
-    </div>
-
-    <div class="manifest-block manifest-close">
-      <h3>Unser Leitgedanke</h3>
-      <p class="manifest-lines">Wir entwickeln keine standardisierten Immobilien.<br>Wir entwickeln Werte.<br>Wir gestalten Zukunft.</p>
-      <p>Wir schaffen Lebensräume für Menschen – unabhängig davon, ob sie investieren, vorsorgen, selbst einziehen oder zur Miete wohnen. Denn am Ende erinnern sich Menschen nicht an Quadratmeter. Sie erinnern sich daran, wie sie sich an einem Ort gefühlt haben. Wenn unsere Projekte genau dieses Gefühl schaffen, haben wir unseren Auftrag erfüllt.</p>
-      <p class="manifest-sig">Das ist Quality Time Living.<br>Das ist die Philosophie der ipm-KG.</p>
+    <div class="footer-col">
+      <h2>Rechtliches</h2>
+      <ul>
+        <li><a href="../impressum/">Impressum</a></li>
+        <li><a href="../datenschutz/">Datenschutzerklärung</a></li>
+      </ul>
     </div>
   </div>
-</section>
-<p class="manifest-back"><a href="../">&larr; Zur Startseite</a></p>
-</main>
-<footer><a href="../manifest/">Manifest</a> · © 2026 ipm-KG Immobilien-Projekt-Management · <a href="../impressum/">Impressum</a><a href="../datenschutz/">Datenschutz</a></footer>
+  <div class="footer-bottom">
+    <span class="footer-copy">© 2026 ipm-KG Immobilien-Projekt-Management · Tönisvorst · Alle Rechte vorbehalten.</span>
+    <div class="footer-legal-links">
+      <a href="../impressum/">Impressum</a>
+      <a href="../datenschutz/">Datenschutz</a>
+    </div>
+  </div>
+  <div class="footer-disclaimer">
+    Die auf dieser Website enthaltenen Angaben und Informationen dienen ausschließlich zu Informationszwecken. Irrtümer vorbehalten.
+  </div>
+</footer>
+
+<script src="../assets/site.js"></script>
 </body>
 </html>

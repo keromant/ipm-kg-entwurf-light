@@ -1,1415 +1,173 @@
 <!DOCTYPE html>
-<html lang="de">
+<!-- Automatisch erzeugt aus content/start.md mit tools/build.mjs – Texte bitte dort ändern, nicht hier. -->
+<html lang="de" class="no-js">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ipm — Immobilien-Projekt-Management</title>
-
-<style>
-/* ================================================================
-   ENTWURF LIGHT — FULL-BLEED + LINKE SIDEBAR
-   Akzent: ipm-Logo-Grün | Sidebar: weiß, Menü zentriert
-================================================================ */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-@font-face {
-  font-family: 'Playfair Display';
-  src: url('assets/fonts/PlayfairDisplay.ttf') format('truetype');
-  font-weight: 400 800; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'Playfair Display';
-  src: url('assets/fonts/PlayfairDisplay-Italic.ttf') format('truetype');
-  font-weight: 400 800; font-style: italic; font-display: swap;
-}
-@font-face {
-  font-family: 'Avenir Web';
-  src: url('assets/fonts/avenir-light.ttf') format('truetype');
-  font-weight: 300; font-style: normal; font-display: swap;
-}
-@font-face {
-  font-family: 'Montserrat';
-  src: url('assets/fonts/Montserrat.ttf') format('truetype');
-  font-weight: 300 700; font-style: normal; font-display: swap;
-}
-
-:root {
-  /* ---- SIDEBAR ---- */
-  --sidebar-w: 144px;
-
-  /* ---- LICHT-PALETTE ---- */
-  --bg:        #F8F7F3;
-  --bg-2:      #EFEDE7;
-  --bg-3:      #E6E3DC;
-  --bg-light:  #FFFFFF;
-  --text:      #1A1A1A;
-  --text-2:    #454545;
-  --text-dark: #1A1A1A;
-  --hairline:  rgba(0,0,0,.09);
-  --hairline-d:rgba(0,0,0,.10);
-
-  /* Akzent: ipm-Logo-Grün */
-  --ox:        #2a7a2a;
-  --ox-lt:     #38a038;
-  --ox-dim:    rgba(56,160,56,.1);
-  --logo-blue:   #1a6db5;
-  --logo-orange: #d97830;
-  --logo-red:    #b83228;
-
-  --font-serif: 'Playfair Display', Georgia, serif;
-  --font-sans:  'Avenir Web','Montserrat',system-ui,sans-serif;
-  --ease-out:   cubic-bezier(.22,1,.36,1);
-
-  /* Button tokens */
-  --accent-rgb:    42,122,42;
-  --accent:        rgb(var(--accent-rgb));
-  --accent-strong: #1f5e1f;
-  --secondary:     #1a1a1a;
-  --pop-ease:      cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-html { scroll-behavior: smooth; }
-body {
-  font-family: var(--font-sans);
-  background: var(--bg);
-  color: var(--text);
-  overflow-x: hidden;
-  cursor: none;
-  -webkit-font-smoothing: antialiased;
-  padding-left: var(--sidebar-w);    /* offset for sidebar */
-  padding-top: 52px;                 /* offset for topbar */
-}
-img { display: block; max-width: 100%; }
-a { color: inherit; text-decoration: none; }
-
-/* ================================================================
-   CURSOR
-================================================================ */
-#cursor {
-  position: fixed; width: 36px; height: 36px;
-  border: 1.5px solid var(--ox); border-radius: 50%;
-  pointer-events: none; z-index: 9999;
-  transform: translate(-50%,-50%);
-  transition: width .25s ease, height .25s ease, border-color .25s ease, background .25s ease;
-}
-#cursor.is-hover {
-  width: 52px; height: 52px;
-  background: rgba(42,122,42,.06); border-color: var(--ox-lt);
-}
-#cursor-dot {
-  position: fixed; width: 3px; height: 3px;
-  background: var(--ox); border-radius: 50%;
-  pointer-events: none; z-index: 10000;
-  transform: translate(-50%,-50%);
-}
-
-/* ================================================================
-   SIDEBAR  — Charcoal (Logo-Grau) + grünes Spotlight-Hover
-================================================================ */
-.sidebar {
-  position: fixed; left: 0; top: 0;
-  width: var(--sidebar-w); height: 100vh;
-  background: #3C3C3C;           /* Logo-Grau / Charcoal */
-  border-right: 1px solid rgba(0,0,0,.22);
-  z-index: 500;
-  display: flex; flex-direction: column;
-  align-items: center;
-  overflow: visible;   /* das Logo ragt bewusst nach rechts heraus */
-}
-
-/* Logo — sitzt oben im Sidebar und ragt nach rechts in den Bildbereich hinein.
-   Deshalb .sidebar { overflow: visible } und ein z-index ueber Topbar (450)
-   und Hero. Vorbild: mein-qtl. */
-.sb-logo {
-  position: relative;
-  z-index: 1001;
-  align-self: flex-start;
-  width: 212px;
-  margin-left: 30px;   /* nach rechts, aus dem Rahmen heraus */
-  margin-top: 8px;
-  padding: 0;
-  flex-shrink: 0;
-}
-.sb-logo a { cursor: none; display: block; transition: opacity .25s ease; }
-.sb-logo a:hover { opacity: .8; }
-.sb-logo img {
-  width: 100%; max-width: none; height: auto;
-  display: block; object-fit: contain;
-  filter: drop-shadow(0 10px 34px rgba(0,0,0,.4));
-}
-
-/* Separator */
-.sb-sep {
-  width: 36px; height: 1px;
-  background: rgba(255,255,255,.12);
-  flex-shrink: 0;
-}
-
-/* Nav — vertically & horizontally centered */
-.sb-nav {
-  flex: 1;
-  display: flex; align-items: center; justify-content: center;
-  width: 100%;
-}
-.sb-list {
-  list-style: none;
-  display: flex; flex-direction: column;
-  align-items: center;
-  gap: 6px;
-}
-.sb-list li { position: relative; }
-
-/* Active dot — kleiner grüner Punkt links vom aktiven Item */
-.sb-list li::after {
-  content: '';
-  position: absolute;
-  left: 6px; top: 50%;
-  width: 4px; height: 4px;
-  background: var(--ox-lt);
-  border-radius: 50%;
-  transform: translateY(-50%) scale(0);
-  transition: transform .3s var(--pop-ease);
-  pointer-events: none;
-}
-.sb-list li.is-active::after {
-  transform: translateY(-50%) scale(1);
-}
-
-.sb-list a {
-  font-family: 'Montserrat', system-ui, sans-serif;
-  font-size: 10px; font-weight: 400;
-  letter-spacing: .2em; text-transform: uppercase;
-  color: rgba(255,255,255,.5);
-  text-align: center;
-  cursor: none; line-height: 1.3;
-  transition: color .35s ease, text-shadow .35s ease;
-  position: relative; display: block;
-  z-index: 1;
-  padding: 12px 20px;
-}
-
-/* Grünes Spotlight — radial glow hinter dem Text */
-.sb-list a::before {
-  content: '';
-  position: absolute;
-  left: 50%; top: 50%;
-  transform: translate(-50%, -50%) scale(0.5);
-  width: 150px; height: 62px;
-  background: radial-gradient(ellipse at center,
-    rgba(56,160,56,.45) 0%,
-    rgba(56,160,56,.18) 42%,
-    transparent 70%
-  );
-  border-radius: 50%;
-  opacity: 0;
-  pointer-events: none;
-  z-index: -1;
-  transition: opacity .5s ease, transform .5s ease;
-}
-.sb-list a:hover::before {
-  opacity: 1;
-  transform: translate(-50%, -50%) scale(1);
-}
-.sb-list a:hover {
-  color: #fff;
-  text-shadow:
-    0 0 6px  rgba(56,160,56,.95),
-    0 0 18px rgba(56,160,56,.65),
-    0 0 40px rgba(56,160,56,.32);
-}
-
-/* Kontakt CTA — bottom sweep */
-.sb-cta-wrap {
-  padding: 30px 20px;
-  flex-shrink: 0;
-  display: flex; justify-content: center;
-  width: 100%;
-}
-.sb-cta {
-  font-family: 'Montserrat', system-ui, sans-serif;
-  font-size: 10px; font-weight: 400;
-  letter-spacing: .18em; text-transform: uppercase; line-height: 1;
-  color: rgba(255,255,255,.7);
-  padding: 11px 20px;
-  border: 1px solid rgba(255,255,255,.22);
-  cursor: none;
-  position: relative; z-index: 1; overflow: hidden; isolation: isolate;
-  transition: color .45s ease, border-color .4s ease;
-  --sweep: var(--ox);
-}
-.sb-cta::after {
-  content: ""; position: absolute; inset: 0 -20%; z-index: -1;
-  background: var(--sweep);
-  transform: skewX(-45deg) scale(0, 1); transform-origin: center;
-  transition: transform .5s ease;
-}
-.sb-cta:hover::after { transform: skewX(-45deg) scale(1, 1); }
-.sb-cta:hover { color: #fff; border-color: var(--ox-lt); }
-.sb-cta.is-activating::after { animation: btn-sweep .5s ease forwards; }
-
-/* ================================================================
-   TOPBAR — Horizontale Menüleiste (fixiert, über Content)
-================================================================ */
-.topbar {
-  position: fixed; top: 0;
-  left: var(--sidebar-w); right: 0;
-  height: 52px; z-index: 450;
-  display: flex; align-items: center;
-  background: #3C3C3C;               /* identisch zur Sidebar — deckend, kein Blur */
-  border-bottom: 1px solid rgba(0,0,0,.22);
-}
-.topbar-label {
-  position: absolute; left: 50%; transform: translateX(-50%);
-  font-family: 'Montserrat', system-ui, sans-serif;
-  font-size: 13px; font-weight: 400;
-  letter-spacing: .28em; text-transform: uppercase;
-  color: rgba(255,255,255,.85);
-  pointer-events: none;
-  transition: opacity .4s ease;
-  text-shadow:
-    0 0 6px  rgba(56,160,56,.85),
-    0 0 16px rgba(56,160,56,.45),
-    0 0 34px rgba(56,160,56,.2);
-}
-.topbar-cta {
-  position: absolute; right: 28px;
-  font-family: 'Montserrat', system-ui, sans-serif;
-  font-size: 11px; font-weight: 500;
-  letter-spacing: .2em; text-transform: uppercase;
-  padding: 12px 28px;
-  background: var(--ox); color: #fff;
-  cursor: none;
-  display: inline-flex; align-items: center; gap: 8px;
-  position: absolute; right: 28px;
-  overflow: hidden; isolation: isolate;
-  transition: color .45s ease;
-  --sweep: #3C3C3C;
-}
-.topbar-cta::after {
-  content: ""; position: absolute; inset: 0 -20%; z-index: -1;
-  background: var(--sweep);
-  transform: skewX(-45deg) scale(0,1); transform-origin: center;
-  transition: transform .5s ease;
-}
-.topbar-cta:hover::after { transform: skewX(-45deg) scale(1,1); }
-.topbar-cta.is-activating::after { animation: btn-sweep .5s ease forwards; }
-
-/* ================================================================
-   HERO — Full-Bleed Video
-================================================================ */
-.hero {
-  /* Vollbild — aber INNERHALB der Rahmen: die Topbar (52px) bleibt oben stehen,
-     die Sidebar links; body hat dafuer schon padding-top/padding-left. */
-  height: calc(100vh - 52px);
-  min-height: 460px;
-  position: relative; overflow: hidden;
-}
-.hero-video {
-  /* Fuellt die gesamte Hero-Flaeche formatfuellend. Der Bildausschnitt sitzt
-     leicht oberhalb der Mitte (42%), damit bei breiten Fenstern immer Luft
-     ueber den Koepfen bleibt und unten Platz fuer den Slogan ist. */
-  position: absolute; inset: 0;
-  width: 100%; height: 100%;
-  object-fit: cover;
-  object-position: 50% 42%;
-  transform: translate3d(0,0,0); will-change: transform;
-}
-.hero-overlay {
-  position: absolute; inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(0,0,0,.58) 0%,
-    rgba(0,0,0,.30) 24%,
-    rgba(0,0,0,.08) 48%,
-    rgba(0,0,0,0)   100%
-  );
-  pointer-events: none;
-}
-
-/* Slogan im Bild — ploppt genau dann auf, wenn die beiden im Video
-   die Arme verschraenken (siehe JS: CLAIM_AT). */
-.hero-claim {
-  position: absolute;
-  left: 0; right: 0; bottom: clamp(96px, 13vh, 150px);
-  z-index: 3;
-  text-align: center;
-  pointer-events: none;
-  padding: 0 32px;
-}
-.hero-claim h1 {
-  margin: 0;
-  font-family: var(--font-serif);
-  font-size: clamp(38px, 6vw, 88px);
-  font-weight: 400; line-height: 1.04;
-  letter-spacing: -.015em;
-  color: #fff;
-}
-.hero-claim h1 em { font-style: italic; }
-
-/* Wortweises Reveal: jedes Wort gleitet hinter einer unsichtbaren Kante hervor.
-   Die Maske (overflow) braucht Padding, damit Unterlaengen, der Kursiv-Ueberhang
-   von "anders!" und der Textschatten nicht angeschnitten werden — das Padding
-   wird per negativem margin wieder herausgerechnet, damit die Wortabstaende
-   exakt die der normalen Typografie bleiben. */
-.hc-word {
-  display: inline-block;
-  overflow: hidden;
-  vertical-align: bottom;
-  padding:  .18em  .14em  .20em  .05em;
-  margin:  -.18em -.14em -.20em -.05em;
-}
-.hc-word > span {
-  display: inline-block;
-  transform: translateY(130%);
-  transition: transform 1.15s var(--ease-out);
-  transition-delay: var(--wd, 0s);
-  text-shadow: 0 1px 14px rgba(0,0,0,.55);
-}
-.hero.is-claim .hc-word > span { transform: translateY(0); }
-
-.hero-scroll {
-  position: absolute; left: 50%; bottom: 26px;
-  transform: translateX(-50%);
-  z-index: 2; display: block;
-  text-decoration: none; cursor: none;
-  opacity: 0;
-  transition: opacity .8s var(--ease-out) .35s;
-}
-.hero.is-claim .hero-scroll { opacity: 1; }
-
-/* ================================================================
-   CLAIM — kompakter Textblock zwischen Bild und Kennzahlen
-================================================================ */
-.claim {
-  background: var(--bg);
-  border-top: 1px solid var(--hairline);
-  padding: 56px 80px 56px;
-  text-align: center;
-}
-.claim-inner { max-width: 880px; margin: 0 auto; }
-.claim-rule {
-  width: 56px; height: 1px; background: var(--ox-lt);
-  margin: 0 auto 30px;
-}
-/* Steht seit dem Vollbild-Hero allein — deshalb groesser gesetzt als ein
-   blosser Unterzeile-Text. */
-.claim-sub {
-  font-family: var(--font-sans);
-  font-size: clamp(17px, 1.65vw, 21px);
-  font-weight: 300;
-  color: var(--text-2); line-height: 1.72;
-  max-width: 760px; margin: 0 auto;
-}
-
-.btn-hero {
-  display: inline-flex; align-items: center; gap: 12px;
-  padding: 15px 32px; border: 0;
-  background: var(--ox); color: #fff;
-  font-family: var(--font-sans);
-  font-size: 11px; font-weight: 300;
-  letter-spacing: .18em; text-transform: uppercase;
-  cursor: none; opacity: 0;
-  animation: fadeUp .8s var(--ease-out) 1.25s forwards;
-  position: relative; z-index: 1; overflow: hidden; isolation: isolate;
-  transition: color .45s ease;
-  --sweep: #3C3C3C;   /* grüner Button → grau beim Hover */
-}
-.btn-hero::after {
-  content: ""; position: absolute; inset: 0 -20%; z-index: -1;
-  background: var(--sweep);
-  transform: skewX(-45deg) scale(0, 1); transform-origin: center;
-  transition: transform .5s ease;
-}
-.btn-hero:hover::after { transform: skewX(-45deg) scale(1, 1); }
-.btn-hero.is-activating::after { animation: btn-sweep .5s ease forwards; }
-
-.hero-scroll-arrow {
-  font-size: 34px; line-height: 1;
-  color: var(--ox-lt);
-  text-shadow:
-    0 0 8px  rgba(56,160,56,1),
-    0 0 22px rgba(56,160,56,.85),
-    0 0 48px rgba(56,160,56,.55),
-    0 0 80px rgba(56,160,56,.3);
-  cursor: none;
-  animation: arrowBounce 1.8s ease-in-out 1.2s infinite;
-}
-@keyframes arrowBounce {
-  0%,100% { transform: translateY(0);   opacity: .75; }
-  50%      { transform: translateY(10px); opacity: 1; }
-}
-
-/* ================================================================
-   STAT-BAND
-================================================================ */
-.stat-band {
-  background: #fff;
-  border-top: 1px solid rgba(0,0,0,.06);
-  border-bottom: 1px solid rgba(0,0,0,.06);
-}
-.stat-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  max-width: 1100px; margin: 0 auto;
-}
-.stat-item {
-  padding: 56px 44px;
-  border-right: 1px solid rgba(0,0,0,.07);
-}
-.stat-item:last-child { border-right: none; }
-.stat-value {
-  font-family: var(--font-serif);
-  font-size: clamp(36px, 5vw, 68px);
-  font-weight: 500; line-height: 1;
-  color: var(--ox); letter-spacing: -.02em;
-}
-.stat-value em { font-style: normal; font-size: .55em; vertical-align: super; margin-left: 2px; }
-.stat-label {
-  font-family: var(--font-sans);
-  font-size: 12px; font-weight: 300;
-  letter-spacing: .18em; text-transform: uppercase;
-  color: #5a5a5a; margin-top: 12px;
-}
-.stat-footnote {
-  font-family: var(--font-sans);
-  font-size: 12px; font-weight: 300;
-  color: #999; margin-top: 8px; font-style: italic;
-}
-
-/* ================================================================
-   STATEMENT 2-SPALTEN
-================================================================ */
-/* Sektions-Trennstreifen — Charcoal wie Topbar, Sektionsname zentriert */
-.section-divider {
-  height: 52px;
-  background: rgba(60,60,60,.88);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-top: 1px solid rgba(255,255,255,.06);
-  border-bottom: 1px solid rgba(255,255,255,.06);
-  display: flex; align-items: center; justify-content: center;
-}
-.section-divider span {
-  font-family: 'Montserrat', system-ui, sans-serif;
-  font-size: 13px; font-weight: 400;
-  letter-spacing: .28em; text-transform: uppercase;
-  color: rgba(255,255,255,.85);
-  text-shadow:
-    0 0 6px  rgba(56,160,56,.85),
-    0 0 16px rgba(56,160,56,.45),
-    0 0 34px rgba(56,160,56,.2);
-}
-.statement-section {
-  padding: 120px 80px;
-  max-width: 1400px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 100px; align-items: center;
-}
-.statement-left h2 {
-  font-family: var(--font-serif);
-  font-size: clamp(32px, 4.5vw, 64px);
-  font-weight: 400; line-height: 1.1;
-  color: var(--text); letter-spacing: -.01em;
-}
-.statement-left h2 em { font-style: italic; color: var(--ox-lt); }
-.statement-right { border-left: 1px solid rgba(0,0,0,.1); padding-left: 60px; }
-.statement-right p {
-  font-family: var(--font-sans);
-  font-size: 16px; font-weight: 300;
-  line-height: 1.9; color: var(--text-2); margin-bottom: 22px;
-}
-.statement-right p strong { color: var(--text); font-weight: 400; }
-.statement-sig {
-  font-family: var(--font-sans); font-weight: 400; font-size: 14px; line-height: 1.9;
-  color: var(--ox); margin-top: 8px;
-}
-.statement-kicker {
-  font-family: 'Montserrat', system-ui, sans-serif;
-  font-size: 12px; font-weight: 400;
-  letter-spacing: .2em; text-transform: uppercase;
-  color: var(--ox); margin-top: 28px; line-height: 1.7;
-}
-
-/* ================================================================
-   MANIFEST DES WOHNENS — einspaltig, ruhiger Lesesatz
-================================================================ */
-.manifest { background: var(--bg-light); padding: 120px 80px 128px; }
-.manifest-inner { max-width: 720px; margin: 0 auto; }
-.manifest-head { text-align: center; margin-bottom: 56px; }
-.manifest-eyebrow {
-  display: block;
-  font-family: 'Montserrat', system-ui, sans-serif;
-  font-size: 12px; font-weight: 400;
-  letter-spacing: .22em; text-transform: uppercase;
-  color: var(--ox); margin-bottom: 18px;
-}
-.manifest-head h2 {
-  font-family: var(--font-serif);
-  font-size: clamp(34px, 4.6vw, 62px);
-  font-weight: 400; line-height: 1.1; letter-spacing: -.01em;
-  color: var(--text);
-}
-.manifest-head h2 em { font-style: italic; color: var(--ox-lt); }
-.manifest-quote {
-  margin: 0 0 72px; padding: 36px 0;
-  border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);
-  text-align: center;
-}
-.manifest-quote p {
-  font-family: var(--font-serif); font-style: italic;
-  font-size: clamp(21px, 2.3vw, 30px);
-  font-weight: 400; line-height: 1.5; color: var(--text);
-}
-.manifest-block { margin-bottom: 48px; }
-.manifest-block h3 {
-  font-family: var(--font-serif);
-  font-size: clamp(22px, 2.2vw, 28px);
-  font-weight: 400; line-height: 1.25;
-  color: var(--text); margin-bottom: 14px;
-}
-.manifest-block h3::before {
-  content: ""; display: block;
-  width: 40px; height: 1px; background: var(--ox-lt);
-  margin-bottom: 18px;
-}
-.manifest-block p {
-  font-family: var(--font-sans);
-  font-size: 17px; font-weight: 300;
-  line-height: 1.9; color: var(--text-2);
-}
-.manifest-block p + p { margin-top: 18px; }
-.manifest-close { margin-bottom: 0; }
-.manifest .manifest-lines {
-  font-family: var(--font-serif); font-style: italic;
-  font-size: clamp(20px, 2vw, 25px); line-height: 1.55; color: var(--text);
-}
-.manifest .manifest-sig {
-  margin-top: 36px;
-  font-family: var(--font-serif);
-  font-size: clamp(20px, 2vw, 25px); line-height: 1.5;
-  color: var(--ox);
-}
-
-.claim-words {
-  margin: 22px auto 0;
-  font-family: 'Montserrat', system-ui, sans-serif;
-  font-size: 12px; font-weight: 400;
-  letter-spacing: .24em; text-transform: uppercase;
-  color: var(--ox);
-}
-
-.text-link {
-  display: inline-flex; align-items: center; gap: 12px; margin-top: 28px;
-  font-family: var(--font-sans);
-  font-size: 12px; font-weight: 400;
-  letter-spacing: .12em; text-transform: uppercase;
-  color: var(--ox); cursor: none; transition: gap .3s ease;
-}
-.text-link:hover { gap: 18px; }
-.text-link-arrow {
-  font-family: var(--font-sans);
-  font-size: 20px; font-weight: 300; line-height: 1;
-  transition: transform .3s ease;
-}
-.text-link:hover .text-link-arrow { transform: translateX(4px); }
-
-/* ================================================================
-   CASE STUDY CAROUSEL
-================================================================ */
-.case-study {
-  position: relative;
-  overflow: hidden;
-  background: #3C3C3C;
-}
-.case-track {
-  position: relative;
-  height: 520px;
-}
-.case-slide {
-  position: absolute; inset: 0;
-  display: flex; align-items: stretch;
-  overflow: hidden;
-  opacity: 0; pointer-events: none;
-  transition: opacity 1.1s ease;
-}
-.case-slide.is-active {
-  opacity: 1; pointer-events: auto;
-  z-index: 2;
-}
-/* Pan & Zoom (Ken Burns) auf dem Projektbild, solange der Slide aktiv ist */
-.case-slide-img img {
-  width: 100%; height: 100%; object-fit: cover;
-  transform: scale(1.08);
-  will-change: transform;
-}
-.case-slide.is-active .case-slide-img img {
-  animation: casePanZoom 4.6s cubic-bezier(.25,.6,.35,1) forwards;
-}
-@keyframes casePanZoom {
-  from { transform: scale(1.08) translate(-1.5%, 0); }
-  to   { transform: scale(1.22) translate(1.5%, 1%); }
-}
-/* Text zieht beim Umschalten sanft nach */
-.case-slide-content { opacity: 0; transform: translateY(14px); }
-.case-slide.is-active .case-slide-content {
-  opacity: 1; transform: translateY(0);
-  transition: opacity .8s ease .25s, transform .8s cubic-bezier(.22,1,.36,1) .25s;
-}
-.case-slide-bg {
-  position: absolute; inset: 0;
-  background: #3C3C3C;
-}
-.case-slide-img {
-  flex: 0 0 60%;
-  position: relative;
-  background: #2C2C2C;
-  overflow: hidden;
-  border-right: 1px solid rgba(255,255,255,.06);
-}
-.case-slide-ph {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-sans);
-  font-size: 10px; letter-spacing: .2em; text-transform: uppercase;
-  color: rgba(255,255,255,.07);
-}
-.case-slide-content {
-  flex: 0 0 40%;
-  position: relative; z-index: 2;
-  text-align: right;
-  padding: 52px 56px;
-  display: flex; flex-direction: column; justify-content: center;
-}
-.case-tag {
-  font-family: var(--font-sans);
-  font-size: 11px; letter-spacing: .22em; text-transform: uppercase;
-  color: var(--ox-lt); margin-bottom: 20px; display: block;
-}
-.case-title {
-  font-family: var(--font-serif);
-  font-size: clamp(28px, 3.3vw, 48px);
-  font-weight: 400; line-height: 1.08;
-  color: #fff; letter-spacing: -.01em;
-  margin-bottom: 14px;
-}
-.case-meta {
-  font-family: var(--font-sans);
-  font-size: 13px; font-weight: 300;
-  letter-spacing: .14em; text-transform: uppercase;
-  color: rgba(255,255,255,.38); margin-bottom: 36px;
-}
-.case-divider {
-  width: 40px; height: 1px;
-  background: rgba(56,160,56,.45);
-  margin: 0 0 32px auto;
-}
-.case-stats {
-  display: flex; justify-content: flex-end; gap: 48px;
-}
-.btn-case {
-  display: inline-flex; align-items: center; gap: 10px;
-  padding: 11px 24px; margin-top: 36px;
-  align-self: flex-end;
-  border: 1px solid rgba(255,255,255,.2);
-  color: rgba(255,255,255,.5);
-  font-family: 'Montserrat', system-ui, sans-serif;
-  font-size: 10px; font-weight: 400;
-  letter-spacing: .2em; text-transform: uppercase;
-  text-decoration: none;
-  position: relative; z-index: 1; overflow: hidden; isolation: isolate;
-  transition: color .45s ease, border-color .4s ease;
-  --sweep: var(--ox);
-}
-.btn-case::after {
-  content: ""; position: absolute; inset: 0 -20%; z-index: -1;
-  background: var(--sweep);
-  transform: skewX(-45deg) scale(0,1); transform-origin: center;
-  transition: transform .5s ease;
-}
-.btn-case:hover::after { transform: skewX(-45deg) scale(1,1); }
-.btn-case:hover { color: #fff; border-color: var(--ox-lt); }
-.btn-case.is-activating::after { animation: btn-sweep .5s ease forwards; }
-.case-stat-value {
-  font-family: var(--font-serif);
-  font-size: 28px; font-weight: 400;
-  color: var(--ox-lt); line-height: 1.2;
-}
-.case-stat-label {
-  font-family: var(--font-sans);
-  font-size: 11px; letter-spacing: .18em; text-transform: uppercase;
-  color: rgba(255,255,255,.35); margin-top: 8px;
-}
-.case-dots {
-  position: absolute; bottom: 28px; left: 50%; transform: translateX(-50%);
-  display: flex; gap: 12px; z-index: 10;
-}
-.case-dot {
-  width: 7px; height: 7px; border-radius: 50%;
-  background: rgba(255,255,255,.22);
-  border: none; cursor: none; padding: 0;
-  transition: background .4s ease, transform .4s var(--pop-ease);
-}
-.case-dot.is-active { background: var(--ox-lt); transform: scale(1.5); }
-.case-dot:hover { background: rgba(255,255,255,.5); }
-
-/* ================================================================
-   INSIGHTS GRID
-================================================================ */
-.insights-section { background: var(--bg-2); padding: 96px 80px; }
-.insights-header {
-  display: flex; justify-content: space-between; align-items: baseline;
-  max-width: 1240px; margin: 0 auto 48px;
-  padding-bottom: 22px; border-bottom: 1px solid rgba(0,0,0,.1);
-}
-.insights-title {
-  font-family: var(--font-serif);
-  font-size: clamp(22px, 2.8vw, 38px);
-  font-weight: 400; color: var(--text);
-}
-.insights-more {
-  font-family: 'Montserrat', system-ui, sans-serif;
-  font-size: 13px; font-weight: 400;
-  letter-spacing: .08em; text-transform: uppercase;
-  color: var(--ox); cursor: none; transition: color .25s ease;
-}
-.insights-more:hover { color: var(--accent-strong); }
-.insights-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 32px; max-width: 1240px; margin: 0 auto;
-}
-.insight-card { cursor: none; }
-.insight-img {
-  aspect-ratio: 16/9; background: var(--bg-3);
-  overflow: hidden; position: relative; margin-bottom: 18px;
-}
-.insight-img-ph {
-  position: absolute; inset: 0;
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--font-sans);
-  font-size: 9px; letter-spacing: .16em; text-transform: uppercase;
-  color: rgba(0,0,0,.18);
-}
-.insight-tag {
-  font-family: var(--font-sans);
-  font-size: 12px; font-weight: 300;
-  letter-spacing: .16em; text-transform: uppercase;
-  color: var(--ox); margin-bottom: 8px;
-}
-.insight-title {
-  font-family: var(--font-serif);
-  font-size: 17px; font-weight: 400;
-  color: var(--text); line-height: 1.35; margin-bottom: 10px;
-  transition: color .25s ease;
-}
-.insight-card:hover .insight-title { color: var(--ox); }
-.insight-date {
-  font-family: var(--font-sans);
-  font-size: 12px; font-weight: 300; color: #888;
-}
-
-/* ================================================================
-   FOOTER — hell
-================================================================ */
-footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
-.footer-main {
-  display: grid; grid-template-columns: 2fr 1fr 1fr;
-  gap: 52px; max-width: 1400px; margin: 0 auto;
-  padding: 72px 80px 52px;
-}
-.footer-tagline {
-  font-family: var(--font-sans);
-  font-size: 13px; font-weight: 300;
-  color: rgba(0,0,0,.62); line-height: 1.65;
-  max-width: 260px; margin-bottom: 24px; margin-top: 14px;
-}
-.footer-address {
-  font-family: var(--font-sans);
-  font-size: 13px; font-weight: 300;
-  color: rgba(0,0,0,.62); line-height: 1.75;
-}
-.footer-col h4 {
-  font-family: var(--font-sans);
-  font-size: 11px; font-weight: 500;
-  letter-spacing: .28em; text-transform: uppercase;
-  color: var(--ox); margin-bottom: 18px;
-}
-.footer-col ul { list-style: none; }
-.footer-col ul li + li { margin-top: 12px; }
-.footer-col ul a {
-  font-family: var(--font-sans);
-  font-size: 14px; font-weight: 300;
-  color: rgba(0,0,0,.6); cursor: none; transition: color .25s ease;
-}
-.footer-col ul a:hover { color: var(--ox); }
-.footer-bottom {
-  border-top: 1px solid rgba(0,0,0,.08);
-  max-width: 1400px; margin: 0 auto;
-  padding: 20px 80px;
-  display: flex; justify-content: space-between; align-items: center;
-  flex-wrap: wrap; gap: 12px;
-}
-.footer-copy {
-  font-family: var(--font-sans);
-  font-size: 11px; font-weight: 300;
-  letter-spacing: .06em; color: rgba(0,0,0,.5);
-}
-.footer-legal-links { display: flex; gap: 28px; }
-.footer-legal-links a {
-  font-family: var(--font-sans);
-  font-size: 11px; font-weight: 300;
-  letter-spacing: .1em; text-transform: uppercase;
-  color: rgba(0,0,0,.5); cursor: none; transition: color .25s ease;
-}
-.footer-legal-links a:hover { color: var(--ox); }
-.footer-disclaimer {
-  max-width: 1400px; margin: 0 auto;
-  padding: 0 80px 28px;
-  font-family: var(--font-sans);
-  font-size: 11px; font-weight: 300;
-  line-height: 1.6; color: rgba(0,0,0,.4);
-}
-
-/* ================================================================
-   ANIMATIONEN & REVEAL
-================================================================ */
-@keyframes fadeUp {
-  /* KEIN filter:blur() — ein gesetzter filter kippt Text auf Graustufen-Glaettung */
-  from { opacity:0; transform:translateY(28px); }
-  to   { opacity:1; transform:translateY(0);    }
-}
-@keyframes fadeIn {
-  from { opacity:0; }
-  to   { opacity:1; }
-}
-@keyframes ruleGrow { from { width:0; opacity:0; } to { width:56px; opacity:1; } }
-@keyframes btn-sweep {
-  from { transform: skewX(-45deg) scale(0,1); }
-  to   { transform: skewX(-45deg) scale(1,1); }
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(36px);
-  /* Bewusst OHNE filter:blur() — sonst rendert Chrome den Text in einer eigenen
-     Compositing-Ebene mit Graustufen-Glaettung und duenner Fliesstext wirkt wellig. */
-  transition:
-    opacity  1.1s cubic-bezier(.22,1,.36,1),
-    transform 1.1s cubic-bezier(.22,1,.36,1);
-  transition-delay: var(--d, 0s);   /* Staffelung je Element */
-}
-.reveal.in {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ================================================================
-   KAPITEL NACH DEM MANIFEST (Okt. 2026)
-================================================================ */
-/* Claim: Leitsatz als Zitat */
-.claim-quote p {
-  font-family: var(--font-serif); font-style: italic;
-  font-size: clamp(22px, 2.5vw, 32px);
-  font-weight: 400; line-height: 1.5; color: var(--text);
-}
-
-/* Zwischenüberschriften in der rechten Spalte */
-.statement-right h3 {
-  font-family: 'Montserrat', system-ui, sans-serif;
-  font-size: 12px; font-weight: 500;
-  letter-spacing: .2em; text-transform: uppercase;
-  color: var(--ox); margin: 0 0 12px;
-}
-.statement-right p + h3 { margin-top: 36px; }
-
-/* Für wen — vier Karten (Spotlight + Pop-Hover, cards-and-buttons.md §4) */
-.audience { background: var(--bg-2); padding: 112px 80px 120px; }
-.audience-inner { max-width: 1240px; margin: 0 auto; }
-.audience-head { max-width: 760px; margin: 0 auto 56px; text-align: center; }
-.audience-head h2 {
-  font-family: var(--font-serif);
-  font-size: clamp(30px, 4vw, 54px);
-  font-weight: 400; line-height: 1.12; color: var(--text);
-  margin-bottom: 20px;
-}
-.audience-head h2 em { font-style: italic; color: var(--ox-lt); }
-.audience-head p, .audience-close {
-  font-family: var(--font-sans);
-  font-size: 17px; font-weight: 300; line-height: 1.8; color: var(--text-2);
-}
-.audience-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 28px; }
-.audience-card {
-  --glow-soft:   0 0 0 1px rgba(var(--accent-rgb),.35),
-                 0 16px 34px -16px rgba(var(--accent-rgb),.22),
-                 0 5px 14px rgba(var(--accent-rgb),.10);
-  --glow-strong: 0 0 0 2px rgba(var(--accent-rgb),.70),
-                 0 30px 55px -12px rgba(var(--accent-rgb),.40),
-                 0 12px 26px rgba(var(--accent-rgb),.22);
-  background: #fff;
-  border: 1.5px solid rgba(var(--accent-rgb),.45);
-  border-radius: 20px;
-  padding: 32px 28px 34px;
-  box-shadow: var(--glow-soft);
-}
-.audience-num {
-  display: block;
-  font-family: var(--font-serif); font-size: 15px;
-  color: var(--ox-lt); margin-bottom: 18px;
-}
-.audience-card h3 {
-  font-family: var(--font-serif);
-  font-size: clamp(22px, 2vw, 27px);
-  font-weight: 400; color: var(--text); margin-bottom: 12px;
-}
-.audience-card p {
-  font-family: var(--font-sans);
-  font-size: 15px; font-weight: 300; line-height: 1.75; color: var(--text-2);
-}
-.audience-close { max-width: 760px; margin: 56px auto 0; text-align: center; }
-/* nach der .reveal-Regel: hoehere Spezifitaet, sonst setzt .reveal.in transform:none (§6) */
-.audience-card.reveal {
-  transition: transform .4s var(--pop-ease), box-shadow .4s ease,
-              border-color .35s ease, opacity 1.1s cubic-bezier(.22,1,.36,1);
-  transition-delay: 0s, 0s, 0s, var(--d, 0s);
-}
-@media (hover: hover) and (pointer: fine) {
-  .audience-card.reveal:hover {
-    transform: translateY(-4px) scale(1.04);
-    border-color: var(--accent-strong);
-    box-shadow: var(--glow-strong);
-  }
-}
-
-/* Quality Time Living */
-.qtl { background: var(--bg-light); padding: 120px 80px; text-align: center; }
-.qtl-inner { max-width: 760px; margin: 0 auto; }
-.qtl h2 {
-  font-family: var(--font-serif);
-  font-size: clamp(34px, 4.6vw, 62px);
-  font-weight: 400; line-height: 1.1; color: var(--text); margin-bottom: 28px;
-}
-.qtl h2 em { font-style: italic; color: var(--ox-lt); }
-.qtl p {
-  font-family: var(--font-sans);
-  font-size: 17px; font-weight: 300; line-height: 1.9; color: var(--text-2);
-}
-.qtl p + p { margin-top: 16px; }
-.qtl .qtl-lead {
-  font-family: var(--font-serif); font-size: clamp(20px, 2vw, 25px);
-  color: var(--text); line-height: 1.5;
-}
-.qtl .qtl-time {
-  margin: 22px auto 26px; padding: 26px 0;
-  border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline);
-  font-family: var(--font-serif); font-style: italic;
-  font-size: clamp(21px, 2.3vw, 30px); line-height: 1.45; color: var(--ox);
-}
-.qtl .statement-sig { margin-top: 26px; }
-.qtl .text-link, .manifest-close .text-link { margin-top: 32px; }
-
-/* Topbar-Elemente nur fuers Handy */
-.topbar-burger, .topbar-logo { display: none; }
-.topbar-burger {
-  position: absolute; left: 12px; top: 4px;
-  width: 44px; height: 44px;
-  background: none; border: 0; padding: 0; cursor: pointer;
-  flex-direction: column; align-items: center; justify-content: center; gap: 5px;
-}
-.topbar-burger span {
-  display: block; width: 22px; height: 1.5px; background: #fff;
-  transition: transform .3s ease, opacity .3s ease;
-}
-.topbar-burger[aria-expanded="true"] span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
-.topbar-burger[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
-.topbar-burger[aria-expanded="true"] span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
-.topbar-logo { position: absolute; left: 62px; top: 6px; }
-.topbar-logo img { height: 40px; width: auto; }
-
-/* Handy-Menü: Vollbild-Panel unter der Topbar */
-.mnav {
-  position: fixed; inset: 52px 0 0 0; z-index: 440;
-  background: #3C3C3C;
-  display: flex; align-items: center; justify-content: center;
-  overflow-y: auto;
-}
-.mnav[hidden] { display: none; }
-.mnav-list { list-style: none; text-align: center; padding: 32px 24px; }
-.mnav-list a {
-  display: block; min-height: 44px; padding: 12px 24px;
-  font-family: 'Montserrat', system-ui, sans-serif;
-  font-size: 13px; font-weight: 400;
-  letter-spacing: .22em; text-transform: uppercase;
-  color: rgba(255,255,255,.85);
-}
-.mnav-list a:active { color: #fff; }
-.mnav-sep { margin-top: 18px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,.12); }
-body.mnav-open { overflow: hidden; }
-
-@media (max-width: 1200px) {
-  .audience-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 960px) {
-  .topbar-burger { display: flex; }
-  .topbar-logo { display: block; }
-  .topbar-label { display: none; }
-  .audience { padding: 72px 24px 80px; }
-  .audience-head { margin-bottom: 40px; }
-  .qtl { padding: 72px 24px 80px; }
-}
-@media (max-width: 600px) {
-  .audience-grid { grid-template-columns: 1fr; gap: 20px; }
-}
-@media (prefers-reduced-motion: reduce) {
-  .audience-card.reveal { transition: none; }
-  .audience-card.reveal:hover { transform: none; }
-  .topbar-burger span { transition: none; }
-}
-
-/* ================================================================
-   RESPONSIVE
-================================================================ */
-@media (max-width: 960px) {
-  body { padding-left: 0; }
-  .sidebar { display: none; }
-  .claim { padding: 44px 32px 40px; }
-  /* Handy/Tablet: der Hero bleibt bildschirmfuellend, wird aber bei sehr hohen
-     Hochkant-Displays gedeckelt — sonst wuerde "cover" links und rechts so viel
-     wegschneiden, dass die beiden aus dem Bild laufen. */
-  .hero { height: min(calc(100vh - 52px), calc(100vw * 1.32)); min-height: 320px; }
-  /* etwas nach rechts, sonst schneidet der schmale Ausschnitt Sebastian an */
-  .hero-video { object-position: 53% 38%; }
-  .hero-claim { bottom: 74px; padding: 0 24px; }
-  .hero-claim h1 { font-size: clamp(30px, 8.5vw, 52px); }
-  .topbar { left: 0; }          /* Sidebar ist ausgeblendet — keine Luecke mehr */
-  .statement-section { grid-template-columns: 1fr; padding: 64px 32px; gap: 48px; }
-  .manifest { padding: 72px 24px 80px; }
-  .manifest-quote { margin-bottom: 52px; }
-  .manifest-block p { font-size: 16px; }
-  .claim-words { letter-spacing: .16em; line-height: 1.8; }
-  .statement-right { border-left: none; padding-left: 0; border-top: 1px solid rgba(0,0,0,.1); padding-top: 32px; }
-  .stat-grid { grid-template-columns: 1fr; }
-  .case-study-content { grid-template-columns: 1fr; padding: 0 32px 48px; }
-  /* Projekte gestapelt: Bild oben, Text darunter */
-  .case-track { height: 700px; }
-  .case-slide { flex-direction: column; }
-  .case-slide-img { flex: 0 0 280px; border-right: none; }
-  .case-slide-content { flex: 1 1 auto; text-align: left; padding: 32px 32px 80px; justify-content: flex-start; }
-  .case-divider { margin: 0 0 24px; }
-  .case-meta { margin-bottom: 24px; }
-  .case-stats { justify-content: flex-start; gap: 36px; }
-  .btn-case { align-self: flex-start; margin-top: 28px; }
-  .case-dots { bottom: 22px; }
-  .insights-section { padding: 64px 32px; }
-  .insights-grid { grid-template-columns: 1fr; }
-  .footer-main { grid-template-columns: 1fr; padding: 52px 32px; }
-  .footer-bottom, .footer-disclaimer { padding-left: 32px; padding-right: 32px; }
-}
-
-@media (max-width: 780px) {
-  .topbar-label { display: none; }        /* sonst schiebt sich der CTA darueber */
-  .topbar-cta { right: 16px; padding: 10px 18px; font-size: 10px; letter-spacing: .14em; }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .reveal { transition: none; transition-delay: 0s; }
-  .reveal.in { transform: none; }
-  .btn-hero, .sb-cta { transition: none; }
-  .btn-hero::after, .sb-cta::after { transition: none; animation: none; }
-  .hc-word > span { transform: none; transition: none; }
-  * { animation-duration: .01ms !important; }
-}
-</style>
+<title>ipm-KG – Immobilien-Projekt-Management · Wir sind anders.</title>
+<meta name="description" content="Die ipm-KG entwickelt Lebensräume statt Immobilien. Über 45 Jahre Erfahrung, Quality Time Living und das Manifest des Wohnens.">
+<link rel="stylesheet" href="assets/site.css">
 </head>
-<body>
+<body class="seite-start">
 
-<!-- CURSOR -->
 <div id="cursor"></div>
 <div id="cursor-dot"></div>
 
-<!-- ================================================================
-     TOPBAR — Sektionsname zentriert + CTA
-================================================================ -->
 <div class="topbar" id="topbar">
   <button class="topbar-burger" id="mnavToggle" type="button" aria-label="Menü öffnen" aria-controls="mnav" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
-  <a href="#" class="topbar-logo"><img src="assets/ipm-logo.png" alt="ipm-KG — zum Seitenanfang"></a>
-  <span class="topbar-label" id="topbarLabel">Willkommen</span>
-  <a href="#kontakt" class="topbar-cta">Kontakt aufnehmen +</a>
+  <a href="./" class="topbar-logo"><img src="assets/ipm-logo.png" alt="ipm-KG – zur Startseite"></a>
+  <span class="topbar-label" id="topbarLabel" data-start="Willkommen">Willkommen</span>
+  <a href="kontakt/" class="topbar-cta">Kontakt aufnehmen +</a>
 </div>
 
-<!-- Handy-Menü (≤ 960 px, dort ist die Sidebar ausgeblendet) -->
 <nav class="mnav" id="mnav" aria-label="Hauptmenü" hidden>
   <ul class="mnav-list">
-    <li><a href="#haltung">Haltung</a></li>
-    <li><a href="#fuer-wen">Für wen</a></li>
-    <li><a href="#qtl">Quality Time Living</a></li>
-    <li><a href="#philosophie">Philosophie</a></li>
-    <li><a href="#leistungen">Leistungen</a></li>
-    <li><a href="#versprechen">Versprechen</a></li>
-    <li class="mnav-sep"><a href="manifest/">Das Manifest</a></li>
-    <li><a href="#kontakt">Kontakt</a></li>
+    <li class="is-active"><a href="./" aria-current="page">Wer wir sind</a></li>
+    <li><a href="philosophie/">Philosophie</a></li>
+    <li><a href="manifest/">Manifest</a></li>
+    <li><a href="leistungen/">Leistungen</a></li>
+    <li><a href="quality-time-living/">Quality Time Living</a></li>
+    <li class="mnav-sep"><a href="kontakt/">Kontakt</a></li>
   </ul>
 </nav>
 
-<!-- ================================================================
-     SIDEBAR
-================================================================ -->
 <aside class="sidebar" id="sidebar">
   <div class="sb-logo">
-    <a href="#">
-      <img src="assets/ipm-logo.png" alt="ipm — Immobilien-Projekt-Management">
-    </a>
+    <a href="./"><img src="assets/ipm-logo.png" alt="ipm – Immobilien-Projekt-Management"></a>
   </div>
-
   <div class="sb-sep"></div>
-
-  <nav class="sb-nav">
+  <nav class="sb-nav" aria-label="Hauptmenü">
     <ul class="sb-list">
-      <li><a href="#haltung">Haltung</a></li>
-      <li><a href="#fuer-wen">Für wen</a></li>
-      <li><a href="#qtl">Quality Time Living</a></li>
-      <li><a href="#philosophie">Philosophie</a></li>
-      <li><a href="#leistungen">Leistungen</a></li>
-      <li><a href="#versprechen">Versprechen</a></li>
+      <li class="is-active"><a href="./" aria-current="page">Wer wir sind</a></li>
+      <li><a href="philosophie/">Philosophie</a></li>
+      <li><a href="manifest/">Manifest</a></li>
+      <li><a href="leistungen/">Leistungen</a></li>
+      <li><a href="quality-time-living/">Quality Time Living</a></li>
     </ul>
   </nav>
-
   <div class="sb-sep"></div>
-
   <div class="sb-cta-wrap">
-    <a href="#kontakt" class="sb-cta">Kontakt</a>
+    <a href="kontakt/" class="sb-cta">Kontakt</a>
   </div>
 </aside>
 
-<!-- ================================================================
-     HERO — Full-Bleed Video
-================================================================ -->
+<main>
 <section class="hero" id="hero">
-  <video
-    class="hero-video"
-    src="assets/hero-sebastian-henno.mp4"
-    poster="assets/hero-endframe-poster.png"
-    autoplay muted playsinline preload="auto">
-  </video>
+  <video class="hero-video" src="assets/hero-sebastian-henno.mp4" poster="assets/hero-endframe-poster.png" autoplay muted playsinline preload="auto"></video>
   <div class="hero-overlay"></div>
-
   <div class="hero-claim">
-    <h1><span class="hc-word"><span style="--wd:0s">Wir</span></span>
-        <span class="hc-word"><span style="--wd:.11s">sind</span></span>
-        <span class="hc-word"><span style="--wd:.22s"><em>anders!</em></span></span></h1>
+    <h1><span class="hc-word"><span style="--wd:0.00s">Wir</span></span>
+        <span class="hc-word"><span style="--wd:0.11s">sind</span></span>
+        <span class="hc-word"><span style="--wd:0.22s"><em>anders.</em></span></span></h1>
   </div>
-
-  <a class="hero-scroll" href="#claim" aria-label="Weiter zum Inhalt">
-    <div class="hero-scroll-arrow">&#8964;</div>
-  </a>
+  <a class="hero-scroll" href="#inhalt" aria-label="Weiter zum Inhalt"><div class="hero-scroll-arrow">&#8964;</div></a>
 </section>
-
-<!-- ================================================================
-     CLAIM — Leitsatz des Manifests
-================================================================ -->
-<section class="claim" id="claim">
-  <div class="claim-inner">
-    <div class="claim-rule reveal" style="--d:.10s"></div>
-    <blockquote class="claim-quote reveal" style="--d:.24s">
-      <p>„Wir entwickeln keine Immobilien.<br>Wir entwickeln Lebensräume.<br>Denn ein Zuhause beginnt nicht mit Mauern – sondern mit Menschen.“</p>
-    </blockquote>
-    <p class="claim-words reveal" style="--d:.36s">diskret · individuell · transparent · unbürokratisch · direkt</p>
+<div class="claim" id="inhalt">
+  <div class="claim-inner reveal">
+    <div class="claim-rule"></div>
+    <p class="einstieg-zeilen">Wir sind nicht normal.<br>Wir sind anders.<br>Unsere Projekte sind besonders – besser – aber gut!</p>
+<p class="claim-quote">„Wir entwickeln keine Immobilien.<br>Wir entwickeln Lebensräume.<br>Denn ein Zuhause beginnt nicht mit Mauern – sondern mit Menschen.“</p>
   </div>
+</div>
+<div class="section-divider"><span>Wer wir sind</span></div>
+<section id="wer-wir-sind">
+<div class="statement-section reveal">
+  <div class="statement-left"><span class="eyebrow">Die ipm-KG</span>
+<h2>Dem Alten <em>verpflichtet</em> –<br>dem Neuen <em>aufgeschlossen.</em></h2>
+<p class="statement-kicker">Über 45-jährige Erfahrung aus Theorie und Praxis – verbunden mit Kreativität und Begeisterung.</p></div>
+  <div class="statement-right"><p>Natürlich entwickeln wir Immobilien. Wir planen, bauen, vermarkten, schaffen Werte und – machen das Ganze etwas anders als andere. Unsere Arbeitsprozesse rund um Immobilien sind bewährt und routiniert – schließlich sind wir kein Start-up, sondern seit über 25 Jahren in Deutschland aktiv.</p>
+<p class="statement-sig">Vom Wegbereiter zum Wegbegleiter.</p>
+<p><a class="text-link" href="leistungen/"><span class="text-link-arrow">+</span>Unsere Leistungen</a></p></div>
+</div>
+<ul class="woerter reveal" aria-label="So arbeiten wir"><li>diskret</li><li>individuell</li><li>neutral</li><li>ungebunden</li><li>qualifiziert</li><li>professionell</li><li>unkompliziert</li><li>unbürokratisch</li><li>direkt</li><li>transparent</li><li>offen</li></ul>
 </section>
-
-<!-- ================================================================
-     1 HALTUNG — Warum wir tun, was wir tun + Unsere Überzeugung
-================================================================ -->
-<div class="section-divider"><span>Haltung</span></div>
-<section id="haltung">
-  <div class="statement-section reveal">
-    <div class="statement-left">
-      <h2>Der Mensch steht für uns immer <em>vor der Immobilie</em>.</h2>
-    </div>
-    <div class="statement-right">
-      <h3>Warum wir tun, was wir tun</h3>
-      <p>
-        Jeder Mensch sucht im Leben nach einem Ort, an dem er ankommen kann. Nicht nach möglichst vielen Quadratmetern, sondern nach einem Zuhause, das Sicherheit schenkt, Geborgenheit vermittelt und Lebensqualität entstehen lässt. Ein Zuhause ist kein Bauwerk. Es ist ein Gefühl. Es ist der Ort, an dem Erinnerungen entstehen, Zukunft gestaltet wird und das Leben seinen Raum findet.
-      </p>
-      <h3>Unsere Überzeugung</h3>
-      <p>
-        Die Welt verändert sich. Menschen leben länger, bleiben aktiver und möchten ihre Zeit bewusster genießen. Deshalb genügt es heute nicht mehr, Wohnraum zu schaffen. Es braucht Lebensräume, die sich den Menschen anpassen – nicht umgekehrt. Als Projektentwickler beginnen wir kein Projekt mit der Frage, was gebaut werden kann. Wir beginnen mit der Frage: Wie möchten Menschen leben?
-      </p>
-    </div>
-  </div>
+<div class="section-divider"><span>Warum</span></div>
+<section id="warum">
+<div class="statement-section reveal">
+  <div class="statement-left"><span class="eyebrow">Das Manifest des Wohnens</span>
+<h2>Der Mensch steht für uns immer <em>vor der Immobilie.</em></h2></div>
+  <div class="statement-right"><h3>Warum wir tun, was wir tun</h3>
+<p>Jeder Mensch sucht im Leben nach einem Ort, an dem er ankommen kann. Nicht nach möglichst vielen Quadratmetern, sondern nach einem Zuhause, das Sicherheit schenkt, Geborgenheit vermittelt und Lebensqualität entstehen lässt. Ein Zuhause ist kein Bauwerk. Es ist ein Gefühl. Es ist der Ort, an dem Erinnerungen entstehen, Zukunft gestaltet wird und das Leben seinen Raum findet.</p>
+<h3>Unsere Überzeugung</h3>
+<p>Die Welt verändert sich. Menschen leben länger, bleiben aktiver und möchten ihre Zeit bewusster genießen. Deshalb genügt es heute nicht mehr, Wohnraum zu schaffen. Es braucht Lebensräume, die sich den Menschen anpassen – nicht umgekehrt. Als Projektentwickler beginnen wir kein Projekt mit der Frage, was gebaut werden kann. Wir beginnen mit der Frage: Wie möchten Menschen leben? Der Mensch steht für uns immer vor der Immobilie.</p></div>
+</div>
 </section>
-
-<!-- ================================================================
-     2 FÜR WEN — Unsere Verantwortung (4 Karten)
-================================================================ -->
 <div class="section-divider"><span>Für wen</span></div>
-<section id="fuer-wen" class="audience">
-  <div class="audience-inner">
-    <header class="audience-head reveal">
-      <span class="manifest-eyebrow">Unsere Verantwortung</span>
-      <h2>Lebensräume für <em>unterschiedliche Menschen</em>.</h2>
-      <p>Wir entwickeln Projekte für unterschiedliche Menschen mit unterschiedlichen Lebensentwürfen:</p>
-    </header>
-    <div class="audience-grid">
-      <article class="audience-card reveal" style="--d:.05s">
-        <span class="audience-num">01</span>
-        <h3>Investoren</h3>
-        <p>Für Investoren, die nachhaltig Werte schaffen möchten.</p>
-      </article>
-      <article class="audience-card reveal" style="--d:.15s">
-        <span class="audience-num">02</span>
-        <h3>Kapitalanleger</h3>
-        <p>Für Kapitalanleger, die Beständigkeit und Qualität suchen.</p>
-      </article>
-      <article class="audience-card reveal" style="--d:.25s">
-        <span class="audience-num">03</span>
-        <h3>Selbstnutzer</h3>
-        <p>Für Selbstnutzer, die ein Zuhause für ihre Zukunft finden möchten.</p>
-      </article>
-      <article class="audience-card reveal" style="--d:.35s">
-        <span class="audience-num">04</span>
-        <h3>Mieter</h3>
-        <p>Für Mieter, die sich in ihrem Wohnumfeld sicher, willkommen und zuhause fühlen wollen.</p>
-      </article>
-    </div>
-    <p class="audience-close reveal">So unterschiedlich diese Perspektiven auch sind – sie alle verbindet der Wunsch nach Qualität, Vertrauen und langfristiger Werthaltigkeit.</p>
-  </div>
+<section id="fuer-wen" class="grau">
+<header class="kopf reveal"><span class="eyebrow">Unsere Verantwortung</span>
+<h2>Lebensräume für <em>unterschiedliche Menschen.</em></h2>
+<p>Wir entwickeln Projekte für unterschiedliche Menschen mit unterschiedlichen Lebensentwürfen:</p></header>
+<div class="karten" style="--spalten:4">
+<article class="karte reveal" style="--d:0.00s"><span class="karte-nr">01</span><h3>Investoren</h3>
+<p>Für Investoren, die nachhaltig Werte schaffen möchten.</p></article>
+<article class="karte reveal" style="--d:0.08s"><span class="karte-nr">02</span><h3>Kapitalanleger</h3>
+<p>Für Kapitalanleger, die Beständigkeit und Qualität suchen.</p></article>
+<article class="karte reveal" style="--d:0.16s"><span class="karte-nr">03</span><h3>Selbstnutzer</h3>
+<p>Für Selbstnutzer, die ein Zuhause für ihre Zukunft finden möchten.</p></article>
+<article class="karte reveal" style="--d:0.24s"><span class="karte-nr">04</span><h3>Mieter</h3>
+<p>Für Mieter, die sich in ihrem Wohnumfeld sicher, willkommen und zuhause fühlen wollen.</p></article>
+</div>
+<header class="kopf reveal"><p class="kopf-schluss">So unterschiedlich diese Perspektiven auch sind – sie alle verbindet der Wunsch nach Qualität, Vertrauen und langfristiger Werthaltigkeit.</p></header>
 </section>
-
-<!-- ================================================================
-     3 QUALITY TIME LIVING
-================================================================ -->
 <div class="section-divider"><span>Quality Time Living</span></div>
-<section id="qtl" class="qtl">
-  <div class="qtl-inner reveal">
-    <span class="manifest-eyebrow">Unsere Haltung</span>
-    <h2>Quality Time <em>Living</em></h2>
-    <p class="qtl-lead">Quality Time Living ist kein Produkt. Es ist unsere Haltung.</p>
-    <p>Wir glauben, dass gutes Wohnen Zeit schenkt:</p>
-    <p class="qtl-time">Zeit für Familie, Freundschaften, Kultur, Reisen und die schönen Augenblicke des Lebens.</p>
-    <p>Ein Zuhause soll den Alltag erleichtern, Sicherheit geben, Selbstbestimmung bewahren und Freiräume schaffen. Architektur hat ihre Aufgabe erst erfüllt, wenn sie das Leben ihrer Bewohner verbessert.</p>
-    <p class="statement-sig">Wir machen es möglich, die kleinen Dinge im Leben genießen zu können.</p>
-    <a href="https://mein-qtl.de" class="text-link" target="_blank" rel="noopener">
-      <span class="text-link-arrow">+</span>
-      Mehr zu Quality Time Living
-    </a>
-  </div>
+<section id="quality-time-living" class="weiss">
+<div class="lesen stil-mitte"><div class="lesen-inner"><span class="eyebrow">Unsere Haltung</span>
+<h2>Quality Time <em>Living</em></h2>
+<p class="lead">Quality Time Living ist kein Produkt. Es ist unsere Haltung.</p>
+<p>Wir glauben, dass gutes Wohnen Zeit schenkt –</p>
+<p class="zeit-band">Zeit für Familie, Freundschaften, Kultur, Reisen und die schönen Augenblicke des Lebens.</p>
+<p>Ein Zuhause soll den Alltag erleichtern, Sicherheit geben, Selbstbestimmung bewahren und Freiräume schaffen. Architektur hat ihre Aufgabe erst erfüllt, wenn sie das Leben ihrer Bewohner verbessert.</p>
+<p class="statement-sig">Wir machen es möglich, die kleinen Dinge im Leben genießen zu können.</p>
+<p class="knopf-zeile"><a class="btn btn-rahmen" href="quality-time-living/">Mehr zu Quality Time Living</a></p></div></div>
 </section>
-
-<!-- ================================================================
-     4 PHILOSOPHIE
-================================================================ -->
 <div class="section-divider"><span>Philosophie</span></div>
 <section id="philosophie">
-  <div class="statement-section reveal">
-    <div class="statement-left">
-      <h2>Dem Alten <em>verpflichtet</em>&nbsp;–<br>dem Neuen <em>aufgeschlossen</em>.</h2>
-    </div>
-    <div class="statement-right">
-      <h3>Unsere Philosophie</h3>
-      <p>
-        Architektur trägt Verantwortung. Sie prägt Menschen, Nachbarschaften und Städte über Jahrzehnte. Deshalb verbinden wir Ästhetik mit Funktion, Wirtschaftlichkeit mit Menschlichkeit und Nachhaltigkeit mit Identität. Wo immer es sinnvoll ist, bewahren wir wertvolle Bestandsgebäude, entwickeln neue Perspektiven und schaffen Lebensräume mit Charakter und Zukunft.
-      </p>
-      <p>
-        Nicht die Größe eines Projektes ist für uns entscheidend, sondern die Qualität der Idee, die Wertigkeit jeder einzelnen Einheit und die kompromisslose Umsetzung eines überzeugenden Gesamtkonzeptes. Unser Anspruch ist es, Projekte auf höchstem Niveau zu realisieren – im Einklang mit den Vorstellungen unseres Auftraggebers sowie sämtlichen abgestimmten Vorgaben und Vereinbarungen.
-      </p>
-    </div>
-  </div>
+<div class="statement-section reveal">
+  <div class="statement-left"><span class="eyebrow">Unsere Philosophie</span>
+<h2>Architektur trägt <em>Verantwortung.</em></h2></div>
+  <div class="statement-right"><h3>Unsere Philosophie</h3>
+<p>Architektur trägt Verantwortung. Sie prägt Menschen, Nachbarschaften und Städte über Jahrzehnte. Deshalb verbinden wir Ästhetik mit Funktion, Wirtschaftlichkeit mit Menschlichkeit und Nachhaltigkeit mit Identität. Wo immer es sinnvoll ist, bewahren wir wertvolle Bestandsgebäude, entwickeln neue Perspektiven und schaffen Lebensräume mit Charakter und Zukunft.</p>
+<p><a class="text-link" href="philosophie/"><span class="text-link-arrow">+</span>Die Philosophie der ipm-KG lesen</a></p></div>
+</div>
 </section>
-
-<!-- ================================================================
-     5 LEISTUNGEN
-================================================================ -->
-<div class="section-divider"><span>Leistungen</span></div>
-<section id="leistungen">
-  <div class="statement-section reveal">
-    <div class="statement-left">
-      <h2>Rund um die Immobilie&nbsp;–<br>alles aus <em>einer Hand</em>.</h2>
-      <p class="statement-kicker">Die richtigen Fachleute für das Projekt.</p>
-    </div>
-    <div class="statement-right">
-      <p>
-        <strong>Über 45 Jahre Erfahrung aus Theorie und Praxis – verbunden mit Kreativität und Begeisterung.</strong>
-      </p>
-      <p>
-        Natürlich entwickeln wir Immobilien. Wir planen, bauen, vermarkten, schaffen Werte und – machen das Ganze etwas anders als andere. Unsere Arbeitsprozesse rund um Immobilien sind bewährt und routiniert – schließlich sind wir kein Start-up, sondern seit über 25 Jahren in Deutschland aktiv.
-      </p>
-      <p class="statement-sig">Vom Wegbereiter zum Wegbegleiter.</p>
-      <a href="#kontakt" class="text-link">
-        <span class="text-link-arrow">+</span>
-        Kontakt aufnehmen
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ================================================================
-     6 VERSPRECHEN — Versprechen + Leitgedanke
-================================================================ -->
 <div class="section-divider"><span>Versprechen</span></div>
-<section id="versprechen" class="manifest">
-  <div class="manifest-inner">
-    <header class="manifest-head reveal">
-      <span class="manifest-eyebrow">Das Manifest des Wohnens</span>
-      <h2>Unser <em>Versprechen</em></h2>
-    </header>
-
-    <div class="manifest-block reveal">
-      <p>Unser Erfolg misst sich nicht an Quadratmetern oder Bauvolumen. Er misst sich daran, ob Menschen gerne an den Orten leben, die wir entwickelt haben. Ob Investoren Vertrauen in die Werthaltigkeit ihrer Entscheidung gewinnen. Ob Eigentümer stolz auf ihr Zuhause sind. Ob Mieter sich willkommen fühlen. Und ob unsere Projekte auch nach vielen Jahren noch als wertvoll wahrgenommen werden.</p>
-    </div>
-
-    <div class="manifest-block manifest-close reveal">
-      <h3>Unser Leitgedanke</h3>
-      <p class="manifest-lines">Wir entwickeln keine standardisierten Immobilien.<br>Wir entwickeln Werte.<br>Wir gestalten Zukunft.</p>
-      <p>Wir schaffen Lebensräume für Menschen – unabhängig davon, ob sie investieren, vorsorgen, selbst einziehen oder zur Miete wohnen. Denn am Ende erinnern sich Menschen nicht an Quadratmeter. Sie erinnern sich daran, wie sie sich an einem Ort gefühlt haben. Wenn unsere Projekte genau dieses Gefühl schaffen, haben wir unseren Auftrag erfüllt.</p>
-      <p class="manifest-sig">Das ist Quality Time Living.<br>Das ist die Philosophie der ipm-KG.</p>
-      <a href="manifest/" class="text-link">
-        <span class="text-link-arrow">+</span>
-        Das Manifest am Stück lesen
-      </a>
-    </div>
-  </div>
+<section id="versprechen" class="weiss">
+<div class="lesen"><div class="lesen-inner"><span class="eyebrow">Das Manifest des Wohnens</span>
+<h2>Unser <em>Versprechen</em></h2>
+<p>Unser Erfolg misst sich nicht an Quadratmetern oder Bauvolumen. Er misst sich daran, ob Menschen gerne an den Orten leben, die wir entwickelt haben. Ob Investoren Vertrauen in die Werthaltigkeit ihrer Entscheidung gewinnen. Ob Eigentümer stolz auf ihr Zuhause sind. Ob Mieter sich willkommen fühlen. Und ob unsere Projekte auch nach vielen Jahren noch als wertvoll wahrgenommen werden.</p>
+<h3>Unser Leitgedanke</h3>
+<p class="leitzeilen">Wir entwickeln keine standardisierten Immobilien.<br>Wir entwickeln Werte.<br>Wir gestalten Zukunft.</p>
+<p>Wir schaffen Lebensräume für Menschen – unabhängig davon, ob sie investieren, vorsorgen, selbst einziehen oder zur Miete wohnen. Denn am Ende erinnern sich Menschen nicht an Quadratmeter. Sie erinnern sich daran, wie sie sich an einem Ort gefühlt haben. Wenn unsere Projekte genau dieses Gefühl schaffen, haben wir unseren Auftrag erfüllt.</p>
+<p class="signatur">Das ist Quality Time Living.<br>Das ist die Philosophie der ipm-KG.</p></div></div>
 </section>
-
-<!-- ================================================================
-     INSIGHTS / AKTUELLES — AUSGEBLENDET (für spätere Aktivierung)
-================================================================
-<section class="insights-section" id="insights">
-  <div class="insights-header reveal">
-    <h2 class="insights-title">Aktuelles + Einblicke</h2>
-    <a href="#" class="insights-more">Alle ansehen +</a>
-  </div>
-  <div class="insights-grid">
-    <a class="insight-card reveal" href="#">
-      <div class="insight-img"><div class="insight-img-ph">Beitragsbild eintragen</div></div>
-      <div class="insight-tag">Markteinblick</div>
-      <h3 class="insight-title">Warum sorgfältige Vorplanung Kosten spart — und Nerven</h3>
-      <div class="insight-date">[Datum eintragen]</div>
-    </a>
-    <a class="insight-card reveal" href="#">
-      <div class="insight-img"><div class="insight-img-ph">Beitragsbild eintragen</div></div>
-      <div class="insight-tag">Projektsteuerung</div>
-      <h3 class="insight-title">Vergabe ohne Überraschungen: Wie ipm Ausschreibungen begleitet</h3>
-      <div class="insight-date">[Datum eintragen]</div>
-    </a>
-    <a class="insight-card reveal" href="#">
-      <div class="insight-img"><div class="insight-img-ph">Beitragsbild eintragen</div></div>
-      <div class="insight-tag">Erfahrungsbericht</div>
-      <h3 class="insight-title">Baureinigung als letzter Schritt: Was eine saubere Übergabe bedeutet</h3>
-      <div class="insight-date">[Datum eintragen]</div>
-    </a>
-  </div>
+<div class="section-divider"><span>Mehr entdecken</span></div>
+<section id="mehr-entdecken" class="grau">
+<div class="karten" style="--spalten:3">
+<article class="karte reveal" style="--d:0.00s"><span class="eyebrow">Fließtext</span>
+<h3>Die Philosophie der ipm-KG</h3>
+<p>Warum wir jedes Projekt mit der Frage beginnen, wie Menschen leben möchten.</p>
+<p class="knopf-zeile"><a class="btn btn-gruen" href="philosophie/">Philosophie lesen</a></p></article>
+<article class="karte reveal" style="--d:0.08s"><span class="eyebrow">Zehn Grundsätze</span>
+<h3>Das Manifest des Wohnens</h3>
+<p>Unser Leitbild für die Zukunft des Wohnens – vom Vorwort bis zum Schlusswort.</p>
+<p class="knopf-zeile"><a class="btn btn-gruen" href="manifest/">Manifest lesen</a></p></article>
+<article class="karte reveal" style="--d:0.16s"><span class="eyebrow">Projektentwicklung</span>
+<h3>Rund um die Immobilie</h3>
+<p>Von der ersten Idee bis zum Verkauf oder zum eigenen Bestand – alles aus einer Hand.</p>
+<p class="knopf-zeile"><a class="btn btn-gruen" href="leistungen/">Leistungen ansehen</a></p></article>
+</div>
+<div class="abschluss"><div class="abschluss-inner reveal"><p class="abschluss-zitat">Bauherrn vergeben keine Projekte, sie vergeben Vertrauen.</p>
+<p class="knopf-zeile"><a class="btn btn-hell" href="kontakt/">Kontakt aufnehmen</a></p></div></div>
 </section>
-================================================================ -->
+</main>
 
-<!-- ================================================================
-     FOOTER — hell
-================================================================ -->
-<div class="section-divider"><span>Kontakt</span></div>
-<footer id="kontakt">
+<footer id="footer">
   <div class="footer-main">
     <div>
-      <img src="assets/ipm-logo.png" alt="ipm" style="height:160px;width:auto;display:block;">
-      <p class="footer-tagline">Immobilien-Projekt-Management. Fachlich qualifiziert. Professionell. Unkompliziert.</p>
+      <img src="assets/ipm-logo.png" alt="ipm" class="footer-logo">
+      <p class="footer-tagline">Immobilien-Projekt-Management. Diskret. Individuell. Transparent.</p>
       <div class="footer-address">
         ipm-KG · Immobilien-Projekt-Management<br>
         Bachstraße 23<br>
@@ -1419,19 +177,18 @@ body.mnav-open { overflow: hidden; }
       </div>
     </div>
     <div class="footer-col">
-      <h4>Übersicht</h4>
+      <h2>Übersicht</h2>
       <ul>
-        <li><a href="#haltung">Haltung</a></li>
-        <li><a href="#fuer-wen">Für wen</a></li>
-        <li><a href="#qtl">Quality Time Living</a></li>
-        <li><a href="#philosophie">Philosophie</a></li>
-        <li><a href="#leistungen">Leistungen</a></li>
-        <li><a href="#versprechen">Versprechen</a></li>
-        <li><a href="manifest/">Das Manifest</a></li>
+        <li><a href="./">Wer wir sind</a></li>
+        <li><a href="philosophie/">Philosophie</a></li>
+        <li><a href="manifest/">Manifest</a></li>
+        <li><a href="leistungen/">Leistungen</a></li>
+        <li><a href="quality-time-living/">Quality Time Living</a></li>
+        <li><a href="kontakt/">Kontakt</a></li>
       </ul>
     </div>
     <div class="footer-col">
-      <h4>Rechtliches</h4>
+      <h2>Rechtliches</h2>
       <ul>
         <li><a href="impressum/">Impressum</a></li>
         <li><a href="datenschutz/">Datenschutzerklärung</a></li>
@@ -1450,223 +207,6 @@ body.mnav-open { overflow: hidden; }
   </div>
 </footer>
 
-<script>
-/* ---- Custom Cursor ---- */
-const cur = document.getElementById('cursor');
-const dot = document.getElementById('cursor-dot');
-let mx=0,my=0,cx=0,cy=0;
-document.addEventListener('mousemove', e=>{
-  mx=e.clientX; my=e.clientY;
-  dot.style.left=mx+'px'; dot.style.top=my+'px';
-});
-(function loop(){
-  cx+=(mx-cx)*0.1; cy+=(my-cy)*0.1;
-  cur.style.left=cx+'px'; cur.style.top=cy+'px';
-  requestAnimationFrame(loop);
-})();
-document.querySelectorAll('a,button').forEach(el=>{
-  el.addEventListener('mouseenter',()=>cur.classList.add('is-hover'));
-  el.addEventListener('mouseleave',()=>cur.classList.remove('is-hover'));
-});
-
-/* ---- Video: hold last frame; replay on scroll-back ----
-   Der Slogan "Wir sind anders!" ploppt genau in dem Moment auf, in dem die
-   beiden im Video die Arme verschraenken. Das Video ist 4,04s lang (24 fps);
-   die Endpose sitzt ab Frame ~52, also bei rund 2,15s. */
-const vid = document.querySelector('.hero-video');
-const heroSection = document.querySelector('.hero');
-if (vid && heroSection) {
-  const CLAIM_AT = 2.15;
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-  const showClaim = () => heroSection.classList.add('is-claim');
-  const hideClaim = () => heroSection.classList.remove('is-claim');
-
-  /* Notnagel: spielt das Video nicht (Autoplay blockiert, Datei fehlt,
-     Reduced Motion), erscheint der Slogan trotzdem — sonst waere der Hero
-     komplett textlos. */
-  const fallback = setTimeout(showClaim, reduced ? 300 : 2600);
-
-  if (reduced) {
-    showClaim();
-  } else {
-    vid.addEventListener('timeupdate', () => {
-      if (vid.currentTime >= CLAIM_AT) { clearTimeout(fallback); showClaim(); }
-    });
-  }
-
-  vid.addEventListener('ended', () => vid.pause());
-
-  const vidObs = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting && vid.paused && vid.ended && !reduced) {
-        hideClaim();                       /* Slogan ploppt beim Replay erneut auf */
-        vid.currentTime = 0; vid.play();
-      }
-    });
-  }, { threshold: 0.3 });
-  vidObs.observe(heroSection);
-}
-
-/* ---- Button Sweep — action fires after animation ---- */
-document.querySelectorAll('a.btn-hero, a.sb-cta, a.btn-case, a.topbar-cta, button.btn-hero').forEach(function(btn) {
-  btn.addEventListener('click', function(e) {
-    var isLink = btn.tagName === 'A';
-    if (isLink && (e.metaKey||e.ctrlKey||e.shiftKey||e.button===1||btn.target==='_blank')) return;
-    if (btn._acting) return;
-    e.preventDefault(); btn._acting = true; btn.classList.add('is-activating');
-    var finish = function() {
-      var href = isLink ? btn.getAttribute('href') : null;
-      if (isLink) {
-        if (href && href.charAt(0) === '#') {
-          if (href.length > 1) { var t = document.querySelector(href); if (t) t.scrollIntoView({behavior:'smooth'}); }
-          btn._acting = false; btn.classList.remove('is-activating');
-        } else if (href) { window.location.href = href; }
-        else { btn._acting = false; btn.classList.remove('is-activating'); }
-      } else {
-        var f = btn.closest('form'); btn._acting = false; btn.classList.remove('is-activating');
-        if (f) { f.requestSubmit ? f.requestSubmit(btn) : f.submit(); }
-      }
-    };
-    var done = false, once = function(){ if(!done){ done=true; finish(); } };
-    btn.addEventListener('animationend', once, {once:true});
-    setTimeout(once, 600);
-  });
-});
-
-/* ---- Counter animation 2026 → 2003 ---- */
-function animateCounter(el, start, end, duration) {
-  var dir = end > start ? 1 : -1, range = Math.abs(end - start), startTime = null;
-  function step(now) {
-    if (!startTime) startTime = now;
-    var progress = Math.min((now - startTime) / duration, 1);
-    var eased = 1 - Math.pow(1 - progress, 2);
-    el.textContent = Math.round(start + dir * range * eased);
-    if (progress < 1) requestAnimationFrame(step);
-    else el.textContent = end;
-  }
-  requestAnimationFrame(step);
-}
-
-/* ---- Stagger: Stats + Insight-Cards ---- */
-document.querySelectorAll('.stat-item').forEach(function(item, i) {
-  item.style.transitionDelay = (i * 0.16) + 's';
-});
-document.querySelectorAll('.insight-card').forEach(function(item, i) {
-  item.style.transitionDelay = (i * 0.14) + 's';
-});
-
-var yearTriggered = false;
-var obs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) {
-      e.target.classList.add('in');
-      obs.unobserve(e.target);
-      var yearEl = e.target.querySelector('#stat-year');
-      if (yearEl && !yearTriggered) {
-        yearTriggered = true;
-        var s = parseInt(yearEl.dataset.start, 10);
-        var end = parseInt(yearEl.dataset.end, 10);
-        setTimeout(function() { animateCounter(yearEl, s, end, 1100); }, 180);
-      }
-    }
-  });
-}, {threshold: 0.15});
-document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
-
-/* ---- Case Study Carousel ---- */
-(function() {
-  var track = document.getElementById('caseTrack');
-  var dots  = document.querySelectorAll('.case-dot');
-  if (!track) return;
-  var slides = track.querySelectorAll('.case-slide');
-  var total = slides.length, current = 0, timer;
-
-  function goTo(idx) {
-    current = (idx + total) % total;
-    slides.forEach(function(s, i) {
-      s.classList.toggle('is-active', i === current);
-    });
-    dots.forEach(function(d, i) {
-      d.classList.toggle('is-active', i === current);
-    });
-  }
-
-  function startAuto() {
-    clearInterval(timer);
-    timer = setInterval(function() { goTo(current + 1); }, 3200);
-  }
-
-  dots.forEach(function(d) {
-    d.addEventListener('click', function() {
-      goTo(parseInt(d.dataset.idx, 10));
-      startAuto();
-    });
-  });
-
-  var section = document.getElementById('projekte');
-  if (section) {
-    section.addEventListener('mouseenter', function() { clearInterval(timer); });
-    section.addEventListener('mouseleave', startAuto);
-  }
-
-  startAuto();
-})();
-
-/* ---- Topbar: Sektionsname wechselt, sobald der nächste Trennstreifen
-        oben am Bildschirm (unter der Topbar) ankommt ---- */
-var topbarLabel = document.getElementById('topbarLabel');
-var sectionDividers = Array.prototype.slice.call(document.querySelectorAll('.section-divider'));
-
-function updateTopbarLabel() {
-  var label = 'Willkommen';
-  for (var i = 0; i < sectionDividers.length; i++) {
-    if (sectionDividers[i].getBoundingClientRect().top <= 52) {
-      label = sectionDividers[i].textContent.trim();
-    }
-  }
-  if (topbarLabel && topbarLabel.textContent !== label) {
-    topbarLabel.textContent = label;
-  }
-}
-window.addEventListener('scroll', updateTopbarLabel, { passive: true });
-updateTopbarLabel();
-
-/* ---- Sidebar: highlight active section ---- */
-var sbLinks = document.querySelectorAll('.sb-list a');
-var sbSections = Array.from(sbLinks).map(function(a) {
-  var id = a.getAttribute('href').replace('#','');
-  return document.getElementById(id);
-}).filter(Boolean);
-
-var secObs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(entry) {
-    if (entry.isIntersecting) {
-      document.querySelectorAll('.sb-list li').forEach(function(li) { li.classList.remove('is-active'); });
-      sbLinks.forEach(function(a) { a.style.color = ''; });
-      var active = document.querySelector('.sb-list a[href="#'+entry.target.id+'"]');
-      if (active) { active.style.color = '#fff'; active.closest('li').classList.add('is-active'); }
-    }
-  });
-}, { rootMargin: '-45% 0px -50% 0px' });   /* Mittellinie statt Anteil — sonst wird das lange Manifest nie aktiv */
-sbSections.forEach(function(s) { secObs.observe(s); });
-
-/* ---- Handy-Menü ---- */
-(function() {
-  var btn = document.getElementById('mnavToggle');
-  var nav = document.getElementById('mnav');
-  if (!btn || !nav) return;
-  function setOpen(open) {
-    nav.hidden = !open;
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    btn.setAttribute('aria-label', open ? 'Menü schließen' : 'Menü öffnen');
-    document.body.classList.toggle('mnav-open', open);
-  }
-  btn.addEventListener('click', function() { setOpen(nav.hidden); });
-  nav.addEventListener('click', function(e) { if (e.target.closest('a')) setOpen(false); });
-  document.addEventListener('keydown', function(e) { if (e.key === 'Escape' && !nav.hidden) { setOpen(false); btn.focus(); } });
-  window.matchMedia('(min-width: 961px)').addEventListener('change', function(m) { if (m.matches) setOpen(false); });
-})();
-</script>
+<script src="assets/site.js"></script>
 </body>
 </html>

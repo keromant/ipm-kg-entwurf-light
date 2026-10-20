@@ -5,3 +5,8 @@
 wrangler.jsonc
 node_modules
 .wrangler
+content
+quellen
+tools
+README.md
+package.json
