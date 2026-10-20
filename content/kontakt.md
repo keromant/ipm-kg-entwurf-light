@@ -28,10 +28,10 @@ info@ipm-kg.de
 ^ Besuchen
 ### Anschrift
 ipm-KG · Immobilien-Projekt-Management
-Bachstraße 23
+Feldburgweg 84
 47918 Tönisvorst
 
-[Route planen](https://www.google.com/maps/search/?api=1&query=Bachstra%C3%9Fe+23+47918+T%C3%B6nisvorst){knopf}
+[Route planen](https://www.google.com/maps/search/?api=1&query=Feldburgweg+84+47918+T%C3%B6nisvorst){knopf}
 :::
 
 ::: abschluss

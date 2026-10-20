@@ -339,14 +339,20 @@ h1 em, h2 em { font-style: italic; color: var(--ox-lt); }
 @keyframes arrowBounce { 0%,100% { transform: translateY(0); opacity: .75; } 50% { transform: translateY(10px); opacity: 1; } }
 
 /* Einstieg unter dem Hero */
-.claim { background: var(--bg); border-top: 1px solid var(--hairline); padding: 64px var(--pad-x); text-align: center; }
-.claim-inner { max-width: 880px; margin: 0 auto; }
-.claim-rule { width: 56px; height: 1px; background: var(--ox-lt); margin: 0 auto 30px; }
+.claim { background: var(--bg-light); border-top: 1px solid var(--hairline); padding: clamp(80px, 9vw, 128px) var(--pad-x); text-align: center; }
+.claim-inner { max-width: 1100px; margin: 0 auto; }
+.claim-rule { width: 56px; height: 2px; background: var(--ox-lt); margin: 0 auto 40px; }
 .einstieg-zeilen {
-  font-family: var(--font-ui);
-  font-size: 13px; font-weight: 400;
-  letter-spacing: .24em; text-transform: uppercase; line-height: 2.1;
-  color: var(--ox); margin-bottom: 30px;
+  font-family: var(--font-serif);
+  font-size: clamp(34px, 3.9vw, 56px); font-weight: 400;
+  line-height: 1.18; text-wrap: balance; letter-spacing: -.012em;
+  color: var(--text);
+  margin-bottom: 56px;
+}
+.einstieg-zeilen em { font-style: italic; color: var(--ox-lt); }
+.einstieg-zeilen + .claim-quote {
+  max-width: 760px; margin: 0 auto;
+  padding-top: 44px; border-top: 1px solid var(--hairline);
 }
 .claim-quote {
   font-family: var(--font-serif); font-style: italic;
@@ -773,8 +779,9 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(0,0,0,.08); }
   .hero-video { object-position: 53% 38%; }
   .hero-claim { bottom: 74px; padding: 0 24px; }
   .hero-claim h1 { font-size: clamp(34px, 9vw, 52px); }
-  .claim { padding: 48px 24px; }
-  .einstieg-zeilen { letter-spacing: .16em; font-size: 12px; }
+  .claim { padding: 72px 24px; }
+  .einstieg-zeilen { font-size: clamp(30px, 8.6vw, 40px); margin-bottom: 40px; }
+  .einstieg-zeilen + .claim-quote { padding-top: 32px; }
 
   .statement-section { grid-template-columns: 1fr; padding: 64px 24px; gap: 36px; }
   .statement-right { border-left: none; padding-left: 0; border-top: 1px solid rgba(0,0,0,.1); padding-top: 32px; }

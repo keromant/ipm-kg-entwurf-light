@@ -25,6 +25,7 @@ const KORREKTUR = [
 // Bewusst NICHT wörtlich übernommen (Zeilennummern der .txt-Datei)
 const AUSNAHMEN = {
   'ipm-KG-Homepage -Neu-Texte.txt': [
+    [4, 4, '„besser“ – auf Kerems Wunsch entfernt (20.10.2026)'],
     [20, 38, 'Fassungen 1–4 von „Qualität statt Größe“ – Kerem hat Fassung 5 gewählt'],
     [50, 75, 'Texte von fremden Websites (Gehalt, Gabriel, RALF SCHMITZ) – in eigenen Worten neu geschrieben'],
   ],

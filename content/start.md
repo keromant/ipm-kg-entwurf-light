@@ -15,8 +15,8 @@ Wir sind *anders.*
 
 ::: einstieg
 Wir sind nicht normal.
-Wir sind anders.
-Unsere Projekte sind besonders – besser – aber gut! {.einstieg-zeilen}
+Wir sind *anders.*
+Unsere Projekte sind *besonders* – aber gut! {.einstieg-zeilen}
 
 „Wir entwickeln keine Immobilien.
 Wir entwickeln Lebensräume.

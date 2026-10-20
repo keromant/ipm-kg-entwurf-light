@@ -361,7 +361,7 @@ ${body}</main>
       <p class="footer-tagline">Immobilien-Projekt-Management. Diskret. Individuell. Transparent.</p>
       <div class="footer-address">
         ipm-KG · Immobilien-Projekt-Management<br>
-        Bachstraße 23<br>
+        Feldburgweg 84<br>
         47918 Tönisvorst<br><br>
         Tel. <a href="tel:+4921564889890">+49 (0) 2156 4 88 98 90</a><br>
         <a href="mailto:info@ipm-kg.de">info@ipm-kg.de</a>
