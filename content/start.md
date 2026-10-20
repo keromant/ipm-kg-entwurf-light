@@ -34,7 +34,7 @@ Natürlich entwickeln wir Immobilien. Wir planen, bauen, vermarkten, schaffen We
 
 Vom Wegbereiter zum Wegbegleiter. {.statement-sig}
 
-[Unsere Leistungen](/leistungen/)
+[Unsere Projektentwicklung](/projektentwicklung/)
 :::
 
 ::: woerter titel="So arbeiten wir"
@@ -157,7 +157,7 @@ Unser Leitbild für die Zukunft des Wohnens – vom Vorwort bis zum Schlusswort.
 ### Rund um die Immobilie
 Von der ersten Idee bis zum Verkauf oder zum eigenen Bestand – alles aus einer Hand.
 
-[Leistungen ansehen](/leistungen/){knopf}
+[Projektentwicklung ansehen](/projektentwicklung/){knopf}
 :::
 
 ::: abschluss

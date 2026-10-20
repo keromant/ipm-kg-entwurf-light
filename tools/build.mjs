@@ -15,7 +15,7 @@ const SEITEN = [
   { datei: 'start.md',               pfad: '',                     menue: 'Wer wir sind' },
   { datei: 'philosophie.md',         pfad: 'philosophie',          menue: 'Philosophie' },
   { datei: 'manifest.md',            pfad: 'manifest',             menue: 'Manifest' },
-  { datei: 'leistungen.md',          pfad: 'leistungen',           menue: 'Leistungen' },
+  { datei: 'projektentwicklung.md',  pfad: 'projektentwicklung',   menue: 'Projekt­entwicklung' },   // weiches Trennzeichen: in der schmalen Sidebar zweizeilig
   { datei: 'quality-time-living.md', pfad: 'quality-time-living',  menue: 'Quality Time Living' },
   { datei: 'kontakt.md',             pfad: 'kontakt',              menue: 'Kontakt', nurFooter: true },
 ];
@@ -52,6 +52,8 @@ function inline(text, rel) {
   });
   s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
   s = s.replace(/\*([^*]+)\*/g, '<em>$1</em>');
+  // Das kursive Q von Playfair ist stark verschnörkelt – in kursivem Text ersetzt site.css es (Klasse .q)
+  s = s.replace(/(<[^>]*>)|Q/g, (m, tag) => tag || '<span class="q">Q</span>');
   return s;
 }
 

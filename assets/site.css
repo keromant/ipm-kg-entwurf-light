@@ -125,7 +125,8 @@ a { color: inherit; text-decoration: none; }
   text-align: center; line-height: 1.3;
   transition: color .35s ease, text-shadow .35s ease;
   position: relative; display: block; z-index: 1;
-  padding: 12px 20px;
+  padding: 12px 12px;
+  hyphens: manual;
 }
 .sb-list li.is-active a { color: #fff; }
 .sb-list a::before {
@@ -266,6 +267,13 @@ body.mnav-open { overflow: hidden; }
 .text-link:hover { gap: 18px; }
 .text-link-arrow { font-size: 20px; font-weight: 300; line-height: 1; transition: transform .3s ease; }
 .text-link:hover .text-link-arrow { transform: translateX(4px); }
+
+/* Kursives Q: Playfair hat nur ein verschnörkeltes – dort das aufrechte Q nehmen und neigen */
+:is(em, .kernsatz, .hervor, .leitzeilen, .claim-quote, .seitenkopf .lead, .seitenkopf-zitat,
+    .zitat p, .zeit-band, .sondern, .abschluss-zitat) .q {
+  font-style: normal; display: inline-block; transform: skewX(-11deg);
+}
+:is(.signatur, .knopf-zeile) .q { transform: none; }
 
 /* ================================================================ TYPO-BAUSTEINE */
 .eyebrow {

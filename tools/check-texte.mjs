@@ -10,7 +10,7 @@ import { fileURLToPath } from 'node:url';
 
 const ROOT = join(dirname(fileURLToPath(import.meta.url)), '..');
 const QUELLEN = join(ROOT, 'quellen');
-const SEITEN = ['index.html', 'philosophie', 'manifest', 'leistungen', 'quality-time-living', 'kontakt']
+const SEITEN = ['index.html', 'philosophie', 'manifest', 'projektentwicklung', 'quality-time-living', 'kontakt']
   .map(p => p.endsWith('.html') ? p : p + '/index.html');
 
 // Bewusst korrigierte Tippfehler im Original
@@ -44,6 +44,7 @@ if (!existsSync(QUELLEN)) {
 let seitenText = '';
 for (const s of SEITEN) {
   const html = readFileSync(join(ROOT, s), 'utf8')
+    .replace(/<span class="q">Q<\/span>/g, 'Q')
     .replace(/<script[\s\S]*?<\/script>|<style[\s\S]*?<\/style>|<!--[\s\S]*?-->/g, ' ')
     .replace(/<[^>]+>/g, ' ');
   seitenText += norm(html);

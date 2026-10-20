@@ -9,7 +9,7 @@ Statische Website der ipm-KG, ausgeliefert als Cloudflare Worker (`ipm-kg-entwur
 | `/` Startseite | `content/start.md` | Manifest „FINAL V20“ (vollständig) + Homepage-Texte (Einstieg) |
 | `/philosophie/` | `content/philosophie.md` | Manifest „Premium V“ (vollständig, 9 Absätze) |
 | `/manifest/` | `content/manifest.md` | Manifest lange Fassung (vollständig) |
-| `/leistungen/` | `content/leistungen.md` | Homepage-Texte (Projektentwicklung) |
+| `/projektentwicklung/` | `content/projektentwicklung.md` | Homepage-Texte (Projektentwicklung) |
 | `/quality-time-living/` | `content/quality-time-living.md` | Einleitung, Weiterleitung zu mein-qtl.de |
 | `/kontakt/` | `content/kontakt.md` | Kontaktdaten |
 
