@@ -1,6 +1,6 @@
 ---
-titel: Das Manifest des Wohnens · ipm-KG · Quality Time Living
-beschreibung: Das Manifest des Wohnens der ipm-KG: Vorwort, zehn Grundsätze, Anspruch, Überzeugung, Absicht, Versprechen, Leitbild und Schlusswort.
+titel: Das Manifest des Wohnens · ipm. · Quality Time Living
+beschreibung: Das Manifest des Wohnens der ipm.: Vorwort, zehn Grundsätze, Anspruch, Überzeugung, Absicht, Versprechen, Leitbild und Schlusswort.
 label: Manifest
 inhalt: ja
 ---
@@ -9,7 +9,7 @@ inhalt: ja
   Quelle: „Das Manifest des Wohnens – V“ (lange Fassung, vollständig).
   Jede Zeile hier = eine Zeile im Original. Leerzeile = neuer Absatz.
   Korrigiert: „Seit für sich“ → „Zeit für sich“, „enfacher“ → „einfacher“, „Grundsäten“ → „Grundsätzen“,
-  „Wir als Projektentwickler trägt“ → „tragen“, „Und Ihre“ → „Und ihre“, „iom-KG“ → „ipm-KG“, fehlende Punkte.
+  „Wir als Projektentwickler trägt“ → „tragen“, „Und Ihre“ → „Und ihre“, „iom-KG“ → „ipm-KG“ → seit Marke 2026-11 „ipm.“, fehlende Punkte.
 -->
 
 ::: seitenkopf
@@ -23,7 +23,7 @@ Wir schaffen Lebensräume.
 Denn ein Gebäude wird erst dann zu einem Zuhause,
 wenn es den Menschen dient.“ {.seitenkopf-zitat}
 
-ipm-KG {.seitenkopf-marke}
+ipm. {.seitenkopf-marke}
 :::
 
 == Vorwort ==
@@ -461,7 +461,7 @@ Manifest drucken oder als PDF sichern
 Wir öffnen Türen, auch da, wo man nur eine Mauer sieht. {.abschluss-zitat}
 
 Bauherrn vergeben keine Projekte, sie vergeben Vertrauen.
-ipm-KG {.abschluss-unter}
+ipm. {.abschluss-unter}
 
 [Kontakt aufnehmen](/kontakt/){hell}
 :::

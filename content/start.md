@@ -1,6 +1,6 @@
 ---
-titel: ipm-KG – Immobilien-Projekt-Management · Wir sind anders.
-beschreibung: Die ipm-KG entwickelt Lebensräume statt Immobilien. Über 45 Jahre Erfahrung, Quality Time Living und das Manifest des Wohnens.
+titel: ipm. – Immobilien-Projekt-Management · Wir sind anders.
+beschreibung: Die ipm. entwickelt Lebensräume statt Immobilien. Über 45 Jahre Erfahrung, Quality Time Living und das Manifest des Wohnens.
 label: Willkommen
 ---
 
@@ -26,7 +26,7 @@ Denn ein Zuhause beginnt nicht mit Mauern – sondern mit Menschen.“ {.claim-q
 == Wer wir sind ==
 
 ::: zweispaltig
-^ Die ipm-KG
+^ Die ipm.
 ## Dem Alten *verpflichtet* –<br>dem Neuen *aufgeschlossen.*
 Über 45-jährige Erfahrung aus Theorie und Praxis – verbunden mit Kreativität und Begeisterung. {.statement-kicker}
 ---
@@ -117,7 +117,7 @@ Wir machen es möglich, die kleinen Dinge im Leben genießen zu können. {.state
 ### Unsere Philosophie
 Architektur trägt Verantwortung. Sie prägt Menschen, Nachbarschaften und Städte über Jahrzehnte. Deshalb verbinden wir Ästhetik mit Funktion, Wirtschaftlichkeit mit Menschlichkeit und Nachhaltigkeit mit Identität. Wo immer es sinnvoll ist, bewahren wir wertvolle Bestandsgebäude, entwickeln neue Perspektiven und schaffen Lebensräume mit Charakter und Zukunft.
 
-[Wie wir denken – die Philosophie der ipm-KG](/philosophie/)
+[Wie wir denken – die Philosophie der ipm.](/philosophie/)
 :::
 
 == Versprechen .weiss ==
@@ -135,14 +135,14 @@ Wir gestalten Zukunft. {.leitzeilen}
 Wir schaffen Lebensräume für Menschen – unabhängig davon, ob sie investieren, vorsorgen, selbst einziehen oder zur Miete wohnen. Denn am Ende erinnern sich Menschen nicht an Quadratmeter. Sie erinnern sich daran, wie sie sich an einem Ort gefühlt haben. Wenn unsere Projekte genau dieses Gefühl schaffen, haben wir unseren Auftrag erfüllt.
 
 Das ist Quality Time Living.
-Das ist die Philosophie der ipm-KG. {.signatur}
+Das ist die Philosophie der ipm. {.signatur}
 :::
 
 == Mehr entdecken .grau ==
 
 ::: karten spalten=3
 ^ Neun Gedanken
-### Die Philosophie der ipm-KG
+### Die Philosophie der ipm.
 Warum wir jedes Projekt mit der Frage beginnen, wie Menschen leben möchten.
 
 [Philosophie lesen](/philosophie/){knopf}

@@ -1,6 +1,6 @@
 ---
-titel: Die Philosophie der ipm-KG · Quality Time Living
-beschreibung: Die Philosophie der ipm-KG: Wir beginnen jedes Projekt mit der Frage, wie Menschen leben möchten.
+titel: Die Philosophie der ipm. · Quality Time Living
+beschreibung: Die Philosophie der ipm.: Wir beginnen jedes Projekt mit der Frage, wie Menschen leben möchten.
 label: Philosophie
 ---
 
@@ -11,7 +11,7 @@ label: Philosophie
 
 ::: seitenkopf
 ^ Das Manifest des Wohnens · Quality Time Living
-# Die Philosophie der *ipm-KG*
+# Die Philosophie der *ipm.*
 Ein Zuhause ist niemals nur ein Gebäude. {.lead}
 :::
 
@@ -28,7 +28,7 @@ Die Welt verändert sich. Menschen werden älter, bleiben länger aktiv, neugier
 
 > Gute Projektentwicklung beginnt nicht bei der Architektur, sondern beim Menschen.
 
-Genau daraus entstand die Philosophie der ipm-KG. Als Projektentwickler beginnen wir kein Projekt mit der Frage, was gebaut werden kann. Wir beginnen jedes Projekt mit der Frage, wie Menschen leben möchten. Denn wir sind überzeugt, dass gute Projektentwicklung nicht bei der Architektur beginnt, sondern beim Menschen.
+Genau daraus entstand die Philosophie der ipm. Als Projektentwickler beginnen wir kein Projekt mit der Frage, was gebaut werden kann. Wir beginnen jedes Projekt mit der Frage, wie Menschen leben möchten. Denn wir sind überzeugt, dass gute Projektentwicklung nicht bei der Architektur beginnt, sondern beim Menschen.
 
 > Quality Time Living ist kein Produkt und kein Marketingbegriff. Es ist unsere Haltung.
 
@@ -56,7 +56,7 @@ Deshalb entwickeln wir keine standardisierten Immobilien. Wir entwickeln Werte. 
 
 Das ist unsere Überzeugung.
 Das ist Quality Time Living.
-Das ist die Philosophie der ipm-KG. {.signatur}
+Das ist die Philosophie der ipm. {.signatur}
 
 [Weiter zum Manifest des Wohnens](/manifest/){knopf}
 :::

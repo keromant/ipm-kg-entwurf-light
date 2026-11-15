@@ -1,6 +1,6 @@
 ---
-titel: Quality Time Living · Unser Lebens- und Wohnkonzept · ipm-KG
-beschreibung: Quality Time Living ist das Lebens- und Wohnkonzept der ipm-KG: Zeit ist der wahre Luxus. Mehr auf mein-qtl.de.
+titel: Quality Time Living · Unser Lebens- und Wohnkonzept · ipm.
+beschreibung: Quality Time Living ist das Lebens- und Wohnkonzept der ipm.: Zeit ist der wahre Luxus. Mehr auf mein-qtl.de.
 label: Quality Time Living
 ---
 

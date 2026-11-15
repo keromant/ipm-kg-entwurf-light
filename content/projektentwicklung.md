@@ -1,6 +1,6 @@
 ---
-titel: Projektentwicklung · Rund um die Immobilie – alles aus einer Hand · ipm-KG
-beschreibung: Projektentwicklung der ipm-KG: von der ersten Idee über Standort, Planung, Genehmigung und Finanzierung bis zum Verkauf oder eigenen Bestand.
+titel: Projektentwicklung · Rund um die Immobilie – alles aus einer Hand · ipm.
+beschreibung: Projektentwicklung der ipm.: von der ersten Idee über Standort, Planung, Genehmigung und Finanzierung bis zum Verkauf oder eigenen Bestand.
 label: Projektentwicklung
 ---
 

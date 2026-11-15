@@ -20,6 +20,7 @@ const KORREKTUR = [
   ['Grundsäten', 'Grundsätzen'],
   ['Projektentwickler trägt deshalb', 'Projektentwickler tragen deshalb'],
   ['iom-KG', 'ipm-KG'],
+  ['ipm-KG', 'ipm.'],   // Kurzschreibung seit Marke 2026-11 (Mail 13.11.2026)
 ];
 
 // Bewusst NICHT wörtlich übernommen (Zeilennummern der .txt-Datei)

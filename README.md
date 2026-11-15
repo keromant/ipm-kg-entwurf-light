@@ -1,6 +1,23 @@
-# ipm-KG – Website (Entwurf Light)
+# ipm. – Website (Entwurf Light)
 
-Statische Website der ipm-KG, ausgeliefert als Cloudflare Worker (`ipm-kg-entwurf-light`).
+Statische Website der ipm. (früher „ipm-KG“), ausgeliefert als Cloudflare Worker (`ipm-kg-entwurf-light`).
+
+## Marke (seit 2026-11)
+
+Logos, Favicons und Social-Bild liegen in `assets/marke-2026-11/` (erzeugt aus der Logo-Datei `ipm-LOGO - X.tif`,
+Mail „Neues Auftreten der ipm.“, 13.11.2026). Die Originale liegen nur lokal in `assets/marke-2026-11/original/`
+(gitignored, nicht ausgeliefert).
+
+| Datei | Wofür |
+|---|---|
+| `ipm-logo-kompakt-dunkel.png` | Sidebar, Kopfzeile Handy, Kopf von Impressum/Datenschutz (dunkler Grund) |
+| `ipm-logo-hell.png` | Fußbereich (heller Grund) |
+| `ipm-logo-dunkel.png`, `ipm-logo-kompakt-hell.png` | Reserve |
+| `favicon.ico`, `favicon-32.png`, `apple-touch-icon.png`, `icon-512.png`, `og-bild.png` | Symbole, Social-Bild |
+
+Farben, gemessen in der Logo-Datei: Grün `#548056`, Anthrazit `#2C3236`, Schwarz `#000000`, Warmweiß `#EDEAE4`.
+Für kleine grüne Schrift gilt `#476D49` (derselbe Farbton, dunkler, WCAG AA). Kurzschreibung: „ipm.“ (ohne „-KG“).
+Schrift: Avenir Next (kommerziell) – solange keine Web-Lizenz da ist, Ersatz Nunito Sans (SIL OFL, `assets/fonts/`).
 
 ## Seiten
 

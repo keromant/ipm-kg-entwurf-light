@@ -1,4 +1,4 @@
-// Baut die Seiten der ipm-KG-Website aus den Textdateien in content/.
+// Baut die Seiten der ipm.-Website aus den Textdateien in content/.
 // Aufruf: node tools/build.mjs   (keine Abhängigkeiten nötig)
 //
 // Aufbau einer Textdatei: siehe README.md, Abschnitt „Texte pflegen“.
@@ -305,7 +305,7 @@ function menue(rel, aktiv, klasse) {
 
 function seitenRahmen({ seite, fm, rel, body }) {
   const h = p => href(p, rel);
-  const titel = fm.titel || 'ipm-KG';
+  const titel = fm.titel || 'ipm.';
   return `<!DOCTYPE html>
 <!-- Automatisch erzeugt aus content/${seite.datei} mit tools/build.mjs – Texte bitte dort ändern, nicht hier. -->
 <html lang="de" class="no-js">
@@ -314,6 +314,10 @@ function seitenRahmen({ seite, fm, rel, body }) {
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${esc(titel)}</title>
 <meta name="description" content="${esc(fm.beschreibung || '')}">
+<link rel="icon" href="${rel}assets/marke-2026-11/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" href="${rel}assets/marke-2026-11/favicon-32.png" sizes="32x32">
+<link rel="apple-touch-icon" href="${rel}assets/marke-2026-11/apple-touch-icon.png">
+<meta name="theme-color" content="#2C3236">
 <link rel="stylesheet" href="${rel}assets/site.css">
 </head>
 <body class="seite-${seite.pfad || 'start'}">
@@ -325,7 +329,7 @@ function seitenRahmen({ seite, fm, rel, body }) {
   <button class="topbar-burger" id="mnavToggle" type="button" aria-label="Menü öffnen" aria-controls="mnav" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
-  <a href="${h('/')}" class="topbar-logo"><img src="${rel}assets/ipm-logo.png" alt="ipm-KG – zur Startseite"></a>
+  <a href="${h('/')}" class="topbar-logo"><img src="${rel}assets/marke-2026-11/ipm-logo-kompakt-dunkel.png" alt="ipm. – zur Startseite" width="600" height="226"></a>
   <span class="topbar-label" id="topbarLabel" data-start="${esc(fm.label || seite.menue)}">${esc(fm.label || seite.menue)}</span>
   <a href="${h('/kontakt/')}" class="topbar-cta">Kontakt aufnehmen +</a>
 </div>
@@ -339,7 +343,7 @@ function seitenRahmen({ seite, fm, rel, body }) {
 
 <aside class="sidebar" id="sidebar">
   <div class="sb-logo">
-    <a href="${h('/')}"><img src="${rel}assets/ipm-logo.png" alt="ipm – Immobilien-Projekt-Management"></a>
+    <a href="${h('/')}"><img src="${rel}assets/marke-2026-11/ipm-logo-kompakt-dunkel.png" alt="ipm. Immobilien-Projekt-Management – zur Startseite" width="600" height="226"></a>
   </div>
   <div class="sb-sep"></div>
   <nav class="sb-nav" aria-label="Hauptmenü">
@@ -359,10 +363,10 @@ ${body}</main>
 <footer id="footer">
   <div class="footer-main">
     <div>
-      <img src="${rel}assets/ipm-logo.png" alt="ipm" class="footer-logo">
+      <img src="${rel}assets/marke-2026-11/ipm-logo-hell.png" alt="ipm. Immobilien-Projekt-Management" class="footer-logo" width="900" height="402">
       <p class="footer-tagline">Immobilien-Projekt-Management. Diskret. Individuell. Transparent.</p>
       <div class="footer-address">
-        ipm-KG · Immobilien-Projekt-Management<br>
+        ipm. Immobilien-Projekt-Management<br>
         Feldburgweg 84<br>
         47918 Tönisvorst<br><br>
         Tel. <a href="tel:+4921564889890">+49 (0) 2156 4 88 98 90</a><br>
@@ -384,7 +388,7 @@ ${body}</main>
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2026 ipm-KG Immobilien-Projekt-Management · Tönisvorst · Alle Rechte vorbehalten.</span>
+    <span class="footer-copy">© 2026 ipm. Immobilien-Projekt-Management · Tönisvorst · Alle Rechte vorbehalten.</span>
     <div class="footer-legal-links">
       <a href="${h('/impressum/')}">Impressum</a>
       <a href="${h('/datenschutz/')}">Datenschutz</a>

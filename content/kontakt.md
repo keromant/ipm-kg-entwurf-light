@@ -1,6 +1,6 @@
 ---
-titel: Kontakt · ipm-KG Immobilien-Projekt-Management · Tönisvorst
-beschreibung: Kontakt zur ipm-KG in Tönisvorst: Telefon, E-Mail und Anschrift.
+titel: Kontakt · ipm. Immobilien-Projekt-Management · Tönisvorst
+beschreibung: Kontakt zur ipm. in Tönisvorst: Telefon, E-Mail und Anschrift.
 label: Kontakt
 ---
 
@@ -27,7 +27,7 @@ info@ipm-kg.de
 ---
 ^ Besuchen
 ### Anschrift
-ipm-KG · Immobilien-Projekt-Management
+ipm. Immobilien-Projekt-Management
 Feldburgweg 84
 47918 Tönisvorst
 

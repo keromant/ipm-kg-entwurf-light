@@ -1,4 +1,4 @@
-/* ipm-KG — gemeinsames Skript aller Seiten */
+/* ipm. — gemeinsames Skript aller Seiten */
 (function () {
   document.documentElement.classList.remove('no-js');
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
