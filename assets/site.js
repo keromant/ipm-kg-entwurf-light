@@ -4,6 +4,27 @@
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var feineMaus = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
+  /* ---- Schalter „Farben umkehren“ (hell ↔ invers, Marken-Blatt image0) ---- */
+  var root = document.documentElement;
+  var farbenKnopf = document.getElementById('farbenKnopf');
+  var themeMeta = document.querySelector('meta[name="theme-color"]');
+  function farbenZeigen() {
+    var invers = root.getAttribute('data-farben') === 'invers';
+    if (farbenKnopf) farbenKnopf.setAttribute('aria-pressed', invers ? 'true' : 'false');
+    if (themeMeta) themeMeta.setAttribute('content', invers ? '#23292C' : '#FFFFFF');
+  }
+  farbenZeigen();
+  if (farbenKnopf) farbenKnopf.addEventListener('click', function () {
+    var invers = root.getAttribute('data-farben') !== 'invers';
+    if (!reduced) {
+      root.classList.add('farben-wechsel');
+      setTimeout(function () { root.classList.remove('farben-wechsel'); }, 500);
+    }
+    if (invers) root.setAttribute('data-farben', 'invers'); else root.removeAttribute('data-farben');
+    try { localStorage.setItem('ipm.farben', invers ? 'invers' : 'hell'); } catch (e) {}
+    farbenZeigen();
+  });
+
   /* ---- Eigener Cursor (nur mit Maus) ---- */
   var cur = document.getElementById('cursor');
   var dot = document.getElementById('cursor-dot');

@@ -311,13 +311,14 @@ function seitenRahmen({ seite, fm, rel, body }) {
 <html lang="de" class="no-js">
 <head>
 <meta charset="UTF-8">
+<script>try{if(localStorage.getItem('ipm.farben')==='invers')document.documentElement.setAttribute('data-farben','invers')}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${esc(titel)}</title>
 <meta name="description" content="${esc(fm.beschreibung || '')}">
 <link rel="icon" href="${rel}assets/marke-2026-11/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="${rel}assets/marke-2026-11/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="${rel}assets/marke-2026-11/apple-touch-icon.png">
-<meta name="theme-color" content="#2C3236">
+<meta name="theme-color" content="#FFFFFF">
 <link rel="stylesheet" href="${rel}assets/site.css">
 </head>
 <body class="seite-${seite.pfad || 'start'}">
@@ -329,9 +330,14 @@ function seitenRahmen({ seite, fm, rel, body }) {
   <button class="topbar-burger" id="mnavToggle" type="button" aria-label="Menü öffnen" aria-controls="mnav" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
-  <a href="${h('/')}" class="topbar-logo"><img src="${rel}assets/marke-2026-11/ipm-logo-kompakt-dunkel.png" alt="ipm. – zur Startseite" width="600" height="226"></a>
+  <a href="${h('/')}" class="topbar-logo"><img class="logo-auf-hell" src="${rel}assets/marke-2026-11/ipm-logo-kompakt-auf-hell.png" alt="ipm. – zur Startseite" width="600" height="226"><img class="logo-auf-dunkel" src="${rel}assets/marke-2026-11/ipm-logo-kompakt-auf-dunkel.png" alt="ipm. – zur Startseite" width="600" height="226"></a>
   <span class="topbar-label" id="topbarLabel" data-start="${esc(fm.label || seite.menue)}">${esc(fm.label || seite.menue)}</span>
-  <a href="${h('/kontakt/')}" class="topbar-cta">Kontakt aufnehmen +</a>
+  <div class="topbar-rechts">
+    <button class="farben-knopf" id="farbenKnopf" type="button" aria-pressed="false" aria-label="Farben umkehren" title="Farben umkehren">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>
+    </button>
+    <a href="${h('/kontakt/')}" class="topbar-cta">Kontakt aufnehmen +</a>
+  </div>
 </div>
 
 <nav class="mnav" id="mnav" aria-label="Hauptmenü" hidden>
@@ -343,7 +349,7 @@ function seitenRahmen({ seite, fm, rel, body }) {
 
 <aside class="sidebar" id="sidebar">
   <div class="sb-logo">
-    <a href="${h('/')}"><img src="${rel}assets/marke-2026-11/ipm-logo-kompakt-dunkel.png" alt="ipm. Immobilien-Projekt-Management – zur Startseite" width="600" height="226"></a>
+    <a href="${h('/')}"><img class="logo-auf-hell" src="${rel}assets/marke-2026-11/ipm-logo-kompakt-auf-hell.png" alt="ipm. Immobilien-Projekt-Management – zur Startseite" width="600" height="226"><img class="logo-auf-dunkel" src="${rel}assets/marke-2026-11/ipm-logo-kompakt-auf-dunkel.png" alt="ipm. Immobilien-Projekt-Management – zur Startseite" width="600" height="226"></a>
   </div>
   <div class="sb-sep"></div>
   <nav class="sb-nav" aria-label="Hauptmenü">
@@ -363,7 +369,7 @@ ${body}</main>
 <footer id="footer">
   <div class="footer-main">
     <div>
-      <img src="${rel}assets/marke-2026-11/ipm-logo-hell.png" alt="ipm. Immobilien-Projekt-Management" class="footer-logo" width="900" height="402">
+      <img src="${rel}assets/marke-2026-11/ipm-logo-auf-hell.png" alt="ipm. Immobilien-Projekt-Management" class="footer-logo logo-auf-hell" width="900" height="402"><img src="${rel}assets/marke-2026-11/ipm-logo-auf-dunkel.png" alt="ipm. Immobilien-Projekt-Management" class="footer-logo logo-auf-dunkel" width="900" height="402">
       <p class="footer-tagline">Immobilien-Projekt-Management. Diskret. Individuell. Transparent.</p>
       <div class="footer-address">
         ipm. Immobilien-Projekt-Management<br>

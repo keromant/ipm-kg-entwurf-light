@@ -3,13 +3,14 @@
 <html lang="de" class="no-js">
 <head>
 <meta charset="UTF-8">
+<script>try{if(localStorage.getItem('ipm.farben')==='invers')document.documentElement.setAttribute('data-farben','invers')}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Projektentwicklung · Rund um die Immobilie – alles aus einer Hand · ipm.</title>
 <meta name="description" content="Projektentwicklung der ipm.: von der ersten Idee über Standort, Planung, Genehmigung und Finanzierung bis zum Verkauf oder eigenen Bestand.">
 <link rel="icon" href="../assets/marke-2026-11/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="../assets/marke-2026-11/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="../assets/marke-2026-11/apple-touch-icon.png">
-<meta name="theme-color" content="#2C3236">
+<meta name="theme-color" content="#FFFFFF">
 <link rel="stylesheet" href="../assets/site.css">
 </head>
 <body class="seite-projektentwicklung">
@@ -21,9 +22,14 @@
   <button class="topbar-burger" id="mnavToggle" type="button" aria-label="Menü öffnen" aria-controls="mnav" aria-expanded="false">
     <span></span><span></span><span></span>
   </button>
-  <a href="../" class="topbar-logo"><img src="../assets/marke-2026-11/ipm-logo-kompakt-dunkel.png" alt="ipm. – zur Startseite" width="600" height="226"></a>
+  <a href="../" class="topbar-logo"><img class="logo-auf-hell" src="../assets/marke-2026-11/ipm-logo-kompakt-auf-hell.png" alt="ipm. – zur Startseite" width="600" height="226"><img class="logo-auf-dunkel" src="../assets/marke-2026-11/ipm-logo-kompakt-auf-dunkel.png" alt="ipm. – zur Startseite" width="600" height="226"></a>
   <span class="topbar-label" id="topbarLabel" data-start="Projektentwicklung">Projektentwicklung</span>
-  <a href="../kontakt/" class="topbar-cta">Kontakt aufnehmen +</a>
+  <div class="topbar-rechts">
+    <button class="farben-knopf" id="farbenKnopf" type="button" aria-pressed="false" aria-label="Farben umkehren" title="Farben umkehren">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>
+    </button>
+    <a href="../kontakt/" class="topbar-cta">Kontakt aufnehmen +</a>
+  </div>
 </div>
 
 <nav class="mnav" id="mnav" aria-label="Hauptmenü" hidden>
@@ -39,7 +45,7 @@
 
 <aside class="sidebar" id="sidebar">
   <div class="sb-logo">
-    <a href="../"><img src="../assets/marke-2026-11/ipm-logo-kompakt-dunkel.png" alt="ipm. Immobilien-Projekt-Management – zur Startseite" width="600" height="226"></a>
+    <a href="../"><img class="logo-auf-hell" src="../assets/marke-2026-11/ipm-logo-kompakt-auf-hell.png" alt="ipm. Immobilien-Projekt-Management – zur Startseite" width="600" height="226"><img class="logo-auf-dunkel" src="../assets/marke-2026-11/ipm-logo-kompakt-auf-dunkel.png" alt="ipm. Immobilien-Projekt-Management – zur Startseite" width="600" height="226"></a>
   </div>
   <div class="sb-sep"></div>
   <nav class="sb-nav" aria-label="Hauptmenü">
@@ -150,7 +156,7 @@
 <footer id="footer">
   <div class="footer-main">
     <div>
-      <img src="../assets/marke-2026-11/ipm-logo-hell.png" alt="ipm. Immobilien-Projekt-Management" class="footer-logo" width="900" height="402">
+      <img src="../assets/marke-2026-11/ipm-logo-auf-hell.png" alt="ipm. Immobilien-Projekt-Management" class="footer-logo logo-auf-hell" width="900" height="402"><img src="../assets/marke-2026-11/ipm-logo-auf-dunkel.png" alt="ipm. Immobilien-Projekt-Management" class="footer-logo logo-auf-dunkel" width="900" height="402">
       <p class="footer-tagline">Immobilien-Projekt-Management. Diskret. Individuell. Transparent.</p>
       <div class="footer-address">
         ipm. Immobilien-Projekt-Management<br>

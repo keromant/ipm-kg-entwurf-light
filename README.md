@@ -10,14 +10,26 @@ Mail „Neues Auftreten der ipm.“, 13.11.2026). Die Originale liegen nur lokal
 
 | Datei | Wofür |
 |---|---|
-| `ipm-logo-kompakt-dunkel.png` | Sidebar, Kopfzeile Handy, Kopf von Impressum/Datenschutz (dunkler Grund) |
-| `ipm-logo-hell.png` | Fußbereich (heller Grund) |
-| `ipm-logo-dunkel.png`, `ipm-logo-kompakt-hell.png` | Reserve |
+| `ipm-logo-kompakt-auf-hell.png` / `-auf-dunkel.png` | Sidebar, Kopfzeile Handy, Kopf von Impressum/Datenschutz (je nach Farbsatz) |
+| `ipm-logo-auf-hell.png` / `-auf-dunkel.png` | Fußbereich (je nach Farbsatz) |
+| `ipm-logo-*-hell.png`, `ipm-logo-*-dunkel.png` (ohne „auf“) | alte Fassung in Schwarz/#548056, Reserve |
 | `favicon.ico`, `favicon-32.png`, `apple-touch-icon.png`, `icon-512.png`, `og-bild.png` | Symbole, Social-Bild |
 
-Farben, gemessen in der Logo-Datei: Grün `#548056`, Anthrazit `#2C3236`, Schwarz `#000000`, Warmweiß `#EDEAE4`.
-Für kleine grüne Schrift gilt `#476D49` (derselbe Farbton, dunkler, WCAG AA). Kurzschreibung: „ipm.“ (ohne „-KG“).
+Farben laut Marken-Blatt (`original/image0-mockup.png`, Abschnitt 08): Anthrazit Dunkel `#2D3436`, Grün `#5E7F5A`,
+Warmweiß `#F7F6F2`. Die „auf“-Logos sind aus der Logo-Datei in genau diese Farben umgefärbt.
+Kleine grüne Schrift: hell `#4E6B4A`, invers `#93B48E` (WCAG AA). Grüne Knöpfe: Fläche `#5E7F5A`, Schrift weiß (4,5:1).
+Kurzschreibung: „ipm.“ (ohne „-KG“).
 Schrift: Avenir Next (kommerziell) – solange keine Web-Lizenz da ist, Ersatz Nunito Sans (SIL OFL, `assets/fonts/`).
+
+### Zwei Farbsätze: hell und invers
+
+- **Hell (Standard):** Warmweiß-Seite, weiße Seitenleiste und Kopfzeile, Anthrazit-Schrift, Trennstreifen in Anthrazit.
+- **Invers:** alles umgekehrt wie im Marken-Blatt Abschnitt 05: Anthrazit-Seite, Warmweiß-Schrift, Trennstreifen in Warmweiß.
+- Schalter „Farben umkehren“ oben rechts in der Kopfzeile (`#farbenKnopf`, `assets/site.js`). Die Wahl steht in
+  `localStorage` unter `ipm.farben` (`hell` | `invers`), ein Inline-Script im `<head>` setzt `html[data-farben="invers"]`
+  vor dem Malen. Impressum und Datenschutz folgen der Wahl, haben aber keinen eigenen Schalter.
+- Alle Farben laufen über Tokens in `assets/site.css` (`:root` = hell, `html[data-farben="invers"]` = invers). Keine festen
+  Farben außerhalb der Tokens, außer im Hero über dem Video (immer weiß).
 
 ## Seiten
 

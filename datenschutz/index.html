@@ -2,27 +2,29 @@
 <html lang="de">
 <head>
 <meta charset="UTF-8">
+<script>try{if(localStorage.getItem('ipm.farben')==='invers')document.documentElement.setAttribute('data-farben','invers')}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Datenschutzerklärung — ipm.</title>
 <link rel="icon" href="../assets/marke-2026-11/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="../assets/marke-2026-11/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="../assets/marke-2026-11/apple-touch-icon.png">
-<meta name="theme-color" content="#2C3236">
+<meta name="theme-color" content="#FFFFFF">
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 @font-face { font-family: 'Playfair Display'; src: url('../assets/fonts/PlayfairDisplay.ttf') format('truetype'); font-weight: 400 800; font-display: swap; }
 @font-face { font-family: 'Nunito Sans'; src: url('../assets/fonts/NunitoSans.woff2') format('woff2'); font-weight: 200 900; font-display: swap; }
 :root {
-  --bg: #F8F7F3; --text: #2C3236; --text-2: #454545; --ox: #476D49;
+  --bg: #F7F6F2; --text: #2D3436; --text-2: #474E52; --ox: #4E6B4A; --ink-rgb: 45,52,54;
+  --bar-bg: #FFFFFF; --bar-ink-rgb: 45,52,54; --logo-hell: block; --logo-dunkel: none;
   --font-serif: 'Playfair Display', Georgia, serif;
   --font-sans: 'Avenir Next','Nunito Sans',system-ui,sans-serif;
 }
 body { font-family: var(--font-sans); background: var(--bg); color: var(--text); -webkit-font-smoothing: antialiased; }
 a { color: var(--ox); }
-.legal-bar { background: #2C3236; padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+.legal-bar { background: var(--bar-bg); border-bottom: 1px solid rgba(var(--ink-rgb),.1); padding: 14px 24px; display: flex; align-items: center; justify-content: space-between; gap: 16px; }
 .legal-bar img { height: 30px; width: auto; display: block; }
-.legal-bar .back { font-family: var(--font-sans); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: rgba(255,255,255,.85); text-decoration: none; }
-.legal-bar .back:hover { color: #fff; }
+.legal-bar .back { font-family: var(--font-sans); font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: rgba(var(--bar-ink-rgb),.85); text-decoration: none; }
+.legal-bar .back:hover { color: var(--ox); }
 main { max-width: 760px; margin: 0 auto; padding: 72px 24px 96px; }
 h1 { font-family: var(--font-serif); font-weight: 400; font-size: clamp(34px, 5vw, 56px); line-height: 1.1; margin-bottom: 40px; overflow-wrap: anywhere; }
 h2 { font-family: var(--font-serif); font-weight: 400; font-size: clamp(22px, 2.6vw, 30px); margin: 48px 0 16px; }
@@ -31,15 +33,20 @@ p, li { font-size: 16px; font-weight: 300; line-height: 1.8; color: var(--text-2
 p + p { margin-top: 12px; }
 ul { margin: 8px 0 12px 20px; }
 strong { font-weight: 400; color: var(--text); }
-.legal-source { margin-top: 48px; font-size: 13px; color: #888; }
-footer { border-top: 1px solid rgba(0,0,0,.08); padding: 24px; text-align: center; font-size: 12px; color: rgba(0,0,0,.5); }
+.legal-source { margin-top: 48px; font-size: 13px; color: rgba(var(--ink-rgb),.62); }
+footer { border-top: 1px solid rgba(var(--ink-rgb),.1); padding: 24px; text-align: center; font-size: 12px; color: rgba(var(--ink-rgb),.62); }
 footer a { color: inherit; margin: 0 10px; }
+/* Farbsatz invers (Schalter auf den Hauptseiten, Wahl in localStorage „ipm.farben“) */
+html[data-farben="invers"] { --bg: #2D3436; --text: #F7F6F2; --text-2: #D2D5D2; --ox: #93B48E; --ink-rgb: 247,246,242;
+  --bar-bg: #23292C; --bar-ink-rgb: 247,246,242; --logo-hell: none; --logo-dunkel: block; color-scheme: dark; }
+.logo-auf-hell { display: var(--logo-hell) !important; }
+.logo-auf-dunkel { display: var(--logo-dunkel) !important; }
 @media print { .legal-bar { display: none; } }
 </style>
 </head>
 <body>
 <header class="legal-bar">
-  <a href="../"><img src="../assets/marke-2026-11/ipm-logo-kompakt-dunkel.png" alt="ipm. — zur Startseite" width="600" height="226"></a>
+  <a href="../"><img class="logo-auf-hell" src="../assets/marke-2026-11/ipm-logo-kompakt-auf-hell.png" alt="ipm. — zur Startseite" width="600" height="226"><img class="logo-auf-dunkel" src="../assets/marke-2026-11/ipm-logo-kompakt-auf-dunkel.png" alt="ipm. — zur Startseite" width="600" height="226"></a>
   <a class="back" href="../">&larr; Zur Startseite</a>
 </header>
 <main>
