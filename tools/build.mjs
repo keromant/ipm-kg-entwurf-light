@@ -52,11 +52,11 @@ function inline(text, rel) {
   });
   s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
   s = s.replace(/\*([^*]+)\*/g, '<em>$1</em>');
-  // Das kursive Q von Playfair ist stark verschnörkelt – in kursivem Text ersetzt site.css es (Klasse .q)
-  // Das ganze Wort bleibt zusammen (nowrap) – sonst bricht der Browser direkt nach dem Q um
-  s = s.replace(/(<[^>]*>)|Q(\p{L}*)/gu, (m, tag, rest) => tag || `<span class="q-wort"><span class="q">Q</span>${rest}</span>`);
-  // Markenname „Quality Time Living“ in QTL-Gold mit Schein (Klasse .qtl)
-  s = s.replace(/<span class="q-wort"><span class="q">Q<\/span>uality<\/span> Time Living/g, m => `<span class="qtl">${m}</span>`);
+  // Kursives Q und Z von Playfair sind stark verschnörkelt – in kursivem Text ersetzt site.css sie (Klasse .q)
+  // Das ganze Wort bleibt zusammen (nowrap) – sonst bricht der Browser direkt nach dem Buchstaben um
+  s = s.replace(/(<[^>]*>)|([QZ])(\p{L}*)/gu, (m, tag, b, rest) => tag || `<span class="q-wort"><span class="q">${b}</span>${rest}</span>`);
+  // Markenname „Quality Time Living“ (auch „Quality Time *Living*“) in QTL-Gold mit Schein (Klasse .qtl)
+  s = s.replace(/<span class="q-wort"><span class="q">Q<\/span>uality<\/span> Time (?:<em>Living<\/em>|Living)/g, m => `<span class="qtl">${m}</span>`);
   return s;
 }
 

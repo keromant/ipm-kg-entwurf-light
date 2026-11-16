@@ -383,6 +383,7 @@ body.mnav-open { overflow: hidden; }
   text-shadow: var(--qtl-glow);
 }
 .btn .qtl, .eyebrow .qtl { color: inherit; }
+.qtl em { color: inherit; }   /* „Quality Time *Living*“ in Überschriften: ganz in Gold */
 .btn-rahmen .qtl, .btn-hell .qtl, .eyebrow .qtl { color: var(--qtl-gold); }
 .btn.is-activating .qtl { color: inherit; text-shadow: none; }
 @media (hover: hover) { .btn:hover .qtl { color: inherit; text-shadow: none; } }
