@@ -55,6 +55,9 @@
   --band-ink-rgb: 247,246,242;
   --band-glow:    0 0 6px rgba(var(--accent-rgb),.85), 0 0 16px rgba(var(--accent-rgb),.45), 0 0 34px rgba(var(--accent-rgb),.2);
 
+  --qtl-gold: #A57713;   /* QTL-Gold, auf hellem Grund dunkler für Lesbarkeit */
+  --qtl-glow: 0 0 10px rgba(201,148,26,.38), 0 0 22px rgba(232,184,75,.22);
+
   --karte-bg: #FFFFFF;
   --chip-bg:  rgba(255,255,255,.7);
   --logo-hell:   block;   /* Logo für hellen Grund */
@@ -84,6 +87,8 @@
 
 /* Farbsatz INVERS – alles umgekehrt: Anthrazit wird Grund, Warmweiß wird Schrift */
 html[data-farben="invers"] {
+  --qtl-gold: #E8B84B;
+  --qtl-glow: 0 0 8px rgba(232,184,75,.55), 0 0 22px rgba(201,148,26,.35), 0 0 42px rgba(201,148,26,.18);
   --bg:        #2D3436;
   --bg-2:      #283033;
   --bg-3:      #23292C;
@@ -193,14 +198,25 @@ a { color: inherit; text-decoration: none; }
 .sb-nav { flex: 1; display: flex; align-items: center; justify-content: center; width: 100%; }
 .sb-list { list-style: none; display: flex; flex-direction: column; align-items: center; gap: 6px; }
 .sb-list li { position: relative; }
-.sb-list li::after {
+.sb-list a::after {
   content: ''; position: absolute; left: 6px; top: 50%;
   width: 4px; height: 4px; background: var(--ox-lt); border-radius: 50%;
   transform: translateY(-50%) scale(0);
   transition: transform .3s var(--pop-ease);
   pointer-events: none;
 }
-.sb-list li.is-active::after { transform: translateY(-50%) scale(1); }
+.sb-list li.is-active a::after { transform: translateY(-50%) scale(1); }
+/* Unterzeile: Abschnitt, in dem man gerade ist (gleiche Logik wie die Topbar, site.js) */
+.sb-sub {
+  display: block; max-width: 118px; margin: 0 auto;
+  font-family: var(--font-ui); font-size: 9px; font-weight: 500;
+  letter-spacing: .06em; line-height: 1.35; text-align: center;
+  color: var(--ox-lt);
+  max-height: 0; opacity: 0; overflow: hidden;
+  transform: translateY(-3px);
+  transition: opacity .25s ease, transform .3s var(--ease-out), max-height .35s var(--ease-out), margin .35s var(--ease-out);
+}
+.sb-sub.is-sichtbar { max-height: 4.2em; opacity: 1; transform: none; margin: -6px auto 8px; }
 .sb-list a {
   font-family: var(--font-ui);
   font-size: 10px; font-weight: 400;
@@ -358,6 +374,18 @@ body.mnav-open { overflow: hidden; }
   font-style: normal; display: inline-block; transform: skewX(-11deg);
 }
 :is(.signatur, .knopf-zeile) .q { transform: none; }
+.q-wort { white-space: nowrap; }   /* kein Umbruch zwischen Q und Rest des Worts */
+.btn-text { display: inline; }     /* Knopf-Beschriftung als ein Flex-Kind */
+
+/* Markenname Quality Time Living: QTL-Gold (mein-qtl.de) mit Schein */
+.qtl {
+  color: var(--qtl-gold);
+  text-shadow: var(--qtl-glow);
+}
+.btn .qtl, .eyebrow .qtl { color: inherit; }
+.btn-rahmen .qtl, .btn-hell .qtl, .eyebrow .qtl { color: var(--qtl-gold); }
+.btn.is-activating .qtl { color: inherit; text-shadow: none; }
+@media (hover: hover) { .btn:hover .qtl { color: inherit; text-shadow: none; } }
 
 /* ================================================================ TYPO-BAUSTEINE */
 .eyebrow {
@@ -946,3 +974,7 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(var(--ink-rgb),.1);
   .grundsatz, .zeilen, .gegenueber { padding: 32px 0; break-inside: avoid-page; }
   footer { display: none; }
 }
+
+/* QTL-Gold im Abschluss-Band: Band ist im hellen Satz dunkel und umgekehrt */
+.abschluss { --qtl-gold: #E8B84B; --qtl-glow: 0 0 8px rgba(232,184,75,.55), 0 0 22px rgba(201,148,26,.35), 0 0 42px rgba(201,148,26,.18); }
+html[data-farben="invers"] .abschluss { --qtl-gold: #A57713; --qtl-glow: 0 0 10px rgba(201,148,26,.38), 0 0 22px rgba(232,184,75,.22); }

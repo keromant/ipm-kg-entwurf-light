@@ -45,7 +45,7 @@ function inline(text, rel) {
     const ziel = ext ? ' target="_blank" rel="noopener"' : '';
     if (art) {
       const klasse = { knopf: 'btn btn-gruen', rahmen: 'btn btn-rahmen', hell: 'btn btn-hell' }[art] || 'btn btn-gruen';
-      return `<a class="${klasse}" href="${href(u, rel)}"${ziel}>${t}</a>`;
+      return `<a class="${klasse}" href="${href(u, rel)}"${ziel}><span class="btn-text">${t}</span></a>`;   // ein Flex-Kind: kein Abstand mitten im Text
     }
     if (u.startsWith('+')) return t; // reserviert
     return `<a class="text-link" href="${href(u, rel)}"${ziel}><span class="text-link-arrow">+</span>${t}</a>`;
@@ -53,7 +53,10 @@ function inline(text, rel) {
   s = s.replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
   s = s.replace(/\*([^*]+)\*/g, '<em>$1</em>');
   // Das kursive Q von Playfair ist stark verschnörkelt – in kursivem Text ersetzt site.css es (Klasse .q)
-  s = s.replace(/(<[^>]*>)|Q/g, (m, tag) => tag || '<span class="q">Q</span>');
+  // Das ganze Wort bleibt zusammen (nowrap) – sonst bricht der Browser direkt nach dem Q um
+  s = s.replace(/(<[^>]*>)|Q(\p{L}*)/gu, (m, tag, rest) => tag || `<span class="q-wort"><span class="q">Q</span>${rest}</span>`);
+  // Markenname „Quality Time Living“ in QTL-Gold mit Schein (Klasse .qtl)
+  s = s.replace(/<span class="q-wort"><span class="q">Q<\/span>uality<\/span> Time Living/g, m => `<span class="qtl">${m}</span>`);
   return s;
 }
 
@@ -70,7 +73,7 @@ function md(body, rel) {
     if (m) { para[para.length - 1] = last.slice(0, m.index); klasse = m[1].split('.').join(' '); }
     const html = para.map(l => inline(l, rel)).join('<br>');
     // Absatz nur aus einem Knopf -> Knopfzeile
-    if (/^<a class="btn[^>]*>[^<]*<\/a>(\s*<a class="btn[^>]*>[^<]*<\/a>)*$/.test(html.replace(/<br>/g, ' ').trim())) klasse = (klasse + ' knopf-zeile').trim();
+    if (/^<a class="btn[^>]*>(?:(?!<\/a>).)*<\/a>(\s*<a class="btn[^>]*>(?:(?!<\/a>).)*<\/a>)*$/.test(html.replace(/<br>/g, ' ').trim())) klasse = (klasse + ' knopf-zeile').trim();
     out.push(`<p${klasse ? ` class="${klasse}"` : ''}>${html}</p>`);
     para = [];
   };
@@ -297,9 +300,10 @@ ${html}  </div>
   return seitenRahmen({ seite, fm, rel, body: start + html });
 }
 
-function menue(rel, aktiv, klasse) {
+// unterzeile = true (nur Sidebar): unter dem aktiven Punkt steht live der Abschnitt, in dem man gerade ist (site.js)
+function menue(rel, aktiv, klasse, unterzeile = false) {
   return SEITEN.filter(s => !s.nurFooter).map(s =>
-    `<li${s === aktiv ? ' class="is-active"' : ''}><a href="${href('/' + (s.pfad ? s.pfad + '/' : ''), rel)}"${s === aktiv ? ' aria-current="page"' : ''}>${esc(s.menue)}</a></li>`
+    `<li${s === aktiv ? ' class="is-active"' : ''}><a href="${href('/' + (s.pfad ? s.pfad + '/' : ''), rel)}"${s === aktiv ? ' aria-current="page"' : ''}>${esc(s.menue)}</a>${s === aktiv && unterzeile ? '<span class="sb-sub" id="sbSub"></span>' : ''}</li>`
   ).join(`\n${klasse}`);
 }
 
@@ -354,7 +358,7 @@ function seitenRahmen({ seite, fm, rel, body }) {
   <div class="sb-sep"></div>
   <nav class="sb-nav" aria-label="Hauptmenü">
     <ul class="sb-list">
-      ${menue(rel, seite, '      ')}
+      ${menue(rel, seite, '      ', true)}
     </ul>
   </nav>
   <div class="sb-sep"></div>

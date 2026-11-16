@@ -55,7 +55,7 @@ Acht Schritte, ein Ansprechpartner.
 :::
 
 ::: zeitstrahl
-### Idee & Markt
+### Idee und Markt
 Am Anfang steht eine Idee. Wir prüfen den Markt: Wer sucht was, wo fehlt Wohnraum, was wird gebraucht?
 ---
 ### Standort
@@ -67,13 +67,13 @@ Wir entwickeln ein Konzept für die Menschen, die dort später leben, arbeiten o
 ### Grundstück oder Bestand
 Wir sichern das passende Grundstück – oder ein Bestandsgebäude, das es wert ist, erhalten zu werden.
 ---
-### Planung & Genehmigung
+### Planung und Genehmigung
 Mit Architekten, Fachplanern und Behörden führen wir das Projekt bis zur Baureife.
 ---
 ### Finanzierung
 Wir stellen die Gesamtfinanzierung auf und stimmen sie mit Banken und Investoren ab.
 ---
-### Bau & Steuerung
+### Bau und Steuerung
 In der Bauphase steuern wir Budget, Fristen und Qualität – im Einklang mit den Vorgaben unseres Auftraggebers.
 ---
 ### Verkauf oder eigener Bestand
@@ -115,13 +115,13 @@ Kreative Lösungen für Projekte, die nachhaltig und wirtschaftlich erfolgreich 
 ### Finanzielle Risiken
 Unsicherheiten bei der Projektidee oder bei der Finanzierung erkennen wir früh und planen sie von Anfang an mit ein.
 ---
-### Markt & Standort
+### Markt und Standort
 Infrastruktur, Nachfrage und Wettbewerb entscheiden über den späteren Erfolg. Deshalb prüfen wir den Standort gründlich, bevor wir planen.
 ---
-### Zeit & Budget
+### Zeit und Budget
 Enge Zeitrahmen und Budgets verlangen Präzision und Flexibilität. Unsere Arbeitsprozesse sind bewährt und routiniert.
 ---
-### Vorschriften & Genehmigungen
+### Vorschriften und Genehmigungen
 Bauvorschriften und Genehmigungsverfahren sind komplex. Wir kennen den Weg und begleiten ihn Schritt für Schritt.
 ---
 ### Nachhaltigkeit

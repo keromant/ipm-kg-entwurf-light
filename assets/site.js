@@ -115,14 +115,32 @@
   /* ---- Topbar: Name des Abschnitts, dessen Trennstreifen oben angekommen ist ---- */
   var label = document.getElementById('topbarLabel');
   var dividers = Array.prototype.slice.call(document.querySelectorAll('.section-divider'));
-  if (label) {
-    var startLabel = label.getAttribute('data-start') || label.textContent;
+  // Dieselbe Logik schreibt den Abschnitt klein unter den aktiven Punkt der Sidebar (#sbSub)
+  var sbSub = document.getElementById('sbSub');
+  var sbSubText = '';
+  var sbSubTimer = null;
+  var setzeSbSub = function (text) {
+    if (!sbSub || text === sbSubText) return;
+    sbSubText = text;
+    clearTimeout(sbSubTimer);
+    if (!text) { sbSub.classList.remove('is-sichtbar'); return; }
+    if (reduced || !sbSub.classList.contains('is-sichtbar')) {
+      sbSub.textContent = text; sbSub.classList.add('is-sichtbar'); return;
+    }
+    // Wechsel: kurz ausblenden, Text tauschen, wieder einblenden
+    sbSub.classList.remove('is-sichtbar');
+    sbSubTimer = setTimeout(function () { sbSub.textContent = text; sbSub.classList.add('is-sichtbar'); }, 180);
+  };
+  if (label || sbSub) {
+    var startLabel = label ? (label.getAttribute('data-start') || label.textContent) : '';
     var update = function () {
-      var text = startLabel;
+      var abschnitt = '';
       for (var i = 0; i < dividers.length; i++) {
-        if (dividers[i].getBoundingClientRect().top <= 52) text = dividers[i].textContent.trim();
+        if (dividers[i].getBoundingClientRect().top <= 52) abschnitt = dividers[i].textContent.trim();
       }
-      if (label.textContent !== text) label.textContent = text;
+      var text = abschnitt || startLabel;
+      if (label && label.textContent !== text) label.textContent = text;
+      setzeSbSub(abschnitt);
     };
     window.addEventListener('scroll', update, { passive: true });
     update();
