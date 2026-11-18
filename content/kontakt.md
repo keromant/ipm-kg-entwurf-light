@@ -15,9 +15,9 @@ Auch da, wo man nur eine Mauer sieht. {.lead}
 ::: karten spalten=3
 ^ Anrufen
 ### Telefon
-+49 (0) 2156 4 88 98 90
++49 (0) 2151 – 3 61 38 85
 
-[Jetzt anrufen](tel:+4921564889890){knopf}
+[Jetzt anrufen](tel:+4921513613885){knopf}
 ---
 ^ Schreiben
 ### E-Mail

@@ -41,6 +41,11 @@ html[data-farben="invers"] { --bg: #2D3436; --text: #F7F6F2; --text-2: #E3E5E2; 
 .logo-auf-hell { display: var(--logo-hell) !important; }
 .logo-auf-dunkel { display: var(--logo-dunkel) !important; }
 .subtitle { margin: -24px 0 8px; font-family: var(--font-sans); font-size: 12px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--ox); line-height: 1.6; }
+/* Wortmarke „ipm.“ wie im Logo (Nunito Sans fett, grüner Punkt) – 18.11.2026 */
+.ipm-marke { font-family: var(--font-sans); font-weight: 800; font-style: normal; text-transform: none; letter-spacing: -.03em; white-space: nowrap; color: var(--text); }
+.ipm-punkt { color: #5E7F5A; }
+html[data-farben="invers"] .ipm-punkt { color: #8DAF88; }
+.subtitle .ipm-marke { font-size: 1.6em; line-height: 1; vertical-align: -.08em; }
 /* Handy (18.11.26): Fließtext normale Stärke, Tap-Ziele mind. 44 px */
 @media (max-width: 960px) {
   p, li { font-weight: 400; line-height: 1.75; }
@@ -61,7 +66,7 @@ html[data-farben="invers"] { --bg: #2D3436; --text: #F7F6F2; --text-2: #E3E5E2; 
 </header>
 <main>
 <h1>Impressum</h1>
-<p class="subtitle">ipm. Immobilien-Projekt-Management</p>
+<p class="subtitle"><span class="ipm-marke">ipm<span class="ipm-punkt">.</span></span> Immobilien-Projekt-Management</p>
 
 <h2>Angaben gemäß § 5 DDG</h2>
 <p>ipm<br>Immobilien-Projekt-Management –<br>Kooperations-Gesellschaft bR<br>Feldburgweg 84<br>47918 Tönisvorst</p>
@@ -70,7 +75,7 @@ html[data-farben="invers"] { --bg: #2D3436; --text: #F7F6F2; --text-2: #E3E5E2; 
 <p>Henno Schlootz<br>Sebastian Schlootz</p>
 
 <h3>Kontakt</h3>
-<p>Telefon: <a href="tel:+4921513613885">+49 (0) 2151 - 3 61 38 85</a><br>
+<p>Telefon: <a href="tel:+4921513613885">+49 (0) 2151 – 3 61 38 85</a><br>
 E-Mail: <a href="mailto:info@ipm-kg.de">info@ipm-kg.de</a><br>
 Internet: <a href="https://www.ipm-kg.de" target="_blank" rel="noopener">www.ipm-kg.de</a></p>
 
@@ -90,7 +95,7 @@ Internet: <a href="https://www.ipm-kg.de" target="_blank" rel="noopener">www.ipm
 <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte umgehend entfernen.</p>
 
 <h3>Bildnachweis</h3>
-<p>Visualisierungen und eigene Darstellungen: ipm-KG.<br>
+<p>Visualisierungen und eigene Darstellungen: <span class="ipm-marke">ipm<span class="ipm-punkt">.</span></span><br>
 Die abgebildeten Innen- und Außenansichten sind Visualisierungen und können von der tatsächlichen Ausführung abweichen.</p>
 
 <h3>Konzeption und Umsetzung</h3>
@@ -98,6 +103,6 @@ Die abgebildeten Innen- und Außenansichten sind Visualisierungen und können vo
 <a href="https://www.monetascale.de" target="_blank" rel="noopener">MonetaScale</a></p>
 
 </main>
-<footer>© 2026 ipm. Immobilien-Projekt-Management · <a href="../impressum/">Impressum</a><a href="../datenschutz/">Datenschutz</a></footer>
+<footer>© 2026 <span class="ipm-marke">ipm<span class="ipm-punkt">.</span></span> Immobilien-Projekt-Management · <a href="../impressum/">Impressum</a><a href="../datenschutz/">Datenschutz</a></footer>
 </body>
 </html>

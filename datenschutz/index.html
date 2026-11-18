@@ -41,6 +41,11 @@ html[data-farben="invers"] { --bg: #2D3436; --text: #F7F6F2; --text-2: #E3E5E2; 
 .logo-auf-hell { display: var(--logo-hell) !important; }
 .logo-auf-dunkel { display: var(--logo-dunkel) !important; }
 .subtitle { margin: -24px 0 8px; font-family: var(--font-sans); font-size: 12px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--ox); line-height: 1.6; }
+/* Wortmarke „ipm.“ wie im Logo (Nunito Sans fett, grüner Punkt) – 18.11.2026 */
+.ipm-marke { font-family: var(--font-sans); font-weight: 800; font-style: normal; text-transform: none; letter-spacing: -.03em; white-space: nowrap; color: var(--text); }
+.ipm-punkt { color: #5E7F5A; }
+html[data-farben="invers"] .ipm-punkt { color: #8DAF88; }
+.subtitle .ipm-marke { font-size: 1.6em; line-height: 1; vertical-align: -.08em; }
 /* Handy (18.11.26): Fließtext normale Stärke, Tap-Ziele mind. 44 px */
 @media (max-width: 960px) {
   p, li { font-weight: 400; line-height: 1.75; }
@@ -61,6 +66,7 @@ html[data-farben="invers"] { --bg: #2D3436; --text: #F7F6F2; --text-2: #E3E5E2; 
 </header>
 <main>
 <h1>Datenschutzerklärung</h1>
+<p class="subtitle"><span class="ipm-marke">ipm<span class="ipm-punkt">.</span></span> Immobilien-Projekt-Management</p>
 <h2>1. Datenschutz auf einen Blick</h2>
 <h3>Allgemeine Hinweise</h3>
 <p>Die folgenden Hinweise geben einen einfachen Überblick darüber, was mit Ihren personenbezogenen Daten passiert, wenn Sie diese Website besuchen. Personenbezogene Daten sind alle Daten, mit denen Sie persönlich identifiziert werden können. Ausführliche Informationen zum Thema Datenschutz entnehmen Sie unserer unter diesem Text aufgeführten Datenschutzerklärung.</p>
@@ -91,7 +97,7 @@ html[data-farben="invers"] { --bg: #2D3436; --text: #F7F6F2; --text-2: #E3E5E2; 
 <p>Wir weisen darauf hin, dass die Datenübertragung im Internet (z. B. bei der Kommunikation per E-Mail) Sicherheitslücken aufweisen kann. Ein lückenloser Schutz der Daten vor dem Zugriff durch Dritte ist nicht möglich.</p>
 <h3>Hinweis zur verantwortlichen Stelle</h3>
 <p>Die verantwortliche Stelle für die Datenverarbeitung auf dieser Website ist:</p>
-<p>Immobilien-Projekt-Management-Kooperations-Gesellschaft bR<br>Feldburgweg 84<br>47918 Tönisvorst<br>Telefon: +49 (0) 176 43211961<br>E-Mail: <a href="mailto:info@ipm-kg.de">info@ipm-kg.de</a></p>
+<p>Immobilien-Projekt-Management-Kooperations-Gesellschaft bR<br>Feldburgweg 84<br>47918 Tönisvorst<br>Telefon: <a href="tel:+4921513613885">+49 (0) 2151 – 3 61 38 85</a><br>E-Mail: <a href="mailto:info@ipm-kg.de">info@ipm-kg.de</a></p>
 <p>Verantwortliche Stelle ist die natürliche oder juristische Person, die allein oder gemeinsam mit anderen über die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z. B. Namen, E-Mail-Adressen o. Ä.) entscheidet.</p>
 <h3>Speicherdauer</h3>
 <p>Soweit innerhalb dieser Datenschutzerklärung keine speziellere Speicherdauer genannt wurde, verbleiben Ihre personenbezogenen Daten bei uns, bis der Zweck für die Datenverarbeitung entfällt. Wenn Sie ein berechtigtes Löschersuchen geltend machen oder eine Einwilligung zur Datenverarbeitung widerrufen, werden Ihre Daten gelöscht, sofern wir keine anderen rechtlich zulässigen Gründe für die Speicherung Ihrer personenbezogenen Daten haben (z. B. steuer- oder handelsrechtliche Aufbewahrungsfristen); im letztgenannten Fall erfolgt die Löschung nach Fortfall dieser Gründe.</p>
@@ -132,6 +138,6 @@ html[data-farben="invers"] { --bg: #2D3436; --text: #F7F6F2; --text-2: #E3E5E2; 
 <p>Die von Ihnen an uns per Kontaktanfragen übersandten Daten verbleiben bei uns, bis Sie uns zur Löschung auffordern, Ihre Einwilligung zur Speicherung widerrufen oder der Zweck für die Datenspeicherung entfällt (z. B. nach abgeschlossener Bearbeitung Ihres Anliegens). Zwingende gesetzliche Bestimmungen – insbesondere gesetzliche Aufbewahrungsfristen – bleiben unberührt.</p>
 <p class="legal-source">Quelle: <a href="https://www.e-recht24.de" target="_blank" rel="noopener">e-recht24.de</a> · an diese Website angepasst (Stand: Oktober 2026)</p>
 </main>
-<footer>© 2026 ipm. Immobilien-Projekt-Management · <a href="../impressum/">Impressum</a><a href="../datenschutz/">Datenschutz</a></footer>
+<footer>© 2026 <span class="ipm-marke">ipm<span class="ipm-punkt">.</span></span> Immobilien-Projekt-Management · <a href="../impressum/">Impressum</a><a href="../datenschutz/">Datenschutz</a></footer>
 </body>
 </html>

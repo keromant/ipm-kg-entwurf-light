@@ -60,7 +60,8 @@ function inline(text, rel) {
   s = s.replace(/(<[^>]*>)|([QZ])(\p{L}*)/gu, (m, tag, b, rest) => tag || `<span class="q-wort"><span class="q">${b}</span>${rest}</span>`);
   // Markenname „Quality Time Living“ (auch „Quality Time *Living*“) in QTL-Gold mit Schein (Klasse .qtl)
   s = s.replace(/<span class="q-wort"><span class="q">Q<\/span>uality<\/span> Time (?:<em>Living<\/em>|Living)/g, m => `<span class="qtl">${m}</span>`);
-  return s;
+  // „ipm.“ auch im Fließtext als Wortmarke (Entscheidung 18.11.2026: Marke statt „ipm-KG“)
+  return marke(s);
 }
 
 // Text eines Blocks: Absätze durch Leerzeilen getrennt, einfacher Zeilenumbruch = <br>
@@ -376,10 +377,10 @@ ${body}</main>
       <img src="${rel}assets/marke-2026-11/ipm-logo-auf-hell.png" alt="ipm. Immobilien-Projekt-Management" class="footer-logo logo-auf-hell" width="900" height="402"><img src="${rel}assets/marke-2026-11/ipm-logo-auf-dunkel.png" alt="ipm. Immobilien-Projekt-Management" class="footer-logo logo-auf-dunkel" width="900" height="402">
       <p class="footer-tagline">Immobilien-Projekt-Management. Diskret. Individuell. Transparent.</p>
       <div class="footer-address">
-        ipm. Immobilien-Projekt-Management<br>
+        ${marke('ipm.')} Immobilien-Projekt-Management<br>
         Feldburgweg 84<br>
         47918 Tönisvorst<br><br>
-        Tel. <a href="tel:+4921564889890">+49 (0) 2156 4 88 98 90</a><br>
+        Tel. <a href="tel:+4921513613885">+49 (0) 2151 – 3 61 38 85</a><br>
         <a href="mailto:info@ipm-kg.de">info@ipm-kg.de</a>
       </div>
     </div>
@@ -398,7 +399,7 @@ ${body}</main>
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2026 ipm. Immobilien-Projekt-Management · Tönisvorst · Alle Rechte vorbehalten.</span>
+    <span class="footer-copy">© 2026 ${marke('ipm.')} Immobilien-Projekt-Management · Tönisvorst · Alle Rechte vorbehalten.</span>
     <div class="footer-legal-links">
       <a href="${h('/impressum/')}">Impressum</a>
       <a href="${h('/datenschutz/')}">Datenschutz</a>

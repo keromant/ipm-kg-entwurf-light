@@ -1,5 +1,13 @@
 # Übergabe für die nächste Sitzung
 
+## 2026-11-18 – Marke statt „ipm-KG“, eine Telefonnummer
+**Erledigt:** „ipm.“ jetzt überall als Wortmarke (build.mjs: `inline()` ruft `marke()`, also auch Fließtext, Listen,
+Karten; Fußzeile Adresse + Copyright). Impressum/Datenschutz: Wortmarke im Kopf (Unterzeile), im Bildnachweis und in der
+Fußzeile, eigene `.ipm-marke`-Regeln im Inline-CSS. Telefon überall +49 (0) 2151 – 3 61 38 85 (tel:+4921513613885);
+alte 2156-Nummer und die Handynummer im Datenschutz-Abschnitt „Verantwortliche Stelle“ ersetzt.
+**Offene Fäden:** Rechtlicher Name im Datenschutz („Immobilien-Projekt-Management-Kooperations-Gesellschaft bR“) weicht
+von der Impressums-Schreibweise ab („ipm, Immobilien-Projekt-Management – Kooperations-Gesellschaft bR“) – mit Henno klären.
+
 ## 2026-11-18 – Handy-Ansicht, Lesbarkeit, Impressum
 **Erledigt:** Hero unter 960 px als ganzes 3:2-Video, Slogan darunter auf dunkler Fläche; Fließtext mobil 16 px/400,
 Labels ≥ 12 px, Tap-Ziele ≥ 44 px; --text-2/--muted invers heller, Footer kräftiger; Impressum nach AHZ-Fassung
