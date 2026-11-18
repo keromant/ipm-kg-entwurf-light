@@ -331,8 +331,6 @@ function seitenRahmen({ seite, fm, rel, body }) {
 </head>
 <body class="seite-${seite.pfad || 'start'}">
 
-<div id="cursor"></div>
-<div id="cursor-dot"></div>
 
 <div class="topbar" id="topbar">
   <button class="topbar-burger" id="mnavToggle" type="button" aria-label="Menü öffnen" aria-controls="mnav" aria-expanded="false">

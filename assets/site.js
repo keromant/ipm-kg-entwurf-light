@@ -2,7 +2,6 @@
 (function () {
   document.documentElement.classList.remove('no-js');
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var feineMaus = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
 
   /* ---- Schalter „Farben umkehren“ (hell ↔ invers, Marken-Blatt image0) ---- */
   var root = document.documentElement;
@@ -24,26 +23,6 @@
     try { localStorage.setItem('ipm.farben', invers ? 'invers' : 'hell'); } catch (e) {}
     farbenZeigen();
   });
-
-  /* ---- Eigener Cursor (nur mit Maus) ---- */
-  var cur = document.getElementById('cursor');
-  var dot = document.getElementById('cursor-dot');
-  if (cur && dot && feineMaus) {
-    var mx = 0, my = 0, cx = 0, cy = 0;
-    document.addEventListener('mousemove', function (e) {
-      mx = e.clientX; my = e.clientY;
-      dot.style.left = mx + 'px'; dot.style.top = my + 'px';
-    });
-    (function loop() {
-      cx += (mx - cx) * 0.1; cy += (my - cy) * 0.1;
-      cur.style.left = cx + 'px'; cur.style.top = cy + 'px';
-      requestAnimationFrame(loop);
-    })();
-    document.querySelectorAll('a, button, summary').forEach(function (el) {
-      el.addEventListener('mouseenter', function () { cur.classList.add('is-hover'); });
-      el.addEventListener('mouseleave', function () { cur.classList.remove('is-hover'); });
-    });
-  }
 
   /* ---- Hero-Video: Slogan ploppt auf, wenn die beiden die Arme verschränken (≈ 2,15 s) ---- */
   var vid = document.querySelector('.hero-video');
