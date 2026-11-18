@@ -94,8 +94,8 @@ html[data-farben="invers"] {
   --bg-3:      #23292C;
   --bg-light:  #323A3E;
   --text:      #F7F6F2;
-  --text-2:    #D2D5D2;
-  --muted:     #A9AEAD;
+  --text-2:    #E3E5E2;   /* 18.11.26: heller (vorher #D2D5D2), Lesbarkeit Handy */
+  --muted:     #BFC3C2;   /* vorher #A9AEAD */
   --ink-rgb:   247,246,242;
   --charcoal:  #F7F6F2;
   --ox:        #93B48E;
@@ -394,7 +394,8 @@ body.mnav-open { overflow: hidden; }
 }
 .ipm-marke { color: var(--charcoal); }
 html[data-farben="invers"] .ipm-marke { color: var(--warmweiss); }
-.abschluss .ipm-marke { color: inherit; }
+.abschluss .ipm-marke, html[data-farben="invers"] .abschluss .ipm-marke { color: inherit; }   /* sonst Warmweiß auf hellem Band */
+html[data-farben="invers"] .abschluss .ipm-punkt { color: #4E6B4A; }
 .ipm-punkt { color: var(--ox-lt); }
 :is(.eyebrow, .seitenkopf-marke, .abschluss-unter) .ipm-marke { font-size: 1.6em; line-height: 1; vertical-align: -.08em; }
 
@@ -422,7 +423,7 @@ h1 em, h2 em { font-style: italic; color: var(--ox-lt); }
 }
 
 /* ================================================================ HERO (Startseite) */
-.hero { height: calc(100vh - var(--topbar-h)); min-height: 460px; position: relative; overflow: hidden; }
+.hero { height: calc(100vh - var(--topbar-h)); height: calc(100dvh - var(--topbar-h)); min-height: 460px; position: relative; overflow: hidden; }
 .hero-video {
   position: absolute; inset: 0; width: 100%; height: 100%;
   object-fit: cover; object-position: 50% 42%;
@@ -835,7 +836,7 @@ section > .karten:first-child { padding-top: 104px; }
   background-image: radial-gradient(700px 300px at 50% 120%, rgba(var(--accent-rgb),.22), transparent 70%);
 }
 .abschluss-inner { max-width: 820px; margin: 0 auto; }
-.abschluss p { color: rgba(var(--band-ink-rgb),.8); font-family: var(--font-sans); font-size: 16px; font-weight: 300; line-height: 1.8; }
+.abschluss p { color: rgba(var(--band-ink-rgb),.9); font-family: var(--font-sans); font-size: 16px; font-weight: 300; line-height: 1.8; }
 .abschluss .abschluss-zitat {
   font-family: var(--font-serif); font-style: italic;
   font-size: clamp(24px, 3vw, 40px); line-height: 1.35; color: var(--band-ink);
@@ -843,7 +844,7 @@ section > .karten:first-child { padding-top: 104px; }
 .abschluss .abschluss-text { font-size: 18px; color: rgba(var(--band-ink-rgb),.88); }
 .abschluss .abschluss-unter {
   font-family: var(--font-ui); font-size: 11px; letter-spacing: .26em; text-transform: uppercase;
-  color: rgba(var(--band-ink-rgb),.62); margin-top: 18px;
+  color: rgba(var(--band-ink-rgb),.8); margin-top: 18px;
 }
 .abschluss p + p { margin-top: 22px; }
 .abschluss .knopf-zeile { justify-content: center; margin-top: 40px; }
@@ -856,8 +857,8 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(var(--ink-rgb),.1);
   padding: 72px var(--pad-x) 52px;
 }
 .footer-logo { width: 220px; height: auto; }
-.footer-tagline { font-size: 13px; font-weight: 300; color: rgba(var(--ink-rgb),.7); line-height: 1.65; max-width: 280px; margin: 14px 0 24px; }
-.footer-address { font-size: 13px; font-weight: 300; color: rgba(var(--ink-rgb),.7); line-height: 1.75; }
+.footer-tagline { font-size: 13px; font-weight: 300; color: rgba(var(--ink-rgb),.85); line-height: 1.65; max-width: 280px; margin: 14px 0 24px; }
+.footer-address { font-size: 13px; font-weight: 300; color: rgba(var(--ink-rgb),.85); line-height: 1.75; }
 .footer-address a:hover { color: var(--ox); }
 .footer-col h2 {
   font-family: var(--font-sans);
@@ -867,7 +868,7 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(var(--ink-rgb),.1);
 }
 .footer-col ul { list-style: none; }
 .footer-col ul li + li { margin-top: 12px; }
-.footer-col ul a { font-size: 14px; font-weight: 300; color: rgba(var(--ink-rgb),.7); transition: color .25s ease; }
+.footer-col ul a { font-size: 14px; font-weight: 300; color: rgba(var(--ink-rgb),.85); transition: color .25s ease; }
 .footer-col ul a:hover { color: var(--ox); }
 .footer-bottom {
   border-top: 1px solid rgba(var(--ink-rgb),.1);
@@ -875,11 +876,11 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(var(--ink-rgb),.1);
   padding: 20px var(--pad-x);
   display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;
 }
-.footer-copy { font-size: 11px; font-weight: 300; letter-spacing: .06em; color: rgba(var(--ink-rgb),.62); }
+.footer-copy { font-size: 11px; font-weight: 300; letter-spacing: .06em; color: rgba(var(--ink-rgb),.78); }
 .footer-legal-links { display: flex; gap: 28px; }
-.footer-legal-links a { font-size: 11px; font-weight: 300; letter-spacing: .1em; text-transform: uppercase; color: rgba(var(--ink-rgb),.62); transition: color .25s ease; }
+.footer-legal-links a { font-size: 11px; font-weight: 300; letter-spacing: .1em; text-transform: uppercase; color: rgba(var(--ink-rgb),.78); transition: color .25s ease; }
 .footer-legal-links a:hover { color: var(--ox); }
-.footer-disclaimer { max-width: 1400px; margin: 0 auto; padding: 0 var(--pad-x) 28px; font-size: 11px; font-weight: 300; line-height: 1.6; color: rgba(var(--ink-rgb),.55); }
+.footer-disclaimer { max-width: 1400px; margin: 0 auto; padding: 0 var(--pad-x) 28px; font-size: 11px; font-weight: 300; line-height: 1.6; color: rgba(var(--ink-rgb),.72); }
 
 /* ================================================================ REVEAL */
 .reveal {
@@ -905,7 +906,7 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(var(--ink-rgb),.1);
   .topbar-logo { display: block; }
   .topbar-label { display: none; }
   .topbar-rechts { right: 12px; gap: 10px; }
-  .topbar-cta { padding: 10px 18px; font-size: 10px; letter-spacing: .14em; }
+  .topbar-cta { padding: 10px 18px; min-height: 44px; font-size: 10px; letter-spacing: .14em; }
 
   .hero { height: min(calc(100vh - var(--topbar-h)), calc(100vw * 1.32)); min-height: 320px; }
   .hero-video { object-position: 53% 38%; }
@@ -953,6 +954,38 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(var(--ink-rgb),.1);
 
   .footer-main { grid-template-columns: 1fr; padding: 52px 24px; }
   .footer-bottom, .footer-disclaimer { padding-left: 24px; padding-right: 24px; }
+
+  /* ---- Hero Handy (18.11.26): ganzes Video im 3:2-Format, damit beide Personen ganz zu sehen sind.
+     Slogan darunter auf dunkler Fläche statt über den Gesichtern. ---- */
+  .hero { height: auto; min-height: 0; display: flex; flex-direction: column; background: #23292C; }
+  .hero-video { position: relative; inset: auto; height: auto; aspect-ratio: 1760 / 1176; object-position: 50% 50%; }
+  .hero-overlay { display: none; }
+  .hero-claim { position: relative; bottom: auto; padding: 30px 24px 4px; }
+  .hero-claim h1 { font-size: clamp(36px, 10vw, 56px); }
+  .hc-word > span { text-shadow: none; }
+  .hero-scroll { position: relative; left: auto; bottom: auto; transform: none; align-self: center;
+    display: flex; align-items: center; justify-content: center; width: 48px; height: 48px; margin: 4px 0 14px; }
+
+  /* ---- Lesbarkeit Handy: Fließtext mind. 16 px in normaler Stärke, Labels mind. 12 px ---- */
+  .statement-right p, .kopf p, .karte p, .lesen p, .zeilen p, .grundsatz p, .gegenueber p,
+  .gegenueber .nicht, .zeitstrahl p, .abschluss p, .statement-sig { font-weight: 400; }
+  .statement-right p, .karte p, .zeitstrahl p, .abschluss p { font-size: 16px; }
+  .statement-right p, .lesen p, .zeilen p, .grundsatz p { line-height: 1.75; }
+  .woerter li { font-size: 12px; }
+  .karte .eyebrow, .btn, .seitenkopf-marke, .inhalt summary, .abschluss .abschluss-unter,
+  .footer-col h2, .topbar-cta { font-size: 12px; }
+  .inhalt a { font-size: 16px; font-weight: 400; padding: 11px 0 11px 14px; }
+
+  /* ---- Tap-Ziele mind. 44 px ---- */
+  .text-link { min-height: 44px; }
+  .topbar-logo { top: 0; height: var(--topbar-h); display: flex; align-items: center; }
+  .footer-tagline, .footer-address { font-size: 16px; font-weight: 400; max-width: none; }
+  .footer-address a { display: inline-block; padding: 8px 0; }
+  .footer-col ul li + li { margin-top: 0; }
+  .footer-col ul a { display: inline-flex; align-items: center; min-height: 44px; font-size: 16px; font-weight: 400; }
+  .footer-copy { font-size: 13px; font-weight: 400; }
+  .footer-legal-links a { display: inline-flex; align-items: center; min-height: 44px; font-size: 13px; font-weight: 400; }
+  .footer-disclaimer { font-size: 13px; font-weight: 400; }
 }
 @media (max-width: 640px) {
   .karten { --spalten: 1 !important; }

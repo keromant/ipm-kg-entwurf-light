@@ -130,7 +130,7 @@ const BLOCK = {
       return `<span class="hc-word"><span style="--wd:${(i++ * 0.11).toFixed(2)}s">${kursiv ? `<em>${t}</em>` : t}</span></span>`;
     }).join('\n        ');
     return `<section class="hero" id="hero">
-  <video class="hero-video" src="${a.rel}assets/hero-sebastian-henno.mp4" poster="${a.rel}assets/hero-endframe-poster.png" autoplay muted playsinline preload="auto"></video>
+  <video class="hero-video" src="${a.rel}assets/hero-sebastian-henno.mp4" poster="${a.rel}assets/hero-endframe-poster.jpg" autoplay muted playsinline preload="auto"></video>
   <div class="hero-overlay"></div>
   <div class="hero-claim">
     <h1>${woerter}</h1>

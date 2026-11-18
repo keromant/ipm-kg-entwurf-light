@@ -32,14 +32,25 @@ p, li { font-size: 16px; font-weight: 300; line-height: 1.8; color: var(--text-2
 p + p { margin-top: 12px; }
 ul { margin: 8px 0 12px 20px; }
 strong { font-weight: 400; color: var(--text); }
-.legal-source { margin-top: 48px; font-size: 13px; color: rgba(var(--ink-rgb),.62); }
-footer { border-top: 1px solid rgba(var(--ink-rgb),.1); padding: 24px; text-align: center; font-size: 12px; color: rgba(var(--ink-rgb),.62); }
+.legal-source { margin-top: 48px; font-size: 13px; color: rgba(var(--ink-rgb),.78); }
+footer { border-top: 1px solid rgba(var(--ink-rgb),.1); padding: 24px; text-align: center; font-size: 12px; color: rgba(var(--ink-rgb),.78); }
 footer a { color: inherit; margin: 0 10px; }
 /* Farbsatz invers (Schalter auf den Hauptseiten, Wahl in localStorage „ipm.farben“) */
-html[data-farben="invers"] { --bg: #2D3436; --text: #F7F6F2; --text-2: #D2D5D2; --ox: #93B48E; --ink-rgb: 247,246,242;
+html[data-farben="invers"] { --bg: #2D3436; --text: #F7F6F2; --text-2: #E3E5E2; --ox: #93B48E; --ink-rgb: 247,246,242;
   --bar-bg: #23292C; --bar-ink-rgb: 247,246,242; --logo-hell: none; --logo-dunkel: block; color-scheme: dark; }
 .logo-auf-hell { display: var(--logo-hell) !important; }
 .logo-auf-dunkel { display: var(--logo-dunkel) !important; }
+.subtitle { margin: -24px 0 8px; font-family: var(--font-sans); font-size: 12px; font-weight: 500; letter-spacing: .2em; text-transform: uppercase; color: var(--ox); line-height: 1.6; }
+/* Handy (18.11.26): Fließtext normale Stärke, Tap-Ziele mind. 44 px */
+@media (max-width: 960px) {
+  p, li { font-weight: 400; line-height: 1.75; }
+  .legal-bar { padding-top: 4px; padding-bottom: 4px; }
+  .legal-bar > a:first-child { display: flex; align-items: center; min-height: 44px; }
+  .legal-bar .back { display: inline-flex; align-items: center; min-height: 44px; font-size: 12px; }
+  footer { font-size: 13px; }
+  footer a { display: inline-flex; align-items: center; min-height: 44px; }
+  main p a, main li a { padding: 11px 0; }   /* Trefferfläche 44 px, Zeilen bleiben gleich */
+}
 @media print { .legal-bar { display: none; } }
 </style>
 </head>
