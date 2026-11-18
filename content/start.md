@@ -76,11 +76,11 @@ Wir entwickeln Projekte für unterschiedliche Menschen mit unterschiedlichen Leb
 ### Investoren
 Für Investoren, die nachhaltig Werte schaffen möchten.
 ---
-### Kapitalanleger
-Für Kapitalanleger, die Beständigkeit und Qualität suchen.
----
 ### Selbstnutzer
 Für Selbstnutzer, die ein Zuhause für ihre Zukunft finden möchten.
+---
+### Kapitalanleger
+Für Kapitalanleger, die Beständigkeit und Qualität suchen.
 ---
 ### Mieter
 Für Mieter, die sich in ihrem Wohnumfeld sicher, willkommen und zuhause fühlen wollen.
@@ -105,7 +105,7 @@ Ein Zuhause soll den Alltag erleichtern, Sicherheit geben, Selbstbestimmung bewa
 
 Wir machen es möglich, die kleinen Dinge im Leben genießen zu können. {.statement-sig}
 
-[Mehr zu Quality Time Living](/quality-time-living/){rahmen}
+[Mehr zu Quality Time Living](https://mein-qtl.de){rahmen}
 :::
 
 == Philosophie ==

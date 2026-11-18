@@ -17,7 +17,7 @@
 @font-face { font-family: 'Nunito Sans'; src: url('fonts/NunitoSans.woff2') format('woff2'); font-weight: 200 900; font-style: normal; font-display: swap; }
 
 :root {
-  --sidebar-w: 144px;
+  --sidebar-w: 208px;   /* 18.11.26: +15 % (144 → 166), dann +25 % (→ 208) */
   --topbar-h:  52px;
 
   /* Farbsatz HELL (Standard) – Marken-Blatt: Anthrazit Dunkel, Grün, Warmweiß */
@@ -188,7 +188,8 @@ a { color: inherit; text-decoration: none; }
 .sb-logo {
   /* Kompaktlogo, dunkle Variante (Warmweiß + grüner Punkt) auf Anthrazit */
   position: relative; z-index: 1001;
-  width: 100px; margin-top: 26px; margin-bottom: 22px;
+  /* 18.11.26: Logo mit Schriftzug, ganz im Rand (vorher Kompaktlogo 140 px) */
+  width: 176px; margin-top: 28px; margin-bottom: 22px;
   flex-shrink: 0;
 }
 .sb-logo a { display: block; transition: opacity .25s ease; }
@@ -377,16 +378,25 @@ body.mnav-open { overflow: hidden; }
 .q-wort { white-space: nowrap; }   /* kein Umbruch zwischen Q und Rest des Worts */
 .btn-text { display: inline; }     /* Knopf-Beschriftung als ein Flex-Kind */
 
-/* Markenname Quality Time Living: QTL-Gold (mein-qtl.de) mit Schein */
-.qtl {
-  color: var(--qtl-gold);
-  text-shadow: var(--qtl-glow);
+/* Markenname Quality Time Living: im Text ohne Gold und Schein (18.11.26).
+   Nur im Knopf: beim Darüberfahren dunkler Sweep, Schrift in QTL-Gold mit Schein. */
+.btn:has(.qtl) { --sweep: #2D3436; }
+@media (hover: hover) and (pointer: fine) {
+  .btn:hover .qtl { color: #E8B84B; text-shadow: 0 0 8px rgba(232,184,75,.55), 0 0 22px rgba(201,148,26,.35); }
 }
-.btn .qtl, .eyebrow .qtl { color: inherit; }
-.qtl em { color: inherit; }   /* „Quality Time *Living*“ in Überschriften: ganz in Gold */
-.btn-rahmen .qtl, .btn-hell .qtl, .eyebrow .qtl { color: var(--qtl-gold); }
-.btn.is-activating .qtl { color: inherit; text-shadow: none; }
-@media (hover: hover) { .btn:hover .qtl { color: inherit; text-shadow: none; } }
+.btn.is-activating .qtl { color: #E8B84B; }
+.btn .qtl { transition: color .45s ease, text-shadow .45s ease; }
+
+/* Wortmarke „ipm.“ in Überschriften – wie das Logo: Nunito Sans fett, kleingeschrieben, grüner Punkt */
+.ipm-marke {
+  font-family: var(--font-ui); font-weight: 800; font-style: normal;
+  text-transform: none; letter-spacing: -.03em; white-space: nowrap;
+}
+.ipm-marke { color: var(--charcoal); }
+html[data-farben="invers"] .ipm-marke { color: var(--warmweiss); }
+.abschluss .ipm-marke { color: inherit; }
+.ipm-punkt { color: var(--ox-lt); }
+:is(.eyebrow, .seitenkopf-marke, .abschluss-unter) .ipm-marke { font-size: 1.6em; line-height: 1; vertical-align: -.08em; }
 
 /* ================================================================ TYPO-BAUSTEINE */
 .eyebrow {

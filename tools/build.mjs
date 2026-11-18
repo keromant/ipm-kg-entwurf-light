@@ -28,6 +28,9 @@ const slug = s => s.toLowerCase()
   .replace(/ä/g, 'ae').replace(/ö/g, 'oe').replace(/ü/g, 'ue').replace(/ß/g, 'ss')
   .replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
 
+// Wortmarke „ipm.“ in Überschriften, Dachzeilen und Marken-Zeilen (wie das Logo: Nunito Sans fett, grüner Punkt)
+const marke = html => html.replace(/(<[^>]*>)|\bipm\.(?![\w-])/g, (m, tag) => tag || '<span class="ipm-marke">ipm<span class="ipm-punkt">.</span></span>');
+
 const pad2 = n => String(n).padStart(2, '0');
 
 // interne Links (/pfad/) relativ zur aktuellen Seite machen
@@ -71,7 +74,8 @@ function md(body, rel) {
     const last = para[para.length - 1];
     const m = last.match(/\s*\{\.([a-z0-9 .-]+)\}\s*$/);
     if (m) { para[para.length - 1] = last.slice(0, m.index); klasse = m[1].split('.').join(' '); }
-    const html = para.map(l => inline(l, rel)).join('<br>');
+    let html = para.map(l => inline(l, rel)).join('<br>');
+    if (/\b(seitenkopf-marke|abschluss-unter)\b/.test(klasse)) html = marke(html);
     // Absatz nur aus einem Knopf -> Knopfzeile
     if (/^<a class="btn[^>]*>(?:(?!<\/a>).)*<\/a>(\s*<a class="btn[^>]*>(?:(?!<\/a>).)*<\/a>)*$/.test(html.replace(/<br>/g, ' ').trim())) klasse = (klasse + ' knopf-zeile').trim();
     out.push(`<p${klasse ? ` class="${klasse}"` : ''}>${html}</p>`);
@@ -89,10 +93,10 @@ function md(body, rel) {
     if ((m = line.match(/^(#{1,4})\s+(.*)$/))) {
       flushPara(); flushListe();
       const n = m[1].length;
-      out.push(`<h${n}>${inline(m[2], rel)}</h${n}>`);
+      out.push(`<h${n}>${marke(inline(m[2], rel))}</h${n}>`);
     } else if (line.startsWith('^ ')) {
       flushPara(); flushListe();
-      out.push(`<span class="eyebrow">${inline(line.slice(2), rel)}</span>`);
+      out.push(`<span class="eyebrow">${marke(inline(line.slice(2), rel))}</span>`);
     } else if (line.startsWith('> ')) {
       flushPara(); flushListe();
       out.push(`<blockquote class="kernsatz"><p>${inline(line.slice(2), rel)}</p></blockquote>`);
@@ -312,17 +316,16 @@ function seitenRahmen({ seite, fm, rel, body }) {
   const titel = fm.titel || 'ipm.';
   return `<!DOCTYPE html>
 <!-- Automatisch erzeugt aus content/${seite.datei} mit tools/build.mjs – Texte bitte dort ändern, nicht hier. -->
-<html lang="de" class="no-js">
+<html lang="de" class="no-js" data-farben="invers">
 <head>
 <meta charset="UTF-8">
-<script>try{if(localStorage.getItem('ipm.farben')==='invers')document.documentElement.setAttribute('data-farben','invers')}catch(e){}</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>${esc(titel)}</title>
 <meta name="description" content="${esc(fm.beschreibung || '')}">
 <link rel="icon" href="${rel}assets/marke-2026-11/favicon.ico" sizes="any">
 <link rel="icon" type="image/png" href="${rel}assets/marke-2026-11/favicon-32.png" sizes="32x32">
 <link rel="apple-touch-icon" href="${rel}assets/marke-2026-11/apple-touch-icon.png">
-<meta name="theme-color" content="#FFFFFF">
+<meta name="theme-color" content="#23292C">
 <link rel="stylesheet" href="${rel}assets/site.css">
 </head>
 <body class="seite-${seite.pfad || 'start'}">
@@ -337,9 +340,6 @@ function seitenRahmen({ seite, fm, rel, body }) {
   <a href="${h('/')}" class="topbar-logo"><img class="logo-auf-hell" src="${rel}assets/marke-2026-11/ipm-logo-kompakt-auf-hell.png" alt="ipm. – zur Startseite" width="600" height="226"><img class="logo-auf-dunkel" src="${rel}assets/marke-2026-11/ipm-logo-kompakt-auf-dunkel.png" alt="ipm. – zur Startseite" width="600" height="226"></a>
   <span class="topbar-label" id="topbarLabel" data-start="${esc(fm.label || seite.menue)}">${esc(fm.label || seite.menue)}</span>
   <div class="topbar-rechts">
-    <button class="farben-knopf" id="farbenKnopf" type="button" aria-pressed="false" aria-label="Farben umkehren" title="Farben umkehren">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="1.6"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/></svg>
-    </button>
     <a href="${h('/kontakt/')}" class="topbar-cta">Kontakt aufnehmen +</a>
   </div>
 </div>
@@ -353,7 +353,7 @@ function seitenRahmen({ seite, fm, rel, body }) {
 
 <aside class="sidebar" id="sidebar">
   <div class="sb-logo">
-    <a href="${h('/')}"><img class="logo-auf-hell" src="${rel}assets/marke-2026-11/ipm-logo-kompakt-auf-hell.png" alt="ipm. Immobilien-Projekt-Management – zur Startseite" width="600" height="226"><img class="logo-auf-dunkel" src="${rel}assets/marke-2026-11/ipm-logo-kompakt-auf-dunkel.png" alt="ipm. Immobilien-Projekt-Management – zur Startseite" width="600" height="226"></a>
+    <a href="${h('/')}"><img class="logo-auf-hell" src="${rel}assets/marke-2026-11/ipm-logo-auf-hell.png" alt="ipm. Immobilien-Projekt-Management – zur Startseite" width="900" height="402"><img class="logo-auf-dunkel" src="${rel}assets/marke-2026-11/ipm-logo-auf-dunkel.png" alt="ipm. Immobilien-Projekt-Management – zur Startseite" width="900" height="402"></a>
   </div>
   <div class="sb-sep"></div>
   <nav class="sb-nav" aria-label="Hauptmenü">
