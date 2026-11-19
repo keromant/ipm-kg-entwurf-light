@@ -15,7 +15,6 @@ Wir sind *anders.*
 
 ::: einstieg
 Wir sind nicht normal.
-Wir sind *anders.*
 Unsere Projekte sind *besonders* – aber gut! {.einstieg-zeilen}
 
 „Wir entwickeln keine Immobilien.

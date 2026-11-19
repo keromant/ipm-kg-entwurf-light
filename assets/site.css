@@ -840,6 +840,10 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(var(--ink-rgb),.1);
 .footer-tagline { font-size: 13px; font-weight: 300; color: rgba(var(--ink-rgb),.85); line-height: 1.65; max-width: 280px; margin: 14px 0 24px; }
 .footer-address { font-size: 13px; font-weight: 300; color: rgba(var(--ink-rgb),.85); line-height: 1.75; }
 .footer-address a:hover { color: var(--ox); }
+.footer-firma { margin: 0 0 12px; }
+.footer-kontakt { display: grid; grid-template-columns: auto 1fr; column-gap: 14px; row-gap: 2px; align-items: baseline; margin: 0; }
+.footer-kontakt dt { font-weight: 500; }
+.footer-kontakt dd { margin: 0; }
 .footer-col h2 {
   font-family: var(--font-sans);
   font-size: 11px; font-weight: 500;
@@ -938,8 +942,11 @@ footer { background: var(--bg-3); border-top: 1px solid rgba(var(--ink-rgb),.1);
   /* ---- Hero Handy (18.11.26): ganzes Video im 3:2-Format, damit beide Personen ganz zu sehen sind.
      Slogan wieder im Video (Wunsch Kerem), unten über einem weichen dunklen Verlauf – unter den
      Gesichtern, nicht darüber. ---- */
-  .hero { height: auto; min-height: 0; aspect-ratio: 1760 / 1176; background: #23292C; }
-  .hero-video { object-position: 50% 50%; }
+  /* 19.11.26 (Wunsch Sebastian): Bild randlos und hoch, füllt den Schirm in voller Breite.
+     Fast quadratisch (1 : 1,1), höchstens so hoch wie der Schirm unter der Kopfzeile; Ausschnitt so,
+     dass beide Personen im Bild bleiben. */
+  .hero { height: min(calc(100svh - var(--topbar-h)), calc(100vw * 1.1)); min-height: 0; aspect-ratio: auto; background: #23292C; }
+  .hero-video { object-position: 58% 50%; }
   .hero-overlay { background: linear-gradient(to top, rgba(0,0,0,.72) 0%, rgba(0,0,0,.45) 26%, rgba(0,0,0,0) 52%); }
   .hero-claim { bottom: 34px; padding: 0 20px; }
   .hero-claim h1 { font-size: clamp(30px, 8.6vw, 52px); }

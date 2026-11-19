@@ -27,7 +27,7 @@ info@ipm-kg.de
 ---
 ^ Besuchen
 ### Anschrift
-ipm. Immobilien-Projekt-Management
+ipm.
 Feldburgweg 84
 47918 Tönisvorst
 

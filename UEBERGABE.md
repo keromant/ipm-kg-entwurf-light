@@ -1,5 +1,12 @@
 # Übergabe für die nächste Sitzung
 
+## 2026-11-19 – Sebastians Wünsche: Fußzeile + Hero Handy
+**Erledigt:** Fußzeile (build.mjs): Firmenname nur einmal als Text (laut Impressum), darunter Liste mit gleichen
+Beschriftungen Anschrift / Telefon / E-Mail (`.footer-kontakt`); Unterzeile ohne Firmennamen, Copyright nur „ipm.“.
+Hero Handy (< 960 px): randlos, Höhe min(Schirm, 110 vw), Ausschnitt 58 %, beide Personen im Bild.
+„Wir sind anders.“ steht nur noch im Hero, nicht mehr im Einstieg darunter.
+**Fallstricke:** `master` war hinter dem Live-Stand (live war `marke-2026-11`); master wurde vorgespult, live ist jetzt master.
+
 ## 2026-11-18 – Marke statt „ipm-KG“, eine Telefonnummer
 **Erledigt:** „ipm.“ jetzt überall als Wortmarke (build.mjs: `inline()` ruft `marke()`, also auch Fließtext, Listen,
 Karten; Fußzeile Adresse + Copyright). Impressum/Datenschutz: Wortmarke im Kopf (Unterzeile), im Bildnachweis und in der

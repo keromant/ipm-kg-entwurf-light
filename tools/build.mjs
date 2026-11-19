@@ -373,13 +373,14 @@ ${body}</main>
   <div class="footer-main">
     <div>
       <img src="${rel}assets/marke-2026-11/ipm-logo-auf-hell.png" alt="ipm. Immobilien-Projekt-Management" class="footer-logo logo-auf-hell" width="900" height="402"><img src="${rel}assets/marke-2026-11/ipm-logo-auf-dunkel.png" alt="ipm. Immobilien-Projekt-Management" class="footer-logo logo-auf-dunkel" width="900" height="402">
-      <p class="footer-tagline">Immobilien-Projekt-Management. Diskret. Individuell. Transparent.</p>
+      <p class="footer-tagline">Diskret. Individuell. Transparent.</p>
       <div class="footer-address">
-        ${marke('ipm.')} Immobilien-Projekt-Management<br>
-        Feldburgweg 84<br>
-        47918 Tönisvorst<br><br>
-        Tel. <a href="tel:+4921513613885">+49 (0) 2151 – 3 61 38 85</a><br>
-        <a href="mailto:info@ipm-kg.de">info@ipm-kg.de</a>
+        <p class="footer-firma">ipm Immobilien-Projekt-Management –<br>Kooperations-Gesellschaft bR</p>
+        <dl class="footer-kontakt">
+          <dt>Anschrift</dt><dd>Feldburgweg 84, 47918 Tönisvorst</dd>
+          <dt>Telefon</dt><dd><a href="tel:+4921513613885">+49 (0) 2151 – 3 61 38 85</a></dd>
+          <dt>E-Mail</dt><dd><a href="mailto:info@ipm-kg.de">info@ipm-kg.de</a></dd>
+        </dl>
       </div>
     </div>
     <div class="footer-col">
@@ -397,7 +398,7 @@ ${body}</main>
     </div>
   </div>
   <div class="footer-bottom">
-    <span class="footer-copy">© 2026 ${marke('ipm.')} Immobilien-Projekt-Management · Tönisvorst · Alle Rechte vorbehalten.</span>
+    <span class="footer-copy">© 2026 ${marke('ipm.')} · Tönisvorst · Alle Rechte vorbehalten.</span>
     <div class="footer-legal-links">
       <a href="${h('/impressum/')}">Impressum</a>
       <a href="${h('/datenschutz/')}">Datenschutz</a>
