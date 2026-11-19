@@ -12,8 +12,8 @@ Hero Handy (< 960 px): randlos, Höhe min(Schirm, 110 vw), Ausschnitt 58 %, beid
 Karten; Fußzeile Adresse + Copyright). Impressum/Datenschutz: Wortmarke im Kopf (Unterzeile), im Bildnachweis und in der
 Fußzeile, eigene `.ipm-marke`-Regeln im Inline-CSS. Telefon überall +49 (0) 2151 – 3 61 38 85 (tel:+4921513613885);
 alte 2156-Nummer und die Handynummer im Datenschutz-Abschnitt „Verantwortliche Stelle“ ersetzt.
-**Offene Fäden:** Rechtlicher Name im Datenschutz („Immobilien-Projekt-Management-Kooperations-Gesellschaft bR“) weicht
-von der Impressums-Schreibweise ab („ipm, Immobilien-Projekt-Management – Kooperations-Gesellschaft bR“) – mit Henno klären.
+**Erledigt 19.11.:** Rechtlicher Name im Datenschutz jetzt wie im Impressum
+(„ipm Immobilien-Projekt-Management – Kooperations-Gesellschaft bR“).
 
 ## 2026-11-18 – Handy-Ansicht, Lesbarkeit, Impressum
 **Erledigt:** Hero unter 960 px als ganzes 3:2-Video, Slogan darunter auf dunkler Fläche; Fließtext mobil 16 px/400,
